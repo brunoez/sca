@@ -146,11 +146,11 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onSuccess }) => {
         </div>
 
         <h3 className="text-xl font-bold text-slate-100 mb-2 text-center">
-          {t('uploadHeader', undefined) || 'Carregar SBOM CycloneDX'}
+          {t('upload.header')}
         </h3>
 
         <p className="text-slate-400 text-sm text-center mb-6 max-w-md leading-relaxed">
-          {t('dropzoneHint', undefined) || 'Arraste um arquivo CycloneDX JSON ou XML aqui (ou clique para selecionar)'}
+          {t('upload.dropzoneHint')}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400 bg-slate-950/60 px-4 py-2 rounded-full border border-slate-800">

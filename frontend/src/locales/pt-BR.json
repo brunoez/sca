@@ -33,6 +33,26 @@
     "medium": "Média",
     "low": "Baixa"
   },
+  "dashboard": {
+    "title": "Dashboard Executivo de Segurança SCA",
+    "subtitle": "Visão Holística de Saúde da Supply Chain de Software",
+    "supplyChainRisk": "Risco de Supply Chain",
+    "lowRisk": "Baixo Risco",
+    "highRisk": "Risco Elevado",
+    "scoreDescription": "Pontuação baseada em vulnerabilidades (CVEs) e licenças restritivas.",
+    "cveBreakdown": "Distribuição de Vulnerabilidades",
+    "cveTotal": "Total de Vulnerabilidades",
+    "licenseDistribution": "Distribuição de Licenças",
+    "licenseWarning": "Licenças Copyleft detectadas! Atenção para conformidade jurídica.",
+    "depthTitle": "Profundidade da Árvore de Dependências",
+    "quickWinsTitle": "Quick Wins de Remediação (Alto ROI)",
+    "quickWinsSubtitle": "Pacotes diretos com maior impacto na redução de dependências e riscos transitivos",
+    "downstreamImpact": "Impacto Downstream",
+    "depsCount": "dependências transitivas ligadas",
+    "remediationAction": "Recomendação: Atualizar ou auditar esta dependência direta para otimizar o grafo.",
+    "noQuickWins": "Nenhuma dependência direta com alto número de transitivos encontrada.",
+    "totalDeps": "Total de Dependências"
+  },
   "explorer": {
     "searchPlaceholder": "Filtrar por nome, purl, grupo ou licença...",
     "noComponents": "Nenhum componente encontrado",

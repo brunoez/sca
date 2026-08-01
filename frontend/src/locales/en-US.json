@@ -33,6 +33,26 @@
     "medium": "Medium",
     "low": "Low"
   },
+  "dashboard": {
+    "title": "Executive SCA Security Dashboard",
+    "subtitle": "Holistic View of Software Supply Chain Health",
+    "supplyChainRisk": "Supply Chain Risk",
+    "lowRisk": "Low Risk",
+    "highRisk": "High Risk",
+    "scoreDescription": "Score calculated based on vulnerabilities (CVEs) and restrictive licenses.",
+    "cveBreakdown": "Vulnerability Distribution",
+    "cveTotal": "Total Vulnerabilities",
+    "licenseDistribution": "License Distribution",
+    "licenseWarning": "Copyleft licenses detected! Attention required for legal compliance.",
+    "depthTitle": "Dependency Tree Depth",
+    "quickWinsTitle": "High ROI Remediation Quick Wins",
+    "quickWinsSubtitle": "Direct packages with highest impact on reducing transitive dependencies and risks",
+    "downstreamImpact": "Downstream Impact",
+    "depsCount": "linked transitive dependencies",
+    "remediationAction": "Recommendation: Upgrade or audit this direct dependency to optimize the graph.",
+    "noQuickWins": "No direct dependencies with high transitive counts found.",
+    "totalDeps": "Total Dependencies"
+  },
   "explorer": {
     "searchPlaceholder": "Filter by name, purl, group or license...",
     "noComponents": "No components found",
