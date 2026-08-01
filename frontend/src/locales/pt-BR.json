@@ -1,0 +1,60 @@
+{
+  "appTitle": "CycloneDX SCA Visualizer",
+  "subtitle": "Inteligência Executiva & Visualizador de Grafo de Supply Chain",
+  "upload": {
+    "header": "Carregar SBOM CycloneDX",
+    "dropzoneHint": "Arraste um arquivo CycloneDX JSON ou XML aqui (ou clique para selecionar)",
+    "selectFile": "Selecionar Arquivo SBOM",
+    "sampleTitle": "Ou escolha um SBOM de exemplo:",
+    "loadSample": "Carregar Exemplo",
+    "errorInvalidFormat": "Formato inválido. Por favor envie um arquivo .json ou .xml CycloneDX.",
+    "errorParsing": "Erro ao processar arquivo SBOM:"
+  },
+  "tabs": {
+    "dashboard": "Dashboard Executivo",
+    "graph": "Grafo 2D de Dependências",
+    "tree": "Árvore Hierárquica",
+    "explorer": "Explorador de Pacotes"
+  },
+  "metrics": {
+    "scoreLabel": "SCA Security Rating",
+    "totalComponents": "Total de Componentes",
+    "directVsTransitive": "Diretas vs Transitivas",
+    "direct": "Diretas",
+    "transitive": "Transitivas",
+    "maxDepth": "Profundidade Máxima",
+    "licenseMatrix": "Matriz de Licenças",
+    "permissive": "Permissiva",
+    "copyleft": "Copyleft",
+    "unknown": "Desconhecida",
+    "vulnerabilities": "Vulnerabilidades",
+    "critical": "Crítica",
+    "high": "Alta",
+    "medium": "Média",
+    "low": "Baixa"
+  },
+  "explorer": {
+    "searchPlaceholder": "Filtrar por nome, purl, grupo ou licença...",
+    "noComponents": "Nenhum componente encontrado",
+    "tableHeaderName": "Componente",
+    "tableHeaderVersion": "Versão",
+    "tableHeaderType": "Tipo",
+    "tableHeaderLicense": "Licença",
+    "tableHeaderDepth": "Profundidade",
+    "tableHeaderActions": "Ações"
+  },
+  "details": {
+    "title": "Detalhes do Componente",
+    "bomRef": "BOM Ref",
+    "purl": "PURL",
+    "group": "Grupo",
+    "ancestors": "Caminho de Inclusão (Ancestrais)",
+    "impactPath": "Caminho de Impacto",
+    "close": "Fechar"
+  },
+  "language": {
+    "ptBR": "Português (BR)",
+    "enUS": "Inglês (US)",
+    "toggle": "Idioma"
+  }
+}
