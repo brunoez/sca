@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ComponentExplorer } from '../ComponentExplorer';

@@ -1,5 +1,4 @@
-import React from 'react';
-import { ShieldCheck, ShieldAlert, AlertTriangle, Bug, Layers, Info } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, Layers, Bug } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { calculateScaMetrics } from '../../services/scoreCalculator';
 import { useTranslation } from '../../context/LanguageContext';

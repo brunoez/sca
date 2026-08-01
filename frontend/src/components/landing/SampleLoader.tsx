@@ -143,7 +143,7 @@ export const SampleLoader: React.FC<SampleLoaderProps> = ({ onLoaded }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-6">
+    <div data-testid="sample-loader" className="w-full max-w-2xl mx-auto mt-6">
       <div className="flex items-center gap-2 mb-3 text-slate-400 text-xs font-semibold uppercase tracking-wider">
         <Sparkles className="w-4 h-4 text-cyan-400" />
         <span>Ou experimente com um exemplo pré-configurado:</span>

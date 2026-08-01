@@ -1,4 +1,3 @@
-import React from 'react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { TreeView } from '../TreeView';
@@ -111,10 +110,7 @@ describe('TreeView Component Suite', () => {
     useScaStore.getState().setModel(mockSbomModel);
     renderTreeView();
 
-    // Act - Click toggle button for root and express
-    const rootToggle = screen.getByTestId('tree-node-toggle-root');
-    fireEvent.click(rootToggle);
-
+    // Act - Click toggle button for express (root is expanded by default)
     const expressToggle = screen.getByTestId('tree-node-toggle-pkg:npm/express@4.18.2');
     fireEvent.click(expressToggle);
 

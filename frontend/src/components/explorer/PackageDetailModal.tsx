@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { X, Copy, Check, ShieldAlert, ShieldCheck, AlertTriangle, Info, ExternalLink, GitCommit } from 'lucide-react';
+import { useEffect, useState, Fragment } from 'react';
+import { X, Copy, Check, ShieldAlert, ShieldCheck, AlertTriangle, Info, GitCommit } from 'lucide-react';
 import DOMPurify from 'dompurify';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
@@ -157,7 +157,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
             </h4>
             <div data-testid="impact-path-breadcrumbs" className="flex items-center flex-wrap gap-2 text-xs">
               {ancestorPath.map((item, index) => (
-                <React.Fragment key={item.ref + index}>
+                <Fragment key={item.ref + index}>
                   <button
                     onClick={() => item.ref !== 'root' && selectComponent(item.ref)}
                     className={`px-2.5 py-1 rounded-md font-mono border transition-all ${
@@ -171,7 +171,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
                     {item.name} {item.version && `v${item.version}`}
                   </button>
                   {index < ancestorPath.length - 1 && <span className="text-slate-600 font-bold">→</span>}
-                </React.Fragment>
+                </Fragment>
               ))}
             </div>
           </div>

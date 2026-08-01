@@ -1,5 +1,4 @@
-import React from 'react';
-import { Zap, ArrowUpRight, ShieldAlert, Package, CheckCircle } from 'lucide-react';
+import { Zap, ArrowUpRight, ShieldAlert, CheckCircle } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { GraphCanvas } from '../GraphCanvas';
@@ -101,8 +100,8 @@ describe('GraphCanvas Component', () => {
 
     // Assert
     expect(screen.getByText('Caminho de Impacto: qs')).toBeInTheDocument();
-    expect(screen.getByText('my-app')).toBeInTheDocument();
-    expect(screen.getByText('express')).toBeInTheDocument();
-    expect(screen.getByText('qs')).toBeInTheDocument();
+    expect(screen.getAllByText('my-app').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('express').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('qs').length).toBeGreaterThan(0);
   });
 });

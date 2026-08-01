@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
-import { Handle, Position, NodeProps, Node } from '@xyflow/react';
+import { memo } from 'react';
+import { Handle, Position, NodeProps } from '@xyflow/react';
 import { ShieldAlert, ShieldCheck, AlertTriangle } from 'lucide-react';
-import { ScaNodeData } from '../../services/graphLayout';
+import { ScaLicense, ScaVulnerability } from '../../models/sca';
 
-export const ScaNodeComponent: React.FC<NodeProps<Node<ScaNodeData>>> = memo(({ data }) => {
+export const ScaNodeComponent = memo(({ data }: NodeProps<any>) => {
   const {
     name,
     version,
@@ -17,8 +17,8 @@ export const ScaNodeComponent: React.FC<NodeProps<Node<ScaNodeData>>> = memo(({ 
   } = data;
 
   // Determine Primary License & Category
-  const hasCopyleft = licenses.some((l) => l.type === 'copyleft');
-  const hasPermissive = licenses.some((l) => l.type === 'permissive');
+  const hasCopyleft = licenses.some((l: ScaLicense) => l.type === 'copyleft');
+  const hasPermissive = licenses.some((l: ScaLicense) => l.type === 'permissive');
   const primaryLicenseName = licenses[0]?.name || licenses[0]?.id || 'Desconhecida';
 
   let licenseBadgeClass = 'bg-amber-950/80 text-amber-400 border-amber-800/80';
@@ -34,7 +34,7 @@ export const ScaNodeComponent: React.FC<NodeProps<Node<ScaNodeData>>> = memo(({ 
 
   // Determine Vulnerability Status
   const criticalHighCount = vulnerabilities.filter(
-    (v) => v.severity === 'critical' || v.severity === 'high'
+    (v: ScaVulnerability) => v.severity === 'critical' || v.severity === 'high'
   ).length;
   const totalCveCount = vulnerabilities.length;
 

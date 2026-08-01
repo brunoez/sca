@@ -1,12 +1,10 @@
-import React from 'react';
-import { LayoutDashboard, Layers, ShieldCheck, GitFork, Scale, Sparkles, RefreshCw } from 'lucide-react';
+import { RefreshCw, LayoutDashboard } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
 import { ExecutiveScoreCard } from './ExecutiveScoreCard';
 import { LicenseMatrixChart } from './LicenseMatrixChart';
 import { SupplyChainDepthChart } from './SupplyChainDepthChart';
 import { QuickWinsList } from './QuickWinsList';
-import { calculateScaMetrics } from '../../services/scoreCalculator';
 
 export const ExecutiveDashboard: React.FC = () => {
   const { model, clearModel } = useScaStore();
@@ -14,12 +12,7 @@ export const ExecutiveDashboard: React.FC = () => {
 
   if (!model) return null;
 
-  const { score, grade } = calculateScaMetrics({
-    vulnerabilityCounts: model.summary.vulnerabilityCounts,
-    licenseBreakdown: model.summary.licenseBreakdown,
-  });
-
-  const { totalComponents, directComponentsCount, transitiveComponentsCount, maxTreeDepth } = model.summary;
+  const { totalComponents } = model.summary;
 
   return (
     <div data-testid="executive-dashboard" className="space-y-6 animate-fadeIn pb-12">

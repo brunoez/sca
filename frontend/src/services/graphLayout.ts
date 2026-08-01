@@ -2,7 +2,7 @@ import dagre from '@dagrejs/dagre';
 import { Node, Edge } from '@xyflow/react';
 import { ScaSbomModel, ScaLicense, ScaVulnerability } from '../models/sca';
 
-export interface ScaNodeData {
+export interface ScaNodeData extends Record<string, unknown> {
   bomRef: string;
   name: string;
   version: string;

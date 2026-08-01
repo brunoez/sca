@@ -1,6 +1,5 @@
-import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { GitFork, Layers, Network } from 'lucide-react';
+import { GitFork, Layers } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
 

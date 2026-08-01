@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { ScaNodeComponent } from '../ScaNodeComponent';
@@ -10,15 +9,17 @@ describe('ScaNodeComponent', () => {
     return render(
       <ReactFlowProvider>
         <ScaNodeComponent
-          id={data.bomRef}
-          data={data}
-          type="scaNode"
-          selected={false}
-          zIndex={1}
-          isConnectable={true}
-          positionAbsoluteX={0}
-          positionAbsoluteY={0}
-          dragging={false}
+          {...({
+            id: data.bomRef,
+            data,
+            type: 'scaNode',
+            selected: false,
+            zIndex: 1,
+            isConnectable: true,
+            positionAbsoluteX: 0,
+            positionAbsoluteY: 0,
+            dragging: false,
+          } as any)}
         />
       </ReactFlowProvider>
     );

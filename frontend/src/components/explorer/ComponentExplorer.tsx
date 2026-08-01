@@ -38,8 +38,6 @@ export const ComponentExplorer: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
 
-  const [modalCompRef, setModalCompRef] = useState<string | null>(null);
-
   if (!model) return null;
 
   const allComponents = Array.from(model.components.values());
@@ -134,7 +132,6 @@ export const ComponentExplorer: React.FC = () => {
   const handleInspectPackage = (compRef: string, e: React.MouseEvent) => {
     e.stopPropagation();
     selectComponent(compRef);
-    setModalCompRef(compRef);
   };
 
   const renderSortIcon = (field: SortField) => {
@@ -360,7 +357,6 @@ export const ComponentExplorer: React.FC = () => {
               ) : (
                 paginatedComponents.map((comp) => {
                   const isSelected = selectedComponentRef === comp.bomRef;
-                  const hasCopyleft = comp.licenses.some((l) => l.type === 'copyleft');
                   const critCount = comp.vulnerabilities.filter((v) => v.severity === 'critical').length;
                   const highCount = comp.vulnerabilities.filter((v) => v.severity === 'high').length;
 
@@ -370,7 +366,6 @@ export const ComponentExplorer: React.FC = () => {
                       data-testid={`explorer-row-${comp.bomRef}`}
                       onClick={() => {
                         selectComponent(comp.bomRef);
-                        setModalCompRef(comp.bomRef);
                       }}
                       className={`hover:bg-slate-800/60 transition-colors cursor-pointer ${
                         isSelected ? 'bg-cyan-950/40 ring-1 ring-cyan-500/50' : ''
@@ -500,8 +495,8 @@ export const ComponentExplorer: React.FC = () => {
       </div>
 
       {/* Package Inspection Modal */}
-      {modalCompRef && (
-        <PackageDetailModal compRef={modalCompRef} onClose={() => setModalCompRef(null)} />
+      {selectedComponentRef && (
+        <PackageDetailModal compRef={selectedComponentRef} onClose={() => selectComponent(null)} />
       )}
     </div>
   );

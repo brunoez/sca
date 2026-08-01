@@ -1,4 +1,3 @@
-import React from 'react';
 import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Globe, RefreshCw } from 'lucide-react';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import { useScaStore } from './store/useScaStore';
@@ -8,9 +7,10 @@ import { ExecutiveDashboard } from './components/dashboard/ExecutiveDashboard';
 import { GraphCanvas } from './components/graph/GraphCanvas';
 import { TreeView } from './components/tree/TreeView';
 import { ComponentExplorer } from './components/explorer/ComponentExplorer';
+import { PackageDetailModal } from './components/explorer/PackageDetailModal';
 
 export function MainApp() {
-  const { model, activeTab, setActiveTab, reset } = useScaStore();
+  const { model, activeTab, setActiveTab, reset, selectedComponentRef, selectComponent } = useScaStore();
   const { t, language, setLanguage } = useTranslation();
 
   return (
@@ -31,6 +31,7 @@ export function MainApp() {
           <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">
             <Globe className="w-4 h-4 text-slate-400" />
             <select
+              data-testid="language-select"
               value={language}
               onChange={(e) => setLanguage(e.target.value as 'pt-BR' | 'en-US')}
               className="bg-transparent text-xs font-semibold text-slate-300 outline-none cursor-pointer"
@@ -42,6 +43,7 @@ export function MainApp() {
 
           {model && (
             <button
+              data-testid="reset-sbom-button"
               onClick={reset}
               className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-300 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl transition-all shadow-sm"
               title="Carregar outro arquivo SBOM"
@@ -123,6 +125,14 @@ export function MainApp() {
           </div>
         )}
       </main>
+
+      {/* Global Package Detail Modal for Dashboard & Graph views */}
+      {selectedComponentRef && (activeTab === 'dashboard' || activeTab === 'graph') && (
+        <PackageDetailModal
+          compRef={selectedComponentRef}
+          onClose={() => selectComponent(null)}
+        />
+      )}
     </div>
   );
 }

@@ -15,15 +15,13 @@ import {
 } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
-import { ScaComponent } from '../../models/sca';
 import { PackageDetailModal } from '../explorer/PackageDetailModal';
 
 export const TreeView: React.FC = () => {
-  const { model, selectedComponentRef, impactPathRefs, selectComponent, searchFilter, setSearchFilter } = useScaStore();
+  const { model, selectedComponentRef, selectComponent, searchFilter, setSearchFilter } = useScaStore();
   const { t } = useTranslation();
 
-  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
-  const [inspectModalRef, setInspectModalRef] = useState<string | null>(null);
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['root']));
 
   if (!model) return null;
 
@@ -190,7 +188,7 @@ export const TreeView: React.FC = () => {
                     depthLevel={1}
                     expandedNodes={expandedNodes}
                     toggleNode={toggleNode}
-                    onInspect={(ref) => setInspectModalRef(ref)}
+                    onInspect={(ref) => selectComponent(ref)}
                   />
                 ))}
               </div>
@@ -199,9 +197,9 @@ export const TreeView: React.FC = () => {
         </div>
       </div>
 
-      {/* Package Detail Modal */}
-      {inspectModalRef && (
-        <PackageDetailModal compRef={inspectModalRef} onClose={() => setInspectModalRef(null)} />
+      {/* Package Inspection Modal */}
+      {selectedComponentRef && (
+        <PackageDetailModal compRef={selectedComponentRef} onClose={() => selectComponent(null)} />
       )}
     </div>
   );

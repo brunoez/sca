@@ -168,7 +168,7 @@ export function parseAndNormalizeSbom(content: string, filename: string): ScaSbo
   }
 
   // Fallback for components not reached via rootRef (e.g. unlinked or missing root dependency entry)
-  componentsMap.forEach((comp, ref) => {
+  componentsMap.forEach((comp) => {
     if (comp.depth === 0) {
       // Check if it is listed as direct in dependencies without root entry
       comp.depth = 1;

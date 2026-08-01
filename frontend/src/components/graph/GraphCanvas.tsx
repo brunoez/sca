@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, Fragment } from 'react';
 import {
   ReactFlow,
   Controls,
@@ -57,9 +57,9 @@ export const GraphCanvas: React.FC = () => {
       className="relative w-full h-[650px] bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl"
     >
       <ReactFlow
-        nodes={nodes}
+        nodes={nodes as any}
         edges={edges}
-        nodeTypes={nodeTypes}
+        nodeTypes={nodeTypes as any}
         onNodeClick={onNodeClick}
         onPaneClick={onPaneClick}
         fitView
@@ -138,7 +138,7 @@ export const GraphCanvas: React.FC = () => {
                 const isLast = idx === impactPathRefs.length - 1;
                 const compName = comp ? comp.name : model.metadata.componentName;
                 return (
-                  <React.Fragment key={ref}>
+                  <Fragment key={ref}>
                     <span
                       className={`px-2.5 py-1 rounded-md border text-xs font-semibold whitespace-nowrap ${
                         isLast
@@ -149,7 +149,7 @@ export const GraphCanvas: React.FC = () => {
                       {compName}
                     </span>
                     {!isLast && <span className="text-slate-600 font-bold">→</span>}
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
             </div>

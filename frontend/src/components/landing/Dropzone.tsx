@@ -112,7 +112,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div data-testid="dropzone" className="w-full max-w-2xl mx-auto">
       <div
         role="button"
         tabIndex={0}
