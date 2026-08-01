@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1">
+  <metadata>
+    <timestamp>2026-08-01T12:00:00Z</timestamp>
+    <component bom-ref="pkg:pypi/api-service@1.0.0" type="application">
+      <name>api-service</name>
+      <version>1.0.0</version>
+      <purl>pkg:pypi/api-service@1.0.0</purl>
+    </component>
+  </metadata>
+  <components>
+    <component bom-ref="pkg:pypi/fastapi@0.110.0" type="library">
+      <name>fastapi</name>
+      <version>0.110.0</version>
+      <purl>pkg:pypi/fastapi@0.110.0</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component bom-ref="pkg:pypi/pydantic@2.6.4" type="library">
+      <name>pydantic</name>
+      <version>2.6.4</version>
+      <purl>pkg:pypi/pydantic@2.6.4</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component bom-ref="pkg:pypi/starlette@0.36.3" type="library">
+      <name>starlette</name>
+      <version>0.36.3</version>
+      <purl>pkg:pypi/starlette@0.36.3</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component bom-ref="pkg:pypi/urllib3@1.26.5" type="library">
+      <name>urllib3</name>
+      <version>1.26.5</version>
+      <purl>pkg:pypi/urllib3@1.26.5</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pkg:pypi/api-service@1.0.0">
+      <dependency ref="pkg:pypi/fastapi@0.110.0" />
+      <dependency ref="pkg:pypi/urllib3@1.26.5" />
+    </dependency>
+    <dependency ref="pkg:pypi/fastapi@0.110.0">
+      <dependency ref="pkg:pypi/pydantic@2.6.4" />
+      <dependency ref="pkg:pypi/starlette@0.36.3" />
+    </dependency>
+  </dependencies>
+</bom>
