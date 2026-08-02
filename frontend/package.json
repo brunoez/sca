@@ -1,7 +1,7 @@
 {
   "name": "cyclonedx-sca-visualizer",
   "private": true,
-  "version": "1.4.3",
+  "version": "1.4.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "@dagrejs/dagre": "^1.1.4",
     "@xyflow/react": "^12.4.2",
     "dompurify": "^3.2.4",
-    "fast-xml-parser": "^4.5.3",
+    "fast-xml-parser": "^5.10.1",
     "gsap": "^3.15.0",
     "lucide-react": "^0.475.0",
     "react": "^18.3.1",

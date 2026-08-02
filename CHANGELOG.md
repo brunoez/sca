@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.4] - 2026-08-02
+
+### 🛡️ Segurança (Security & Dependencies)
+- **Atualização de Segurança `fast-xml-parser` (`v4.5.7` -> `v5.10.1`)**:
+  - Atualizada a biblioteca `fast-xml-parser` para a versão `v5.10.1` em `frontend/package.json` e `package-lock.json`, eliminando a vulnerabilidade detectada na imagem gerada pelo Trivy.
+  - Regerado o arquivo `sbom.json` de produção do repositório `sca` confirmando **0 vulnerabilidades encontradas**.
+
+---
+
 ## [1.4.3] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)
