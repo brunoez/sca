@@ -45,7 +45,7 @@ docker run -d -p 8081:80 --name sca_prod cyclonedx-sca-visualizer:latest
 ## 🛠️ Desenvolvimento Local
 
 ### Pré-requisitos
-- Node.js >= 20.x
+- Node.js >= 24.x
 - npm >= 10.x
 
 ### Passos:

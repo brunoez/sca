@@ -44,6 +44,8 @@ export function getLayoutedElements(
     nodes.push({
       id: rootRef,
       type: 'scaNode',
+      width: 240,
+      height: 95,
       data: {
         bomRef: rootRef,
         name: model.metadata.componentName,
@@ -67,6 +69,8 @@ export function getLayoutedElements(
     nodes.push({
       id: ref,
       type: 'scaNode',
+      width: 240,
+      height: 95,
       data: {
         bomRef: ref,
         name: comp.name,

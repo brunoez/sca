@@ -1,6 +1,6 @@
 # Multi-stage Dockerfile for CycloneDX SCA Visualizer (Production SPA)
 # Stage 1: Build static assets
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
