@@ -1,6 +1,6 @@
 # 🛡️ CycloneDX SCA Visualizer & Dependency Tree Platform
 
-![Version](https://img.shields.io/badge/version-1.4.8-cyan.svg)
+![Version](https://img.shields.io/badge/version-1.5.0-cyan.svg)
 ![CycloneDX](https://img.shields.io/badge/CycloneDX-JSON_%26_XML_(v1.2--v1.6)-cyan.svg)
 ![Node LTS](https://img.shields.io/badge/Node.js-24_LTS-emerald.svg)
 ![Tests](https://img.shields.io/badge/Tests-14_Passed_%7C_74_Tests-emerald.svg)
@@ -8,7 +8,7 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 > **Inteligência Executiva & Visualizador de Grafo de Supply Chain de Software (CycloneDX JSON & XML)**  
-> Aplicação Web Single-Page (SPA) 100% Client-Side para análise visual de Software Bill of Materials (SBOM), cálculo logarítmico de SCA Health Rating, matriz de licenças, árvore hierárquica e grafo 2D de dependências com rastreamento de caminho de impacto ancestral.
+> Aplicação Web Single-Page (SPA) 100% Client-Side para análise visual de Software Bill of Materials (SBOM), cálculo de SCA Health Rating com memória de cálculo interativa, matriz de licenças, árvore hierárquica e grafo 2D de dependências com rastreamento de caminho de impacto ancestral.
 
 ---
 
@@ -35,7 +35,8 @@ graph TD
 - **100% Client-Side & Privacy-First**: Zero persistência em servidor. Seus SBOMs e fontes de código permanecem protegidos no ambiente do cliente.
 - **Landing Page com Paridade Executiva**: Página inicial rica com seções de Garantias de Segurança, Recursos, Guia em 3 Passos e FAQ interativo.
 - **Dashboard Executivo de Segurança**:
-  - **SCA Security Rating (0–100 & Notas A+ a F)**: Fórmula logarítmica ponderada por peso de severidade CVE (Crítico, Alto, Médio, Baixo) e risco de licenças Copyleft.
+  - **SCA Security Rating (0–100 & Notas A+ a F)**: Cálculo 1-para-1 direto e transparente com memória de cálculo exibida em popover ao passar o mouse.
+  - **Classificação Transparente em 3 Níveis**: 🟢 **Baixo Risco** (>=85), 🟡 **Risco Moderado** (70–84) e 🔴 **Risco Elevado** (<70).
   - **Gráficos Recharts**: Distribuição de vulnerabilidades, matriz de licenças jurídicas e análise de profundidade da árvore.
   - **Quick Wins de Remediação**: Algoritmo de ROI que prioriza dependências diretas que arrastam o maior número de sub-dependências transitivas vulneráveis.
 - **Navegador Topológico 2D Integrado**:
@@ -50,22 +51,23 @@ graph TD
 
 ---
 
-## 📐 Fórmula de Pontuação (SCA Health Rating)
+## 📐 Fórmula de Pontuação (SCA Health Rating & Memória de Cálculo)
 
-$$\text{CVE Penalty} = 15 \times \text{Crit} + 6 \times \text{High} + 2 \times \text{Med} + 0.5 \times \text{Low}$$
+$$\text{Penalidade CVE} = 15 \times \text{Crit} + 6 \times \text{High} + 2 \times \text{Med} + 0.5 \times \text{Low}$$
 
-$$\text{License Penalty} = 10 \times \text{Copyleft} + 2 \times \text{Desconhecida}$$
+$$\text{Penalidade Licenças} = 5 \times \text{Copyleft (máx 30)} + 0.05 \times \text{Desconhecida (máx 5)}$$
 
-$$\text{Score} = \max\left(0, 100 - \log_{1.15}(1 + \text{CVE Penalty} + \text{License Penalty})\right)$$
+$$\text{Score Final} = \max\left(0, 100 - (\text{Penalidade CVE} + \text{Penalidade Licenças})\right)$$
 
-| Score | Nota Conceitual | Nível de Risco |
-| :---: | :---: | :---: |
-| 95 – 100 | **A+** | Baixo Risco |
-| 85 – 94 | **A** | Baixo Risco |
-| 70 – 84 | **B+ / B** | Moderado |
-| 50 – 69 | **C** | Elevado |
-| 30 – 49 | **D** | Alto Risco |
-| 0 – 29 | **F** | Crítico |
+| Score | Nota Conceitual | Nível de Risco | Cor |
+| :---: | :---: | :---: | :---: |
+| 95 – 100 | **A+** | Baixo Risco | 🟢 Verde Emerald |
+| 85 – 94 | **A** | Baixo Risco | 🟢 Verde Emerald |
+| 75 – 84 | **B+** | Risco Moderado | 🟡 Amarelo Amber / Cyan |
+| 65 – 74 | **B** | Risco Moderado | 🟡 Amarelo Amber / Cyan |
+| 50 – 64 | **C** | Risco Elevado | 🔴 Vermelho Rose |
+| 35 – 49 | **D** | Risco Elevado | 🔴 Vermelho Rose |
+| 0 – 34 | **F** | Risco Crítico | 🔴 Vermelho Rose |
 
 ---
 

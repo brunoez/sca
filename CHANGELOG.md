@@ -5,6 +5,30 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.5.0] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Card Interativo de Memória de Cálculo da Nota (`ScorePopoverCard`)**:
+  - Card popover flutuante ativado por hover no card executivo sobre a nota (ex.: `B+`, `80/100`) ou sobre a badge de nível de risco (`Risco Moderado`).
+  - Exibe o detalhamento transparente de todos os descontos aplicados (CVEs por severidade e licenças), além da fórmula matemática.
+- **Sistema de 3 Níveis de Classificação de Risco**:
+  - 🟢 **Baixo Risco** (Score >= 85)
+  - 🟡 **Risco Moderado** (70 <= Score < 85)
+  - 🔴 **Risco Elevado** (Score < 70)
+
+### 🐛 Corrigido & Refatorado (Fixed & Refactored)
+- **Fórmula de Cálculo 1-para-1 Direta e Transparente**:
+  - Substituída a escala logarítmica por um modelo de subtração direta: `Nota Final = Math.max(0, 100 - Penalidades)`.
+  - Garantida paridade matemática exata entre os pontos exibidos no card e a nota final (ex.: `-5.1 pts` resulta em `100 - 5.1 = 94.9` -> `95/100`).
+- **Normalização de Nome de Aplicações para Scanners CLI**:
+  - Tratamento para quando ferramentas (ex.: Trivy) geram `"name": "."` ou `"./"`, utilizando o nome do arquivo ou fallback `'Aplicação SCA'`.
+- **Hardening de Docker Container Não-Root (`USER nginx`)**:
+  - Resolução completa de permissões `(13: Permission denied)` e redirecionamento de pastas temporárias para `/tmp/`.
+- **Sanitização SAST (Semgrep Zero Vulnerabilidades)**:
+  - 100% de aprovação em 446 regras estáticas do Semgrep sobre 90 arquivos.
+
+---
+
 ## [1.4.8] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

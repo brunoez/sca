@@ -2,7 +2,8 @@
 
 > **Domínio de Produção:** `sca.brunoizidorio.com.br`  
 > **Arquitetura:** 100% Client-Side SPA (Zero Backend, Zero Data Persistence)  
-> **Stack de Produção:** Docker Multi-stage (Node 24 LTS + Nginx Alpine) + Security Headers
+> **Versão de Produção:** `v1.5.0`  
+> **Stack de Produção:** Docker Multi-stage Não-Root (`USER nginx`) (Node 24 LTS + Nginx Alpine-slim) + Security Headers + Semgrep SAST Sanitized
 
 ---
 
