@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.5.1] - 2026-08-02
+
+### 🎨 Ajustado (Refactored)
+- **Seletor de Idioma em Formato Segmentado (Pill Toggle)**:
+  - Redesenhado o seletor de idiomas no cabeçalho global (`App.tsx`) para o formato de botão segmentado (*pill container*) com bandeiras (`🇧🇷 PT` e `🇺🇸 EN`), efeito visual ativo em azul/índigo e estados de hover elegantes.
+  - Adicionado o botão "Página Inicial" com ícone de casa ao lado do seletor para facilidade de navegação.
+
+---
+
 ## [1.5.0] - 2026-08-02
 
 ### ✨ Adicionado (Added)

@@ -150,16 +150,17 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
   it('should switch application language between PT-BR and EN-US via header selector', () => {
     // Arrange
     render(<App />);
-    const select = screen.getByTestId('language-select');
+    const enBtn = screen.getByTestId('lang-btn-en');
+    const ptBtn = screen.getByTestId('lang-btn-pt');
 
     // Act - Switch to English
-    fireEvent.change(select, { target: { value: 'en-US' } });
+    fireEvent.click(enBtn);
 
     // Assert
     expect(screen.getAllByText('Executive Security Dashboard & Supply Chain Graph Visualizer')[0]).toBeInTheDocument();
 
     // Act - Switch back to Portuguese
-    fireEvent.change(select, { target: { value: 'pt-BR' } });
+    fireEvent.click(ptBtn);
     expect(screen.getAllByText('Inteligência Executiva & Visualizador de Grafo de Supply Chain')[0]).toBeInTheDocument();
   });
 

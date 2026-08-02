@@ -1,4 +1,4 @@
-import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Globe, RefreshCw } from 'lucide-react';
+import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Home } from 'lucide-react';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import { useScaStore } from './store/useScaStore';
 import { LandingPage } from './components/landing/LandingPage';
@@ -31,32 +31,52 @@ export function MainApp() {
         </div>
 
         {/* Header Right Actions */}
-        <div className="flex items-center gap-4">
-          {/* Language Switcher */}
-          <div className="flex items-center gap-1.5 bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl">
-            <Globe className="w-4 h-4 text-slate-400" />
-            <select
-              data-testid="language-select"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value as 'pt-BR' | 'en-US')}
-              className="bg-transparent text-xs font-semibold text-slate-300 outline-none cursor-pointer"
+        <div className="flex items-center gap-3">
+          {/* Segmented Language Selector Pill */}
+          <div 
+            data-testid="language-select-container"
+            className="flex items-center p-1 bg-slate-900/90 border border-slate-700/80 rounded-xl shadow-inner"
+          >
+            <button
+              type="button"
+              data-testid="lang-btn-pt"
+              onClick={() => setLanguage('pt-BR')}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                language === 'pt-BR'
+                  ? 'bg-indigo-600 text-white shadow-md'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 font-medium'
+              }`}
+              title="Português (Brasil)"
             >
-              <option value="pt-BR" className="bg-slate-900 text-white">Português (BR)</option>
-              <option value="en-US" className="bg-slate-900 text-white">English (US)</option>
-            </select>
+              <span className="text-sm leading-none" role="img" aria-label="Brasil">🇧🇷</span>
+              <span>PT</span>
+            </button>
+            <button
+              type="button"
+              data-testid="lang-btn-en"
+              onClick={() => setLanguage('en-US')}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                language === 'en-US'
+                  ? 'bg-indigo-600 text-white shadow-md'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 font-medium'
+              }`}
+              title="English (United States)"
+            >
+              <span className="text-sm leading-none" role="img" aria-label="USA">🇺🇸</span>
+              <span>EN</span>
+            </button>
           </div>
 
-          {model && (
-            <button
-              data-testid="reset-sbom-button"
-              onClick={reset}
-              className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-300 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl transition-all shadow-sm"
-              title={t('dashboard.loadAnotherSbom')}
-            >
-              <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">{t('dashboard.newSbom')}</span>
-            </button>
-          )}
+          {/* Home / Reset Button */}
+          <button
+            data-testid="reset-sbom-button"
+            onClick={reset}
+            className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-xl transition-all shadow-sm cursor-pointer"
+            title={t('dashboard.loadAnotherSbom')}
+          >
+            <Home className="w-4 h-4 text-indigo-400" />
+            <span>{t('nav.home')}</span>
+          </button>
         </div>
       </header>
 

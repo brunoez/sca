@@ -18,6 +18,9 @@
     "tree": "Hierarchical Tree",
     "explorer": "Package Explorer"
   },
+  "nav": {
+    "home": "Home Page"
+  },
   "metrics": {
     "scoreLabel": "SCA Security Rating",
     "totalComponents": "Total Components",
