@@ -1,0 +1,19 @@
+{
+  "issuer": "https://sca.brunoizidorio.com.br",
+  "authorization_endpoint": "https://sca.brunoizidorio.com.br/",
+  "token_endpoint": "https://sca.brunoizidorio.com.br/",
+  "jwks_uri": "https://sca.brunoizidorio.com.br/",
+  "grant_types_supported": [
+    "implicit"
+  ],
+  "agent_auth": {
+    "register_uri": "https://sca.brunoizidorio.com.br/auth.md",
+    "supported_identity_types": [
+      "anonymous",
+      "agent"
+    ],
+    "credential_types": [
+      "none"
+    ]
+  }
+}

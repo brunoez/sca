@@ -5,6 +5,29 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.0] - 2026-08-02
+
+### ✨ Adicionado - Suporte Completo a Agentes de IA (Agent Readiness & WebMCP)
+- **Descoberta Automática de Sitemap & Robots.txt**:
+  - Adicionado `sitemap.xml` apontando para a URL canônica `https://sca.brunoizidorio.com.br/`.
+  - Adicionado `robots.txt` permitindo agentes de IA com referência explícita ao `sitemap.xml`.
+- **Cabeçalhos de Resposta de Descoberta (RFC 8288 & RFC 9727)**:
+  - Injeção de cabeçalhos `Link` no Nginx e tags `<link>` no HTML para descoberta automática de `api-catalog`, `agent-skills`, `mcp-server-card` e `auth.md`.
+- **Catálogo de APIs RFC 9727 (`/.well-known/api-catalog`)**:
+  - Endpoint publicado com o tipo de mídia `application/linkset+json`.
+- **Descoberta de Autenticação & Registro (`/auth.md` & `/.well-known/oauth-protected-resource`)**:
+  - Documentação `/auth.md` e metadados `.well-known` especificando que a aplicação é 100% Client-Side no navegador (Zero Auth / Zero Persistência de Dados).
+- **Cartão de Servidor MCP - SEP-1649 (`/.well-known/mcp/server-card.json`)**:
+  - Metadados do servidor MCP indicando capacidades do visualizador SCA para agentes.
+- **Índice de Skills de Agentes v0.2.0 (`/.well-known/agent-skills/index.json`)**:
+  - Publicação do índice de habilidades para descoberta por agentes de IA.
+- **Negociação de Conteúdo Markdown (`/index.md` & `/llms.txt`)**:
+  - Versão em Markdown otimizada para modelos de linguagem.
+- **API WebMCP no Navegador (`navigator.modelContext.provideContext()`)**:
+  - Registro de ferramentas in-browser (`analyze_sbom`, `get_security_score`) para interação direta de agentes de IA através do navegador.
+
+---
+
 ## [1.5.2] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

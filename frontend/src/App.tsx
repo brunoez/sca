@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Home } from 'lucide-react';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import { useScaStore } from './store/useScaStore';
@@ -8,10 +9,15 @@ import { GraphCanvas } from './components/graph/GraphCanvas';
 import { TreeView } from './components/tree/TreeView';
 import { ComponentExplorer } from './components/explorer/ComponentExplorer';
 import { PackageDetailModal } from './components/explorer/PackageDetailModal';
+import { registerWebMcpTools } from './utils/webMcp';
 
 export function MainApp() {
   const { model, activeTab, setActiveTab, reset, selectedComponentRef, selectComponent } = useScaStore();
   const { t, language, setLanguage } = useTranslation();
+
+  useEffect(() => {
+    registerWebMcpTools();
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col justify-between antialiased selection:bg-cyan-500 selection:text-white">

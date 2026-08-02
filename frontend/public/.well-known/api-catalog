@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://sca.brunoizidorio.com.br/",
+      "service-desc": [
+        {
+          "href": "https://sca.brunoizidorio.com.br/.well-known/agent-skills/index.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://sca.brunoizidorio.com.br/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://sca.brunoizidorio.com.br/sitemap.xml",
+          "type": "application/xml"
+        }
+      ]
+    }
+  ]
+}
