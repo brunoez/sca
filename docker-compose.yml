@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: cyclonedx_sca_visualizer_prod
+    container_name: sca-app
     restart: always
     ports:
       - "8081:80"
