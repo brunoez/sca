@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.5.2] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Ajuste de Direção do Card Popover de Memória de Cálculo (`ScorePopoverCard`)**:
+  - Reconfigurada a direção de abertura do card popover para abrir para baixo (`top-full mt-2`), evitando qualquer sobreposição/corte causado pelo cabeçalho global fixo (*sticky top header* `z-40`).
+  - Mantida a prioridade de camada `z-30` no `ExecutiveScoreCard` e `z-50` no popover para garantir que o card flutue por cima das seções inferiores sem sofrer recortes.
+
+---
+
 ## [1.5.1] - 2026-08-02
 
 ### 🎨 Ajustado (Refactored)

@@ -38,7 +38,7 @@ export const ExecutiveScoreCard: React.FC = () => {
   const ScorePopoverCard = (
     <div 
       data-testid="score-breakdown-tooltip"
-      className="absolute left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 bottom-full mb-3 w-80 p-4 bg-slate-950/95 border border-slate-700/90 rounded-2xl shadow-2xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 text-left text-xs space-y-3"
+      className="absolute left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 top-full mt-2 w-80 p-4 bg-slate-950/95 border border-slate-700/90 rounded-2xl shadow-2xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 text-left text-xs space-y-3"
     >
       <div className="flex items-center justify-between border-b border-slate-800 pb-2">
         <span className="font-bold text-slate-100 flex items-center gap-1.5">
