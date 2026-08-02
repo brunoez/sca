@@ -5,6 +5,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.13] - 2026-08-02
+
+### 🌐 Esclarecimento da Inserção de Chaves DS no Registro.br
+- **Orientações para o Erro "DS record must have a corresponding NS record"**:
+  - Atualizado [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md) para instruir o usuário a **não** tentar cadastrar o registro DS dentro da própria tabela do Cloudflare, mas sim colar as 4 chaves geradas pelo Cloudflare (`Key Tag`, `Algorithm`, `Digest Type`, `Digest`) no painel do registrador de domínio (**Registro.br**).
+
+---
+
 ## [1.6.12] - 2026-08-02
 
 ### 🌐 Guia de Ativação do DNSSEC para Validação DNS-AID (Flag AD=true)

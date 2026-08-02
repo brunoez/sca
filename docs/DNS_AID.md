@@ -1,31 +1,30 @@
-# 🌐 Guia de Habilitação do DNSSEC para DNS-AID (Resolver erro "AD=true was not returned")
+# 💡 Esclarecimento sobre o Erro "DS record must have a corresponding NS record"
 
-O teste de validação do **DNS-AID** já encontrou com sucesso os registros no Cloudflare! O único item pendente é a validação de assinatura criptográfica **DNSSEC (Flag AD=true)**.
+## 📌 Onde inserir os dados do DNSSEC?
 
----
+Conforme exibido na imagem do modal do Cloudflare (**DS Record**):
+> *"Copy the DS record details below and add them to your domain registrar."*
 
-## 🛠️ Passo a Passo para Ativar o DNSSEC no Cloudflare + Registro.br
-
-### 1️⃣ Passo 1: Ativar no Cloudflare DNS
-1. Acesse o painel do **Cloudflare** -> Selecione `brunoizidorio.com.br`.
-2. Vá na aba **DNS** -> **Settings** (ou role até a seção **DNSSEC** na página de registros).
-3. Clique em **Enable DNSSEC**.
-4. O Cloudflare exibirá os dados da chave **DS (Delegation Signer)**:
-   - **Key Tag** (ex: `2371` ou número similar)
-   - **Algorithm** (ex: `13` - ECDSA P-256)
-   - **Digest Type** (ex: `2` - SHA-256)
-   - **Digest** (sequência hexadecimal longa)
-
-### 2️⃣ Passo 2: Cadastrar a chave DS no Registro.br
-1. Acesse a sua conta no **Registro.br** (ou no seu registrador de domínio).
-2. Clique no domínio **`brunoizidorio.com.br`**.
-3. Role até a seção **DNSSEC** -> Clique em **Configurar DNSSEC** / **Adicionar Chave DS**.
-4. Cole os valores informados pelo Cloudflare (**Key Tag**, **Algoritmo**, **Tipo de Digest** e **Digest**).
-5. Clique em **Salvar**.
+O registro **DS (Delegation Signer)** **NÃO** deve ser adicionado no formulário do Cloudflare. O Cloudflare gera a chave e assina a zona automaticamente. O registro DS deve ser inserido no seu **Registrador de Domínio (Registro.br)** para delegar a confiança aos servidores do Cloudflare.
 
 ---
 
-## ⏱️ Tempo de Propagação
-Após salvar a chave DS no Registro.br, os servidores raiz TLD `.br` atualizarão a assinatura em aproximadamente **5 a 15 minutos**. 
+## 🛠️ Passo a Passo para Inserir no Registro.br
 
-Assim que a propagação concluir, os servidores de DNS validadores (como o Cloudflare 1.1.1.1 e Google 8.8.8.8) retornarão o flag **`AD=true` (Authenticated Data)** e o teste DNSSEC ficará **100% Aprovado (Verde)**!
+1. Acesse a sua conta no **Registro.br** (https://registro.br).
+2. Clique no seu domínio **`brunoizidorio.com.br`**.
+3. Role até a seção **DNSSEC** e clique em **Configurar DNSSEC** ou **Adicionar Chave DS**.
+4. Copie exatamente os 4 campos exibidos no modal do Cloudflare (Imagem 2) e cole no Registro.br:
+
+| Campo no Registro.br | Valor do Cloudflare |
+| :--- | :--- |
+| **Key Tag** | `2371` |
+| **Algoritmo** | `13` (ECDSA Curve P-256 with SHA-256) |
+| **Tipo de Digest** | `2` (SHA-256) |
+| **Digest** | `5F9136FA48B82B0F3B8B618D2C13780D65F7AE3DD341280B89DEC3A6C806768` |
+
+5. Clique em **Salvar** no Registro.br.
+
+---
+
+Após salvar no Registro.br, o status do DNSSEC no painel do Cloudflare mudará de "Pendente" para **"Ativo"** e a resposta autenticada **`AD=true`** passará na validação do DNS-AID!
