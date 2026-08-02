@@ -30,7 +30,7 @@ export const LandingFooter: React.FC = () => {
 
         <div className="flex items-center gap-6 text-slate-400 font-mono text-[11px]">
           <span className="flex items-center gap-1.5 text-cyan-400 font-semibold bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
-            <Globe className="w-3.5 h-3.5" /> cyclonedx.brunoizidorio.com.br
+            <Globe className="w-3.5 h-3.5" /> sca.brunoizidorio.com.br
           </span>
           <a
             href="https://github.com/CycloneDX"
