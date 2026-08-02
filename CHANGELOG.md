@@ -5,6 +5,16 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.3.1] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Overlay de Processamento & Feedback de UX (`processing-overlay`)**: Adicionada modal com backdrop fosco, spinner animado e mensagens traduzidas (`Processando Arquivo SBOM...`) no `Dropzone.tsx` e no `SampleLoader.tsx`, garantindo que uploads de arquivos JSON/XML massivos informem visualmente o usuário durante a etapa de parsing e normalização de grafos.
+
+### 🎨 Ajustado (Refactored)
+- **Amostra Curada do OWASP Juice Shop**: Reformulação da amostra de demonstração do **OWASP Juice Shop** (`juice-shop-cyclonedx.json`) para conter 16 pacotes representativos em 4 níveis de profundidade, vulnerabilidades críticas reais (CVE-2024-29018, CVE-2023-48223, CVE-2022-25883, CVE-2021-3749) e licenças restritivas Copyleft/Permissivas, oferecendo visualização limpa no Grafo 2D e MiniMapa sem sobrecarregar a memória do navegador.
+
+---
+
 ## [1.3.0] - 2026-08-02
 
 ### ✨ Adicionado (Added)

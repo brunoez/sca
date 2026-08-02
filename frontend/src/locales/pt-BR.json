@@ -4,6 +4,8 @@
   "upload": {
     "header": "Carregar SBOM CycloneDX",
     "dropzoneHint": "Arraste um arquivo CycloneDX JSON ou XML aqui (ou clique para selecionar)",
+    "processingTitle": "Processando Arquivo SBOM...",
+    "processingDesc": "Normalizando grafo de dependências, calculando métricas de segurança e resolvendo caminhos de impacto...",
     "selectFile": "Selecionar Arquivo SBOM",
     "sampleTitle": "Ou escolha um SBOM de exemplo:",
     "loadSample": "Carregar Exemplo",

@@ -10,7 +10,7 @@ const FALLBACK_JUICE_SHOP_SAMPLE = JSON.stringify({
     component: {
       'bom-ref': 'pkg:npm/juice-shop@17.1.1',
       type: 'application',
-      name: 'juice-shop',
+      name: 'OWASP Juice Shop',
       version: '17.1.1',
       purl: 'pkg:npm/juice-shop@17.1.1'
     }
@@ -172,13 +172,21 @@ export const SampleLoader: React.FC<SampleLoaderProps> = ({ onLoaded }) => {
         content = fallbackContent;
       }
 
-      const normalized = parseAndNormalizeSbom(content, fileName);
-      setModel(normalized);
-      if (onLoaded) onLoaded();
+      setTimeout(() => {
+        try {
+          const normalized = parseAndNormalizeSbom(content, fileName);
+          setModel(normalized);
+          if (onLoaded) onLoaded();
+        } catch (err: any) {
+          console.error('Failed to load sample SBOM:', err);
+          setError(`Erro ao carregar o exemplo "${fileName}": ${err?.message || 'Erro desconhecido'}`);
+        } finally {
+          setLoadingSample(null);
+        }
+      }, 50);
     } catch (err: any) {
-      console.error('Failed to load sample SBOM:', err);
+      console.error('Failed to fetch sample SBOM:', err);
       setError(`Erro ao carregar o exemplo "${fileName}": ${err?.message || 'Erro desconhecido'}`);
-    } finally {
       setLoadingSample(null);
     }
   };

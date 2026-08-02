@@ -4,6 +4,8 @@
   "upload": {
     "header": "Upload CycloneDX SBOM",
     "dropzoneHint": "Drag & drop a CycloneDX JSON or XML file here (or click to select)",
+    "processingTitle": "Processing SBOM File...",
+    "processingDesc": "Normalizing dependency graph, calculating security metrics, and resolving impact paths...",
     "selectFile": "Select SBOM File",
     "sampleTitle": "Or try a sample SBOM:",
     "loadSample": "Load Sample",

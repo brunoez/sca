@@ -142,7 +142,7 @@ describe('SampleLoader Component', () => {
     await waitFor(() => {
       const model = useScaStore.getState().model;
       expect(model).not.toBeNull();
-      expect(model?.metadata.componentName).toBe('juice-shop');
+      expect(model?.metadata.componentName).toBe('OWASP Juice Shop');
     });
   });
 
