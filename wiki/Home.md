@@ -13,6 +13,7 @@ O **CycloneDX SCA Visualizer** é uma plataforma executiva de inteligência em s
 - [[Security-Rating-Calculation]] - Fórmula de Pontuação 1-para-1, Penalidades de CVEs, Licenças e 3 Níveis de Risco.
 - [[DevSecOps-and-Deployment]] - Container Não-Root Docker (`USER nginx`), Nginx Hardened, CI/CD de 6 Estágios e Deploy na VPS.
 - [[Agent-Readiness-and-WebMCP]] - Protocolos de Descoberta para Agentes de IA (RFC 8288, RFC 9727, MCP Server Card, WebMCP).
+- [[PWA-and-Offline-Capabilities]] - Suporte a Progressive Web App (PWA), "Abrir no App" no Chrome/Edge, Service Worker e cache offline.
 
 ---
 

@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.7.1] - 2026-08-02
+
+### 📚 Atualização da Wiki do GitLab (PWA & Offline Capabilities)
+- **Criação da Página de Wiki PWA**:
+  - Criada a página [`wiki/PWA-and-Offline-Capabilities.md`](file:///home/bruno/Projetos/sca/wiki/PWA-and-Offline-Capabilities.md) detalhando o funcionamento do Web App Manifest, Service Worker, cache offline e instruções de instalação Desktop/Mobile.
+  - Atualizado o índice principal em [`wiki/Home.md`](file:///home/bruno/Projetos/sca/wiki/Home.md).
+
+---
+
 ## [1.7.0] - 2026-08-02
 
 ### 📱 Suporte Completo a PWA (Progressive Web App - "Abrir no App" / "Instalar App")
