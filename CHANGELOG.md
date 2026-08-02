@@ -5,6 +5,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.2.0] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Seletor Interativo de Ferramentas CLI de SBOM (Passo 01)**: Implementado seletor de abas interativas no componente `HowItWorks.tsx` para alternar entre as principais ferramentas mencionadas (**Trivy**, **cdxgen**, **Syft** e **CycloneDX CLI**).
+- **Comandos Precisos de Exportação**: Exibição dos comandos exatos para geração de arquivo SBOM no padrão CycloneDX (ex.: `trivy fs --format cyclonedx --output sbom.json .`) com botão integrado de copiar para a área de transferência (`Copy to Clipboard`).
+
+---
+
 ## [1.1.4] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

@@ -1,9 +1,9 @@
 # 🛡️ CycloneDX SCA Visualizer & Dependency Tree Platform
 
-![Version](https://img.shields.io/badge/version-1.1.4-cyan.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-cyan.svg)
 ![CycloneDX](https://img.shields.io/badge/CycloneDX-JSON_%26_XML_(v1.2--v1.6)-cyan.svg)
 ![Node LTS](https://img.shields.io/badge/Node.js-24_LTS-emerald.svg)
-![Tests](https://img.shields.io/badge/Tests-13_Passed_%7C_69_Tests-emerald.svg)
+![Tests](https://img.shields.io/badge/Tests-14_Passed_%7C_73_Tests-emerald.svg)
 ![Security](https://img.shields.io/badge/Security-100%25_Client--Side_RAM-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 

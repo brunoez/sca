@@ -1,9 +1,50 @@
-import React from 'react';
-import { Terminal, Upload, BarChart3, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Terminal, Upload, BarChart3, ArrowRight, Copy, Check } from 'lucide-react';
 import { useTranslation } from '../../context/LanguageContext';
+
+export interface CliToolOption {
+  id: string;
+  name: string;
+  command: string;
+}
+
+const cliTools: CliToolOption[] = [
+  {
+    id: 'trivy',
+    name: 'Trivy',
+    command: 'trivy fs --format cyclonedx --output sbom.json .',
+  },
+  {
+    id: 'cdxgen',
+    name: 'cdxgen',
+    command: 'cdxgen -o sbom.json',
+  },
+  {
+    id: 'syft',
+    name: 'Syft',
+    command: 'syft . -o cyclonedx-json=sbom.json',
+  },
+  {
+    id: 'cyclonedx',
+    name: 'CycloneDX CLI',
+    command: 'cyclonedx-cli convert -i bom.xml -o sbom.json',
+  },
+];
 
 export const HowItWorks: React.FC = () => {
   const { t } = useTranslation();
+  const [selectedToolId, setSelectedToolId] = useState<string>('trivy');
+  const [copiedToolId, setCopiedToolId] = useState<string | null>(null);
+
+  const selectedTool = cliTools.find((tool) => tool.id === selectedToolId) || cliTools[0];
+
+  const handleCopyCommand = (command: string, id: string) => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(command);
+      setCopiedToolId(id);
+      setTimeout(() => setCopiedToolId(null), 2000);
+    }
+  };
 
   const steps = [
     {
@@ -11,7 +52,6 @@ export const HowItWorks: React.FC = () => {
       icon: Terminal,
       title: t('landing.step1Title'),
       description: t('landing.step1Desc'),
-      code: t('landing.step1Code'),
       color: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10',
     },
     {
@@ -69,10 +109,51 @@ export const HowItWorks: React.FC = () => {
                   <p className="text-xs text-slate-400 leading-relaxed mb-4">{s.description}</p>
                 </div>
 
-                <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 flex items-center justify-between">
-                  <span className="truncate">{s.code}</span>
-                  {idx < 2 && <ArrowRight className="w-3.5 h-3.5 text-slate-600 hidden md:block" />}
-                </div>
+                {idx === 0 ? (
+                  <div className="space-y-2">
+                    {/* Tool Selection Tabs */}
+                    <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 overflow-x-auto">
+                      {cliTools.map((tool) => (
+                        <button
+                          key={tool.id}
+                          data-testid={`cli-tool-tab-${tool.id}`}
+                          onClick={() => setSelectedToolId(tool.id)}
+                          className={`px-2 py-1 text-[10px] font-semibold rounded-lg transition-all whitespace-nowrap ${
+                            selectedToolId === tool.id
+                              ? 'bg-cyan-950 text-cyan-300 border border-cyan-800 shadow-sm'
+                              : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                          }`}
+                        >
+                          {tool.name}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Tool Command Code Box */}
+                    <div className="bg-slate-950 p-2.5 rounded-xl border border-slate-800 font-mono text-[10px] text-slate-300 flex items-center justify-between gap-2">
+                      <span className="truncate text-cyan-300 font-medium" data-testid="selected-cli-command" title={selectedTool.command}>
+                        {selectedTool.command}
+                      </span>
+                      <button
+                        data-testid={`copy-cli-command-${selectedTool.id}`}
+                        onClick={() => handleCopyCommand(selectedTool.command, selectedTool.id)}
+                        className="p-1 text-slate-400 hover:text-cyan-300 transition-colors shrink-0"
+                        title="Copiar comando"
+                      >
+                        {copiedToolId === selectedTool.id ? (
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        ) : (
+                          <Copy className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 flex items-center justify-between">
+                    <span className="truncate">{s.code}</span>
+                    {idx < 2 && <ArrowRight className="w-3.5 h-3.5 text-slate-600 hidden md:block" />}
+                  </div>
+                )}
               </div>
             );
           })}
