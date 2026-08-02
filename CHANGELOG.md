@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.10] - 2026-08-02
+
+### 🌐 Ajuste da Sintaxe de Registros HTTPS no Cloudflare DNS
+- **Remediação do Erro "Value for HTTPS record is invalid"**:
+  - Ajustada a sintaxe do campo `Value` nos registros de tipo `HTTPS` no Cloudflare DNS para `alpn="h2,h3" port=443` (parâmetros IANA RFC 9460 aceitos pelo validador do Cloudflare).
+  - Atualizada a documentação em [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md).
+
+---
+
 ## [1.6.9] - 2026-08-02
 
 ### 🌐 Atualização do Guia de Registros DNS-AID para Cloudflare DNS
