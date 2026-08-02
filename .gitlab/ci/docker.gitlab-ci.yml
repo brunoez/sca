@@ -10,7 +10,7 @@ docker_build:
     DOCKER_TLS_CERTDIR: ""
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker buildx create --use
+    - docker buildx create --name sca-builder --use 2>/dev/null || docker buildx use sca-builder
     - docker buildx build --push --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest ./frontend
   only:
     - master
