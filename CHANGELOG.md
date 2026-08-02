@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.1] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Correção da Tipagem TypeScript no Módulo WebMCP (`webMcp.ts`)**:
+  - Corrigidas as referências de propriedades do modelo `ScaSbomModel` de `model.score` / `model.stats` para `model.summary` (`scaHealthScore`, `securityGrade`, `totalComponents`, `vulnerabilityCounts`, `licenseBreakdown`).
+  - Garantida a compilação limpa do TypeScript (`tsc && vite build`) no estágio `build` da pipeline do GitLab.
+
+---
+
 ## [1.6.0] - 2026-08-02
 
 ### ✨ Adicionado - Suporte Completo a Agentes de IA (Agent Readiness & WebMCP)

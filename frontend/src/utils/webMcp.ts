@@ -47,9 +47,9 @@ export function registerWebMcpTools() {
             return {
               success: true,
               componentName: model.metadata.componentName,
-              totalComponents: model.stats.totalComponents,
-              score: model.score.score,
-              grade: model.score.grade
+              totalComponents: model.summary.totalComponents,
+              score: model.summary.scaHealthScore,
+              grade: model.summary.securityGrade
             };
           }
         },
@@ -66,10 +66,10 @@ export function registerWebMcpTools() {
               return { error: 'No SBOM model currently loaded' };
             }
             return {
-              score: model.score.score,
-              grade: model.score.grade,
-              vulnerabilities: model.vulnerabilities.summary,
-              licenses: model.licenseBreakdown
+              score: model.summary.scaHealthScore,
+              grade: model.summary.securityGrade,
+              vulnerabilities: model.summary.vulnerabilityCounts,
+              licenses: model.summary.licenseBreakdown
             };
           }
         }
