@@ -5,6 +5,18 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.7] - 2026-08-02
+
+### 🛡️ Remediação Avançada de Segurança HTTP (CSP Clean & Cross-Origin Isolation)
+- **Remoção de `'unsafe-inline'` em `script-src` na CSP**:
+  - Removido `'unsafe-inline'` da diretiva `script-src` na Content-Security-Policy do Nginx, eliminando alertas de vulnerabilidade de injeção de script.
+- **Implementação de Cabeçalhos Avançados de Isolamento de Origem**:
+  - `Cross-Origin-Opener-Policy` (COOP): `same-origin`
+  - `Cross-Origin-Embedder-Policy` (COEP): `credentialless`
+  - `Cross-Origin-Resource-Policy` (CORP): `same-origin` para a aplicação SPA e `cross-origin` para endpoints `.well-known`, `/auth.md`, `/index.md` e `/llms.txt`.
+
+---
+
 ## [1.6.6] - 2026-08-02
 
 ### 🛡️ Endurecimento Completo de Cabeçalhos de Segurança HTTP (OWASP & HSTS)
