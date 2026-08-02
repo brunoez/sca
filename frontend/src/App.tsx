@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Home } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Home, Download } from 'lucide-react';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import { useScaStore } from './store/useScaStore';
 import { LandingPage } from './components/landing/LandingPage';
@@ -14,10 +14,30 @@ import { registerWebMcpTools } from './utils/webMcp';
 export function MainApp() {
   const { model, activeTab, setActiveTab, reset, selectedComponentRef, selectComponent } = useScaStore();
   const { t, language, setLanguage } = useTranslation();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
 
   useEffect(() => {
     registerWebMcpTools();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
   }, []);
+
+  const handleInstallApp = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const { outcome } = await installPrompt.userChoice;
+    if (outcome === 'accepted') {
+      setInstallPrompt(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col justify-between antialiased selection:bg-cyan-500 selection:text-white">
@@ -38,6 +58,19 @@ export function MainApp() {
 
         {/* Header Right Actions */}
         <div className="flex items-center gap-3">
+          {/* PWA Install Button */}
+          {installPrompt && (
+            <button
+              type="button"
+              onClick={handleInstallApp}
+              className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 rounded-xl transition-all shadow-md shadow-cyan-900/40 animate-pulse"
+              title="Instalar como aplicativo Desktop/PWA"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Instalar App</span>
+            </button>
+          )}
+
           {/* Segmented Language Selector Pill */}
           <div 
             data-testid="language-select-container"

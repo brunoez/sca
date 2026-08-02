@@ -5,6 +5,18 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.7.0] - 2026-08-02
+
+### 📱 Suporte Completo a PWA (Progressive Web App - "Abrir no App" / "Instalar App")
+- **Web App Manifest & Service Worker**:
+  - Criado o arquivo [`frontend/public/manifest.json`](file:///home/bruno/Projetos/sca/frontend/public/manifest.json) com ícones responsivos, atalhos, modo `standalone` e tema visual.
+  - Implementado o Service Worker em [`frontend/public/sw.js`](file:///home/bruno/Projetos/sca/frontend/public/sw.js) para suporte offline e instalabilidade nativa em navegadores (Google Chrome, Microsoft Edge, Brave, Opera).
+- **Botão de Instalação no Header & Metadados PWA**:
+  - Adicionado o botão "Instalar App" no cabeçalho superior ([`App.tsx`](file:///home/bruno/Projetos/sca/frontend/src/App.tsx)) acionado automaticamente via evento `beforeinstallprompt`.
+  - Configurados os headers Nginx específicos para `/manifest.json` (`application/manifest+json`) e `/sw.js` (`application/javascript` com `Service-Worker-Allowed`).
+
+---
+
 ## [1.6.15] - 2026-08-02
 
 ### 🤖 Adição da Chave `skill` em `agent_auth` & Marcadores Standalone em `auth.md`
