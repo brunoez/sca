@@ -5,6 +5,18 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.11] - 2026-08-02
+
+### 🤖 Correção dos Metadados RFC 8414 / RFC 9727 & Formato WorkOS Auth.md
+- **Ajuste do Campo `authorization_servers` no OAuth Protected Resource**:
+  - Corrigida a lista `authorization_servers` no arquivo `/.well-known/oauth-protected-resource` para usar o Issuer URL base (`"https://sca.brunoizidorio.com.br"`), resolvendo o erro de concatenação de rotas (`.../.well-known/oauth-authorization-server/...`).
+- **Formatação de Marcadores Standalone no `auth.md`**:
+  - Atualizado [`auth.md`](file:///home/bruno/Projetos/sca/frontend/public/auth.md) com as seções padronizadas da especificação WorkOS (`## Registration`, `## Authentication`, `## OAuth Metadata`, `## Standalone Agent Registration Flow`).
+- **Resolução Flexível de URLs no Nginx**:
+  - Adicionado suporte a expressões regulares no Nginx para prevenir erros 404 em consultas com caracteres URL-encoded (%60) ou sub-rotas duplicadas em validadores de agentes.
+
+---
+
 ## [1.6.10] - 2026-08-02
 
 ### 🌐 Ajuste da Sintaxe de Registros HTTPS no Cloudflare DNS

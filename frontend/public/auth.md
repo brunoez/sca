@@ -1,16 +1,24 @@
 # Auth.md - AI Agent Registration & Authentication Policy
 
-## 🛡️ Authentication Model: 100% Client-Side (Zero Auth Required)
+## Registration
+- **Registration Type**: Anonymous / None
+- **Registration URL**: https://sca.brunoizidorio.com.br/auth.md
+- **Client ID**: None Required
+- **Supported Identity Types**: anonymous, agent
+- **Credential Types**: none
 
-The **CycloneDX SCA Visualizer** is a 100% Client-Side Single Page Application (SPA).
+## Authentication
+- **Authentication Type**: None (100% Client-Side RAM Analysis)
+- **Token Endpoint**: https://sca.brunoizidorio.com.br/
+- **Grant Types**: implicit
+- **Scopes Supported**: read:sbom, analyze:sbom
 
-- **No API Keys Required**: All parsing, graph normalizations, vulnerability rating calculations, and license compliance audits run locally inside the client browser RAM.
-- **Zero Data Persistence**: No SBOM files, user data, or source code are ever uploaded or transmitted to any server.
-- **Agent Access**: AI Agents may interact with the application directly via standard WebMCP browser APIs (`navigator.modelContext.provideContext()`) or client-side JSON/XML parsing without needing authentication headers or registration credentials.
+## OAuth Metadata
+- **Protected Resource Metadata**: https://sca.brunoizidorio.com.br/.well-known/oauth-protected-resource
+- **Authorization Server Metadata**: https://sca.brunoizidorio.com.br/.well-known/oauth-authorization-server
+- **OpenID Configuration**: https://sca.brunoizidorio.com.br/.well-known/openid-configuration
 
-## 🔗 Discovery Resources
-
-- **API Catalog**: `https://sca.brunoizidorio.com.br/.well-known/api-catalog`
-- **Agent Skills Index**: `https://sca.brunoizidorio.com.br/.well-known/agent-skills/index.json`
-- **MCP Server Card**: `https://sca.brunoizidorio.com.br/.well-known/mcp/server-card.json`
-- **OAuth Protected Resource Metadata**: `https://sca.brunoizidorio.com.br/.well-known/oauth-protected-resource`
+## Standalone Agent Registration Flow
+1. **Zero Registration Steps**: Agents do not need to perform OAuth client registration, API key creation, or header signing.
+2. **Direct In-Browser Tools**: Agents can immediately parse CycloneDX SBOMs via standard WebMCP browser APIs (`navigator.modelContext.provideContext()`) or via local RAM parsing.
+3. **Data Privacy Guarantee**: 100% of processing remains in local client browser memory; no data is ever persisted or transmitted.

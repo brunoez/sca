@@ -1,7 +1,7 @@
 {
   "resource": "https://sca.brunoizidorio.com.br",
   "authorization_servers": [
-    "https://sca.brunoizidorio.com.br/.well-known/oauth-authorization-server"
+    "https://sca.brunoizidorio.com.br"
   ],
   "scopes_supported": [
     "read:sbom",
