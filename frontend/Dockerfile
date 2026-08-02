@@ -15,6 +15,11 @@ RUN npm run build
 # Stage 2: Serve static bundle via Nginx (Unprivileged, Hardened)
 FROM nginx:alpine-slim
 
+# Prepare Nginx directories and PID file for unprivileged execution
+RUN touch /var/run/nginx.pid && \
+    mkdir -p /var/cache/nginx /var/log/nginx && \
+    chown -R nginx:nginx /var/run/nginx.pid /var/cache/nginx /var/log/nginx /etc/nginx/conf.d
+
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

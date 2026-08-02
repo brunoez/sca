@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.3] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Permissões do Container Nginx para Usuário Não-Root (`USER nginx`)**:
+  - **`frontend/Dockerfile`**: Inclusão de `chown -R nginx:nginx` para os diretórios `/var/cache/nginx`, `/var/run/nginx.pid`, `/var/log/nginx` e `/etc/nginx/conf.d`.
+  - **`frontend/nginx.conf`**: Redirecionamento das pastas temporárias do Nginx (`client_body_temp_path`, `proxy_temp_path`, `fastcgi_temp_path`) para `/tmp/`, eliminando a falha `mkdir() "/var/cache/nginx/client_temp" failed (13: Permission denied)`.
+
+---
+
 ## [1.4.2] - 2026-08-02
 
 ### 🛡️ Segurança (Security & Code Audit)
