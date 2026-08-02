@@ -26,7 +26,7 @@ describe('HowItWorks Component with CLI Tool Selector', () => {
 
     // Default Trivy command
     expect(screen.getByTestId('selected-cli-command')).toHaveTextContent(
-      'trivy fs --format cyclonedx --output sbom.json .'
+      'trivy fs --format cyclonedx --include-dev-deps --output sbom.json .'
     );
   });
 
@@ -71,6 +71,6 @@ describe('HowItWorks Component with CLI Tool Selector', () => {
     fireEvent.click(screen.getByTestId('copy-cli-command-trivy'));
 
     // Assert
-    expect(writeTextMock).toHaveBeenCalledWith('trivy fs --format cyclonedx --output sbom.json .');
+    expect(writeTextMock).toHaveBeenCalledWith('trivy fs --format cyclonedx --include-dev-deps --output sbom.json .');
   });
 });

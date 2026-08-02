@@ -12,7 +12,7 @@ const cliTools: CliToolOption[] = [
   {
     id: 'trivy',
     name: 'Trivy',
-    command: 'trivy fs --format cyclonedx --output sbom.json .',
+    command: 'trivy fs --format cyclonedx --include-dev-deps --output sbom.json .',
   },
   {
     id: 'cdxgen',

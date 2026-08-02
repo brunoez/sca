@@ -5,6 +5,13 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.2.1] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Flag `--include-dev-deps` no Comando Trivy**: Adicionada a flag `--include-dev-deps` no comando sugerido do Trivy no seletor de ferramentas do Passo 01 (`trivy fs --format cyclonedx --include-dev-deps --output sbom.json .`), garantindo que dependências dev/sub-pacotes em repositórios Node/JavaScript não sejam omitidos pelo scanner do Trivy.
+
+---
+
 ## [1.2.0] - 2026-08-02
 
 ### ✨ Adicionado (Added)
