@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.8] - 2026-08-02
+
+### 🌐 Especificação de Descoberta DNS-AID (DNS for AI Discovery - RFC 9460)
+- **Documentação de Registros DNS-AID & DNSSEC**:
+  - Criado o documento [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md) detalhando as configurações de registros `HTTPS` e `TXT` sob os sub-domínios `_index._agents.sca` e `_a2a._agents.sca` para Cloudflare DNS / BIND.
+  - Atualizada a página de Wiki do GitLab [`wiki/Agent-Readiness-and-WebMCP.md`](file:///home/bruno/Projetos/sca/wiki/Agent-Readiness-and-WebMCP.md) com os parâmetros de validação autenticada via DNSSEC.
+
+---
+
 ## [1.6.7] - 2026-08-02
 
 ### 🛡️ Remediação Avançada de Segurança HTTP (CSP Clean & Cross-Origin Isolation)

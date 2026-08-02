@@ -26,3 +26,14 @@ A aplicação expõe ferramentas nativas no navegador via `navigator.modelContex
    - Processa a string bruta do SBOM (JSON/XML) e popula o modelo do SCA.
 2. `get_security_score()`:
    - Retorna a nota, nota conceitual, vulnerabilidades e distribuição de licenças.
+
+---
+
+## 🌐 Registros DNS-AID (DNS for AI Discovery - RFC 9460)
+
+Para a descoberta de agentes baseada em DNS, adicione os registros no Cloudflare DNS:
+
+- **Index Discovery**: `_index._agents.sca.brunoizidorio.com.br` (HTTPS & TXT)
+- **A2A Communication**: `_a2a._agents.sca.brunoizidorio.com.br` (HTTPS & TXT)
+- **Guia detalhado**: Ver [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md).
+
