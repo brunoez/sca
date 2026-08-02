@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.6] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Card Interativo de Memória de Cálculo da Nota (Hover Tooltip)**:
+  - Adicionado card popover interativo em `ExecutiveScoreCard.tsx` que aparece ao passar o mouse sobre a nota (ex.: `B+`, `80/100`) ou sobre a badge de risco (`Risco Moderado`).
+  - O card exibe a memória detalhada de cálculo: subtotal de penalidades de CVEs por severidade, penalidades por licenças copyleft/desconhecidas e a fórmula matemática logarítmica aplicada (`100 - log(1 + Penalidades) × 11`).
+
+---
+
 ## [1.4.5] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

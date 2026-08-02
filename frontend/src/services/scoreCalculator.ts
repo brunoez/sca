@@ -17,6 +17,12 @@ export interface ScaScoreInput {
 export interface ScaScoreOutput {
   score: number;
   grade: 'A+' | 'A' | 'B+' | 'B' | 'C' | 'D' | 'F';
+  breakdown: {
+    cvePenalty: number;
+    copyleftPenalty: number;
+    unknownPenalty: number;
+    totalPenalty: number;
+  };
 }
 
 export interface QuickWinItem {
@@ -37,8 +43,8 @@ export interface QuickWinItem {
 /**
  * Calculates the logarithmic SCA Health Score (0-100) and Security Grade (A+ to F).
  * Weights:
- * - Vulnerabilities: Critical = 15, High = 6, Medium = 2, Low = 0.5
- * - Risk Licenses: Copyleft = 10, Unknown = 2
+ * - Vulnerabilities: Critical = 25, High = 10, Medium = 3, Low = 0.5
+ * - Risk Licenses: Copyleft = 5 (max 30), Unknown = 0.05 (max 4)
  */
 export function calculateScaMetrics(input: ScaScoreInput): ScaScoreOutput {
   const { critical, high, medium, low } = input.vulnerabilityCounts;
@@ -55,7 +61,11 @@ export function calculateScaMetrics(input: ScaScoreInput): ScaScoreOutput {
   const totalPenalty = cvePenalty + licensePenalty;
 
   if (totalPenalty === 0) {
-    return { score: 100, grade: 'A+' };
+    return {
+      score: 100,
+      grade: 'A+',
+      breakdown: { cvePenalty: 0, copyleftPenalty: 0, unknownPenalty: 0, totalPenalty: 0 },
+    };
   }
 
   // Logarithmic penalty scaling
@@ -70,7 +80,16 @@ export function calculateScaMetrics(input: ScaScoreInput): ScaScoreOutput {
   else if (score >= 50) grade = 'C';
   else if (score >= 35) grade = 'D';
 
-  return { score, grade };
+  return {
+    score,
+    grade,
+    breakdown: {
+      cvePenalty,
+      copyleftPenalty,
+      unknownPenalty,
+      totalPenalty,
+    },
+  };
 }
 
 /**

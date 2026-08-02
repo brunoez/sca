@@ -1,4 +1,4 @@
-import { ShieldCheck, ShieldAlert, AlertTriangle, Layers, Bug } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, AlertTriangle, Layers, Bug, Info } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { calculateScaMetrics } from '../../services/scoreCalculator';
 import { useTranslation } from '../../context/LanguageContext';
@@ -9,12 +9,13 @@ export const ExecutiveScoreCard: React.FC = () => {
 
   if (!model) return null;
 
-  const { score, grade } = calculateScaMetrics({
+  const { score, grade, breakdown } = calculateScaMetrics({
     vulnerabilityCounts: model.summary.vulnerabilityCounts,
     licenseBreakdown: model.summary.licenseBreakdown,
   });
 
   const { critical, high, medium, low } = model.summary.vulnerabilityCounts;
+  const { copyleft, unknown } = model.summary.licenseBreakdown;
   const totalCves = critical + high + medium + low;
 
   const gradeStyles: Record<string, { color: string; bg: string; border: string; ring: string }> = {
@@ -34,6 +35,56 @@ export const ExecutiveScoreCard: React.FC = () => {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
+  const ScorePopoverCard = (
+    <div 
+      data-testid="score-breakdown-tooltip"
+      className="absolute left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0 top-full mt-2 w-80 p-4 bg-slate-950/95 border border-slate-700/90 rounded-2xl shadow-2xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 text-left text-xs space-y-3"
+    >
+      <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+        <span className="font-bold text-slate-100 flex items-center gap-1.5">
+          <Info className="w-4 h-4 text-cyan-400" />
+          {t('dashboard.scoreHelpTitle')}
+        </span>
+        <span className="font-mono text-[10px] text-cyan-400 bg-cyan-950 border border-cyan-800 px-2 py-0.5 rounded-full font-bold">
+          {grade} ({score}/100)
+        </span>
+      </div>
+
+      <div className="space-y-2 text-slate-300">
+        <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+          <div className="flex justify-between items-center mb-1">
+            <span className="font-semibold text-slate-200">{t('dashboard.cvePenaltyLabel')}:</span>
+            <span className="font-mono font-bold text-rose-400">-{breakdown.cvePenalty.toFixed(1)} pts</span>
+          </div>
+          <div className="text-[11px] text-slate-400 space-y-0.5 pl-1">
+            <div>• Crítica (x25): {critical} | Alta (x10): {high}</div>
+            <div>• Média (x3): {medium} | Baixa (x0.5): {low}</div>
+          </div>
+        </div>
+
+        <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+          <div className="flex justify-between items-center mb-1">
+            <span className="font-semibold text-slate-200">{t('dashboard.licensePenaltyLabel')}:</span>
+            <span className="font-mono font-bold text-amber-400">-{(breakdown.copyleftPenalty + breakdown.unknownPenalty).toFixed(1)} pts</span>
+          </div>
+          <div className="text-[11px] text-slate-400 space-y-0.5 pl-1">
+            <div>• Copyleft ({copyleft}): -{breakdown.copyleftPenalty.toFixed(1)} pts</div>
+            <div>• Desconhecidas ({unknown}): -{breakdown.unknownPenalty.toFixed(1)} pts (máx 4)</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-slate-800 pt-2 flex items-center justify-between font-medium">
+        <span className="text-slate-300">{t('dashboard.totalPenaltyLabel')}:</span>
+        <span className="font-mono font-extrabold text-slate-100">-{breakdown.totalPenalty.toFixed(1)} pts</span>
+      </div>
+
+      <p className="text-[10px] text-slate-500 italic border-t border-slate-800/60 pt-2">
+        {t('dashboard.scoreHelpFormula')}
+      </p>
+    </div>
+  );
+
   return (
     <div 
       data-testid="executive-score-card"
@@ -42,8 +93,8 @@ export const ExecutiveScoreCard: React.FC = () => {
       <div className="flex flex-col xl:flex-row items-center justify-between gap-6">
         {/* Left Section: Grade Gauge & Metadata */}
         <div className="flex flex-col sm:flex-row items-center gap-6 w-full xl:w-auto">
-          {/* SVG Circular Gauge */}
-          <div className="relative w-32 h-32 flex items-center justify-center shrink-0">
+          {/* SVG Circular Gauge with Hover Tooltip */}
+          <div className="group relative w-32 h-32 flex items-center justify-center shrink-0 cursor-help">
             <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
               <circle
                 cx="50"
@@ -73,6 +124,9 @@ export const ExecutiveScoreCard: React.FC = () => {
                 {score}/100
               </span>
             </div>
+
+            {/* Score calculation hover popup card */}
+            {ScorePopoverCard}
           </div>
 
           {/* Project Details & Risk Badge */}
@@ -90,22 +144,27 @@ export const ExecutiveScoreCard: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
-              {score >= 85 ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 shadow-sm">
-                  <ShieldCheck className="w-4 h-4" />
-                  {t('dashboard.lowRisk')}
-                </span>
-              ) : score >= 70 ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-amber-400 bg-amber-950/60 border border-amber-800/80 shadow-sm">
-                  <AlertTriangle className="w-4 h-4" />
-                  {t('dashboard.moderateRisk')}
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-rose-400 bg-rose-950/60 border border-rose-800/80 shadow-sm">
-                  <ShieldAlert className="w-4 h-4" />
-                  {t('dashboard.highRisk')}
-                </span>
-              )}
+              <div className="group relative cursor-help">
+                {score >= 85 ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 shadow-sm">
+                    <ShieldCheck className="w-4 h-4" />
+                    {t('dashboard.lowRisk')}
+                  </span>
+                ) : score >= 70 ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-amber-400 bg-amber-950/60 border border-amber-800/80 shadow-sm">
+                    <AlertTriangle className="w-4 h-4" />
+                    {t('dashboard.moderateRisk')}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-rose-400 bg-rose-950/60 border border-rose-800/80 shadow-sm">
+                    <ShieldAlert className="w-4 h-4" />
+                    {t('dashboard.highRisk')}
+                  </span>
+                )}
+
+                {/* Risk badge hover popup card */}
+                {ScorePopoverCard}
+              </div>
 
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs text-slate-400 bg-slate-800/80 border border-slate-700">
                 <Layers className="w-3.5 h-3.5 text-slate-400" />
