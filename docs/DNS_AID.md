@@ -1,45 +1,31 @@
-# 🌐 Guia de Configuração DNS-AID no Cloudflare DNS (Solução do Erro de Validação)
+# 🌐 Guia de Habilitação do DNSSEC para DNS-AID (Resolver erro "AD=true was not returned")
 
-Este guia explica como preencher os registros **HTTPS** no **Cloudflare DNS** sem o erro `"Value for HTTPS record is invalid."`.
-
----
-
-## 🔍 Por que o Cloudflare mostrou "Value for HTTPS record is invalid"?
-
-O validador da interface do Cloudflare DNS exige parâmetros **RFC 9460 IANA padrão** (`alpn` e `port`). O atributo `uri="..."` é um parâmetro estendido especificado no rascunho do DNS-AID que deve ser incluído no registro **TXT**, enquanto o registro **HTTPS** usa a sintaxe padrão do Cloudflare.
+O teste de validação do **DNS-AID** já encontrou com sucesso os registros no Cloudflare! O único item pendente é a validação de assinatura criptográfica **DNSSEC (Flag AD=true)**.
 
 ---
 
-## 🛠️ Como preencher no Cloudflare DNS (Valores Válidos)
+## 🛠️ Passo a Passo para Ativar o DNSSEC no Cloudflare + Registro.br
 
-No painel do **Cloudflare** -> `brunoizidorio.com.br` -> **DNS** -> **Add Record**:
+### 1️⃣ Passo 1: Ativar no Cloudflare DNS
+1. Acesse o painel do **Cloudflare** -> Selecione `brunoizidorio.com.br`.
+2. Vá na aba **DNS** -> **Settings** (ou role até a seção **DNSSEC** na página de registros).
+3. Clique em **Enable DNSSEC**.
+4. O Cloudflare exibirá os dados da chave **DS (Delegation Signer)**:
+   - **Key Tag** (ex: `2371` ou número similar)
+   - **Algorithm** (ex: `13` - ECDSA P-256)
+   - **Digest Type** (ex: `2` - SHA-256)
+   - **Digest** (sequência hexadecimal longa)
 
-### 1️⃣ Registro 1: `_index._agents.sca` (HTTPS)
-- **Type**: `HTTPS`
-- **Name**: `_index._agents.sca`
-- **Priority**: `1`
-- **Target**: `sca.brunoizidorio.com.br.`
-- **Value (optional)**: `alpn="h2,h3" port=443` *(ou pode deixar em branco)*
-- **TTL**: Auto
+### 2️⃣ Passo 2: Cadastrar a chave DS no Registro.br
+1. Acesse a sua conta no **Registro.br** (ou no seu registrador de domínio).
+2. Clique no domínio **`brunoizidorio.com.br`**.
+3. Role até a seção **DNSSEC** -> Clique em **Configurar DNSSEC** / **Adicionar Chave DS**.
+4. Cole os valores informados pelo Cloudflare (**Key Tag**, **Algoritmo**, **Tipo de Digest** e **Digest**).
+5. Clique em **Salvar**.
 
-### 2️⃣ Registro 2: `_a2a._agents.sca` (HTTPS)
-- **Type**: `HTTPS`
-- **Name**: `_a2a._agents.sca`
-- **Priority**: `1`
-- **Target**: `sca.brunoizidorio.com.br.`
-- **Value (optional)**: `alpn="h2,h3" port=443` *(ou pode deixar em branco)*
-- **TTL**: Auto
+---
 
-### 3️⃣ Registro 3: `_mcp._agents.sca` (HTTPS)
-- **Type**: `HTTPS`
-- **Name**: `_mcp._agents.sca`
-- **Priority**: `1`
-- **Target**: `sca.brunoizidorio.com.br.`
-- **Value (optional)**: `alpn="h2,h3" port=443` *(ou pode deixar em branco)*
-- **TTL**: Auto
+## ⏱️ Tempo de Propagação
+Após salvar a chave DS no Registro.br, os servidores raiz TLD `.br` atualizarão a assinatura em aproximadamente **5 a 15 minutos**. 
 
-### 4️⃣ Registro 4: `_index._agents.sca` (TXT Fallback & URI Metadata)
-- **Type**: `TXT`
-- **Name**: `_index._agents.sca`
-- **Content**: `"v=dnsaid1; uri=https://sca.brunoizidorio.com.br/.well-known/agent-skills/index.json; mcp=https://sca.brunoizidorio.com.br/.well-known/mcp/server-card.json"`
-- **TTL**: Auto
+Assim que a propagação concluir, os servidores de DNS validadores (como o Cloudflare 1.1.1.1 e Google 8.8.8.8) retornarão o flag **`AD=true` (Authenticated Data)** e o teste DNSSEC ficará **100% Aprovado (Verde)**!

@@ -5,6 +5,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.12] - 2026-08-02
+
+### 🌐 Guia de Ativação do DNSSEC para Validação DNS-AID (Flag AD=true)
+- **Documentação de Vinculação de Chave DS (Registro.br & Cloudflare)**:
+  - Adicionado o tutorial passo a passo em [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md) para exportação de chaves DS do Cloudflare e inserção no registrador de domínio (`Registro.br`) para habilitação da resposta autenticada `AD=true` exigida na especificação DNS-AID.
+
+---
+
 ## [1.6.11] - 2026-08-02
 
 ### 🤖 Correção dos Metadados RFC 8414 / RFC 9727 & Formato WorkOS Auth.md
