@@ -5,6 +5,13 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.1.3] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Compilação de Produção TypeScript (Strict)**: Remoção do `import` não utilizado `vi` em `LanguageContext.test.tsx` que causava falha de compilação `TS6133` durante o comando `npm run build` / `tsc` na etapa do Docker build.
+
+---
+
 ## [1.1.2] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)
