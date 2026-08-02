@@ -5,6 +5,16 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.15] - 2026-08-02
+
+### 🤖 Adição da Chave `skill` em `agent_auth` & Marcadores Standalone em `auth.md`
+- **Inclusão da Propriedade `skill` no OAuth Authorization Server Metadata**:
+  - Adicionado a chave `"skill": "https://sca.brunoizidorio.com.br/auth.md"` ao bloco `agent_auth` nos arquivos `/.well-known/oauth-authorization-server` e `.json`, resolvendo a validação `Validate agent_auth.skill`.
+- **Inclusão de Marcadores de Fluxo de Registro Standalone no `auth.md`**:
+  - Atualizado [`auth.md`](file:///home/bruno/Projetos/sca/frontend/public/auth.md) com o bloco `## Agent Auth Registration Flow` para satisfazer o validador de fluxo autônomo.
+
+---
+
 ## [1.6.14] - 2026-08-02
 
 ### 🌐 Confirmação do Cadastro DS no Registro.br

@@ -10,6 +10,7 @@
     "token"
   ],
   "agent_auth": {
+    "skill": "https://sca.brunoizidorio.com.br/auth.md",
     "register_uri": "https://sca.brunoizidorio.com.br/auth.md",
     "supported_identity_types": [
       "anonymous",

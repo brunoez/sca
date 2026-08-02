@@ -1,5 +1,14 @@
 # Auth.md - AI Agent Registration & Authentication Policy
 
+## Agent Auth Registration Flow
+This site supports self-contained anonymous registration for AI agents.
+
+### Registration Parameters
+- **Type**: Anonymous
+- **Skill**: https://sca.brunoizidorio.com.br/auth.md
+- **Register URI**: https://sca.brunoizidorio.com.br/auth.md
+- **Authentication**: None required (100% Client-Side Browser RAM)
+
 ## Registration
 - **Registration Type**: Anonymous / None
 - **Registration URL**: https://sca.brunoizidorio.com.br/auth.md
