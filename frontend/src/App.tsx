@@ -1,8 +1,8 @@
 import { Shield, LayoutDashboard, GitFork, ListTree, PackageSearch, Globe, RefreshCw } from 'lucide-react';
 import { LanguageProvider, useTranslation } from './context/LanguageContext';
 import { useScaStore } from './store/useScaStore';
-import { Dropzone } from './components/landing/Dropzone';
-import { SampleLoader } from './components/landing/SampleLoader';
+import { LandingPage } from './components/landing/LandingPage';
+import { LandingFooter } from './components/landing/LandingFooter';
 import { ExecutiveDashboard } from './components/dashboard/ExecutiveDashboard';
 import { GraphCanvas } from './components/graph/GraphCanvas';
 import { TreeView } from './components/tree/TreeView';
@@ -14,10 +14,10 @@ export function MainApp() {
   const { t, language, setLanguage } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col antialiased selection:bg-cyan-500 selection:text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col justify-between antialiased selection:bg-cyan-500 selection:text-white">
       {/* Global Navigation Header */}
       <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => setActiveTab('dashboard')}>
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => { if (model) setActiveTab('dashboard'); else reset(); }}>
           <Shield className="w-8 h-8 text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
           <div>
             <h1 className="text-lg font-bold text-white tracking-tight">{t('appTitle')}</h1>
@@ -56,13 +56,10 @@ export function MainApp() {
       </header>
 
       {/* Main App Container */}
-      <main className="flex-1 p-6 max-w-7xl mx-auto w-full">
-        {!model ? (
-          <div className="space-y-8 py-8 animate-fadeIn">
-            <Dropzone />
-            <SampleLoader />
-          </div>
-        ) : (
+      {!model ? (
+        <LandingPage />
+      ) : (
+        <main className="flex-1 p-6 max-w-7xl mx-auto w-full">
           <div className="space-y-6">
             {/* View Selector Tabs */}
             <div className="flex items-center gap-2 border-b border-slate-800 pb-3 overflow-x-auto">
@@ -123,8 +120,8 @@ export function MainApp() {
               {activeTab === 'explorer' && <ComponentExplorer />}
             </div>
           </div>
-        )}
-      </main>
+        </main>
+      )}
 
       {/* Global Package Detail Modal for Dashboard & Graph views */}
       {selectedComponentRef && (activeTab === 'dashboard' || activeTab === 'graph') && (
@@ -133,6 +130,9 @@ export function MainApp() {
           onClose={() => selectComponent(null)}
         />
       )}
+
+      {/* Global Footer */}
+      <LandingFooter />
     </div>
   );
 }
@@ -144,3 +144,4 @@ export default function App() {
     </LanguageProvider>
   );
 }
+

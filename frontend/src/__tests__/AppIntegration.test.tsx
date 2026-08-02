@@ -60,7 +60,7 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
     render(<App />);
 
     // Assert
-    expect(screen.getByText('CycloneDX SCA Visualizer')).toBeInTheDocument();
+    expect(screen.getAllByText('CycloneDX SCA Visualizer')[0]).toBeInTheDocument();
     expect(screen.getByTestId('dropzone')).toBeInTheDocument();
     expect(screen.getByTestId('sample-loader')).toBeInTheDocument();
     expect(screen.queryByTestId('tab-dashboard')).not.toBeInTheDocument();
@@ -140,11 +140,11 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
     fireEvent.change(select, { target: { value: 'en-US' } });
 
     // Assert
-    expect(screen.getByText('Executive Security Dashboard & Supply Chain Graph Visualizer')).toBeInTheDocument();
+    expect(screen.getAllByText('Executive Security Dashboard & Supply Chain Graph Visualizer')[0]).toBeInTheDocument();
 
     // Act - Switch back to Portuguese
     fireEvent.change(select, { target: { value: 'pt-BR' } });
-    expect(screen.getByText('Inteligência Executiva & Visualizador de Grafo de Supply Chain')).toBeInTheDocument();
+    expect(screen.getAllByText('Inteligência Executiva & Visualizador de Grafo de Supply Chain')[0]).toBeInTheDocument();
   });
 
   it('should reset loaded SBOM and return to landing dropzone when clicking Novo SBOM button', () => {
