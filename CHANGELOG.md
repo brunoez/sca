@@ -5,6 +5,19 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.0] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Pipeline de CI/CD do GitLab (`.gitlab-ci.yml`)**: Criação da infraestrutura modular de CI/CD na pasta `.gitlab/ci/` contendo os estágios:
+  - `security-scan` (Semgrep SAST, Gitleaks Secret Detection, Trivy FS)
+  - `test` (Testes unitários automatizados com Vitest e Node.js 24)
+  - `build` (Compilação da SPA React via Vite)
+  - `docker-build` & `docker-security` (Construção da imagem Docker e scan de vulnerabilidade no Container Registry)
+  - `deploy` (Implantação automatizada na VPS `oracle-vps` na porta `8080`)
+- **Guia Completo de Produção (`PROD.md` & `docs/PROD.md`)**: Documentação técnica detalhando a arquitetura 100% Client-Side, pré-requisitos do servidor, configuração de chaves de deploy SSH (`vps-sca-deploy`), Proxy Reverso Nginx + SSL/TLS com Certbot para o domínio `sca.brunoizidorio.com.br` e verificação de segurança.
+
+---
+
 ## [1.3.2] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

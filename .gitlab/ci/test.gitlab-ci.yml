@@ -1,0 +1,16 @@
+# Módulo de Testes Unitários (Vitest)
+
+.node_base:
+  image: node:24-alpine
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - frontend/node_modules/
+
+test_frontend:
+  extends: .node_base
+  stage: test
+  script:
+    - cd frontend
+    - npm ci
+    - npm test -- --run

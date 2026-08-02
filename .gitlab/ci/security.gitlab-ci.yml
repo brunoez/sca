@@ -1,0 +1,63 @@
+# Módulo de Segurança DevSecOps (Semgrep SAST, Gitleaks Secret Detection, Trivy Container & FS)
+
+# Job 1: Semgrep SAST (Static Application Security Testing)
+semgrep_sast_scan:
+  stage: security-scan
+  image:
+    name: semgrep/semgrep:latest
+    entrypoint: [""]
+  script:
+    - ln -sf "$CI_PROJECT_DIR" /src
+    - semgrep scan --config auto --json /src > semgrep-sast-report.json
+  artifacts:
+    name: semgrep-sast-report
+    paths:
+      - semgrep-sast-report.json
+    expire_in: 1 week
+    when: always
+  allow_failure: true
+
+# Job 2: Gitleaks (Detecção de Vazamento de Segredos e Credenciais)
+gitleaks_secret_scan:
+  stage: security-scan
+  image:
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  script:
+    - gitleaks detect --source . --verbose --report-path gitleaks-report.json
+  artifacts:
+    name: gitleaks-report
+    paths:
+      - gitleaks-report.json
+    expire_in: 1 week
+    when: always
+  allow_failure: true
+
+# Job 3: Trivy Filesystem & Dependency Vulnerability Scan
+trivy_fs_scan:
+  stage: security-scan
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  script:
+    - trivy fs --exit-code 0 --severity HIGH,CRITICAL --format json -o trivy-fs-report.json .
+  artifacts:
+    name: trivy-fs-report
+    paths:
+      - trivy-fs-report.json
+    expire_in: 1 week
+    when: always
+
+# Job 4: Trivy Container Image Security Scan (Executa após o docker-build)
+trivy_container_scan:
+  stage: docker-security
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  variables:
+    TRIVY_NO_PROGRESS: "true"
+  script:
+    - trivy image --exit-code 0 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:latest
+  only:
+    - master
+  allow_failure: true
