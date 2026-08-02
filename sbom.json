@@ -2,10 +2,10 @@
   "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
   "bomFormat": "CycloneDX",
   "specVersion": "1.7",
-  "serialNumber": "urn:uuid:d8783df2-3ebe-4aca-9199-71c4f2ad16e9",
+  "serialNumber": "urn:uuid:4ad146ae-8903-423c-b00a-6caa83d48580",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-08-02T15:53:12+00:00",
+    "timestamp": "2026-08-02T15:57:11+00:00",
     "tools": {
       "components": [
         {
@@ -20,7 +20,7 @@
       ]
     },
     "component": {
-      "bom-ref": "00b474b8-b186-4874-b44a-a674a0696503",
+      "bom-ref": "68503b07-5b93-42f4-9a66-416ad88647ba",
       "type": "application",
       "name": ".",
       "properties": [
@@ -33,7 +33,7 @@
   },
   "components": [
     {
-      "bom-ref": "03b85de3-0800-48b5-9ff0-656d6359c9e5",
+      "bom-ref": "ddab037d-eff8-4792-a0f8-08c91c37309b",
       "type": "application",
       "name": "frontend/package-lock.json",
       "properties": [
@@ -8434,13 +8434,13 @@
   ],
   "dependencies": [
     {
-      "ref": "00b474b8-b186-4874-b44a-a674a0696503",
+      "ref": "68503b07-5b93-42f4-9a66-416ad88647ba",
       "dependsOn": [
-        "03b85de3-0800-48b5-9ff0-656d6359c9e5"
+        "ddab037d-eff8-4792-a0f8-08c91c37309b"
       ]
     },
     {
-      "ref": "03b85de3-0800-48b5-9ff0-656d6359c9e5",
+      "ref": "ddab037d-eff8-4792-a0f8-08c91c37309b",
       "dependsOn": [
         "pkg:npm/%40dagrejs/dagre@1.1.8",
         "pkg:npm/%40testing-library/jest-dom@6.9.1",
