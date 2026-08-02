@@ -69,15 +69,23 @@ export const GraphCanvas: React.FC = () => {
         proOptions={{ hideAttribution: true }}
       >
         <Background color="#334155" gap={20} size={1.5} />
-        <Controls className="!bg-slate-900 !border-slate-800 !text-slate-200 !rounded-xl overflow-hidden !shadow-lg [&>button]:!border-slate-800 [&>button:hover]:!bg-slate-800" />
+        <Controls className="!bg-slate-900 !border-slate-800 !text-slate-200 !rounded-xl overflow-hidden !shadow-lg" />
         <MiniMap
-          nodeColor={(node) => {
+          nodeColor={(node: any) => {
             if (node.data?.isRoot) return '#a855f7';
             if (node.data?.isDirect) return '#06b6d4';
-            return '#64748b';
+            return '#475569';
           }}
+          nodeStrokeColor={(node: any) => {
+            if (node.data?.isRoot) return '#c084fc';
+            if (node.data?.isDirect) return '#22d3ee';
+            return '#94a3b8';
+          }}
+          nodeBorderRadius={4}
           maskColor="rgba(15, 23, 42, 0.75)"
           className="!bg-slate-900 !border !border-slate-800 !rounded-xl overflow-hidden"
+          zoomable
+          pannable
         />
 
         {/* Panel Header: Legend & Impact Path Details */}
