@@ -84,6 +84,22 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
     expect(screen.getByTestId('tab-explorer')).toBeInTheDocument();
   });
 
+  it('should display 2D graph canvas in both Executive Dashboard and dedicated Graph tab', () => {
+    // Arrange
+    const model = parseAndNormalizeSbom(sampleSbomJson, 'sample.json');
+    useScaStore.getState().setModel(model);
+
+    render(<App />);
+
+    // 1. In Executive Dashboard tab
+    expect(screen.getByTestId('executive-dashboard')).toBeInTheDocument();
+    expect(screen.getByTestId('graph-canvas-container')).toBeInTheDocument();
+
+    // 2. In dedicated Graph tab
+    fireEvent.click(screen.getByTestId('tab-graph'));
+    expect(screen.getByTestId('graph-canvas-container')).toBeInTheDocument();
+  });
+
   it('should allow switching across all 4 main tabs seamlessly', () => {
     // Arrange - Load model into Zustand store directly
     const model = parseAndNormalizeSbom(sampleSbomJson, 'sample.json');

@@ -164,8 +164,22 @@ describe('ExecutiveDashboard Component Suite', () => {
 
     // Assert
     expect(screen.getByTestId('quick-wins-list')).toBeInTheDocument();
-    expect(screen.getByText('express')).toBeInTheDocument();
+    expect(screen.getAllByText('express')[0]).toBeInTheDocument();
     expect(screen.getByTestId('quick-win-item-0')).toBeInTheDocument();
+  });
+
+  it('should render embedded 2D topological graph navigator between score card and analytics charts', () => {
+    // Arrange
+    useScaStore.getState().setModel(mockSbomModel);
+
+    // Act
+    renderDashboard();
+
+    // Assert
+    expect(screen.getByTestId('executive-score-card')).toBeInTheDocument();
+    expect(screen.getByTestId('graph-canvas-container')).toBeInTheDocument();
+    expect(screen.getByTestId('license-matrix-chart')).toBeInTheDocument();
+    expect(screen.getByTestId('supply-chain-depth-chart')).toBeInTheDocument();
   });
 
   it('should clear SBOM model when clicking Reset button', () => {

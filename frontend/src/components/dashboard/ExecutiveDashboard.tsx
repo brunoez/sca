@@ -2,6 +2,7 @@ import { RefreshCw, LayoutDashboard } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
 import { ExecutiveScoreCard } from './ExecutiveScoreCard';
+import { GraphCanvas } from '../graph/GraphCanvas';
 import { LicenseMatrixChart } from './LicenseMatrixChart';
 import { SupplyChainDepthChart } from './SupplyChainDepthChart';
 import { QuickWinsList } from './QuickWinsList';
@@ -46,6 +47,9 @@ export const ExecutiveDashboard: React.FC = () => {
       {/* Top Main Score Card */}
       <ExecutiveScoreCard />
 
+      {/* Embedded 2D Topological Graph Navigator */}
+      <GraphCanvas />
+
       {/* Analytics Charts Grid: License Matrix & Supply Chain Depth */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <LicenseMatrixChart />
@@ -57,3 +61,4 @@ export const ExecutiveDashboard: React.FC = () => {
     </div>
   );
 };
+
