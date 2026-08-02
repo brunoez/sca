@@ -5,6 +5,13 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.1.4] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Tradução Global Remanescente (i18n)**: Tradução dos termos "Alto ROI" (`High ROI`), "Inspecionar" (`Inspect`), "Expandir todos" (`Expand All`), "Recolher todos" (`Collapse All`), "Buscar por pacote na árvore..." (`Search package in tree...`) e "Novo SBOM" (`New SBOM`) / "Carregar Outro SBOM" (`Load Another SBOM`) em `App.tsx`, `TreeView.tsx`, `QuickWinsList.tsx` e `ExecutiveDashboard.tsx`.
+
+---
+
 ## [1.1.3] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

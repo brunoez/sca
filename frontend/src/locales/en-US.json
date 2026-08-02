@@ -55,10 +55,17 @@
     "rootApp": "(Root Application)",
     "directDeps": "direct dependencies",
     "inspectPackage": "Inspect Package",
-    "clean": "Clean"
+    "clean": "Clean",
+    "subtitle": "Hierarchical File-Explorer style visualization of all Supply Chain dependencies",
+    "expandAll": "Expand All",
+    "collapseAll": "Collapse All",
+    "searchPlaceholder": "Search package in tree (name, version, group)..."
   },
   "dashboard": {
     "title": "Executive SCA Security Dashboard",
+    "loadAnotherSbom": "Load Another SBOM",
+    "newSbom": "New SBOM",
+    "highRoi": "High ROI",
     "subtitle": "Holistic View of Software Supply Chain Health",
     "supplyChainRisk": "Supply Chain Risk",
     "lowRisk": "Low Risk",

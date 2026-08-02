@@ -39,7 +39,7 @@ export const ExecutiveDashboard: React.FC = () => {
             className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition-colors shadow-sm"
           >
             <RefreshCw className="w-3.5 h-3.5" />
-            Carregar Outro SBOM
+            {t('dashboard.loadAnotherSbom')}
           </button>
         </div>
       </div>

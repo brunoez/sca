@@ -94,7 +94,7 @@ export const TreeView: React.FC = () => {
             <div>
               <h3 className="text-xl font-bold text-white">{t('tabs.tree')}</h3>
               <p className="text-xs text-slate-400">
-                Visualização hierárquica estilo File-Explorer de todas as dependências da Supply Chain
+                {t('tree.subtitle')}
               </p>
             </div>
           </div>
@@ -106,7 +106,7 @@ export const TreeView: React.FC = () => {
               className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950 hover:bg-slate-800 text-slate-300 text-xs font-semibold rounded-xl border border-slate-800 transition-colors"
             >
               <Maximize2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Expandir Todos</span>
+              <span>{t('tree.expandAll')}</span>
             </button>
 
             <button
@@ -115,7 +115,7 @@ export const TreeView: React.FC = () => {
               className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950 hover:bg-slate-800 text-slate-300 text-xs font-semibold rounded-xl border border-slate-800 transition-colors"
             >
               <Minimize2 className="w-3.5 h-3.5 text-slate-400" />
-              <span>Recolher Todos</span>
+              <span>{t('tree.collapseAll')}</span>
             </button>
           </div>
         </div>
@@ -128,7 +128,7 @@ export const TreeView: React.FC = () => {
             type="text"
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
-            placeholder="Buscar por pacote na árvore (nome, versão, grupo)..."
+            placeholder={t('tree.searchPlaceholder')}
             className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 rounded-xl pl-9 pr-8 py-2.5 text-sm text-white placeholder-slate-500 outline-none transition-all"
           />
           {searchFilter && (

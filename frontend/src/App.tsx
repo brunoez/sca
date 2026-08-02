@@ -46,10 +46,10 @@ export function MainApp() {
               data-testid="reset-sbom-button"
               onClick={reset}
               className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-slate-300 bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl transition-all shadow-sm"
-              title="Carregar outro arquivo SBOM"
+              title={t('dashboard.loadAnotherSbom')}
             >
               <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">Novo SBOM</span>
+              <span className="hidden sm:inline">{t('dashboard.newSbom')}</span>
             </button>
           )}
         </div>

@@ -79,7 +79,7 @@ export const QuickWinsList: React.FC = () => {
             <h3 className="text-lg font-bold text-white">{t('dashboard.quickWinsTitle')}</h3>
           </div>
           <span className="text-xs text-amber-400 bg-amber-950/60 border border-amber-800/80 px-2.5 py-1 rounded-full font-semibold">
-            Alto ROI
+            {t('dashboard.highRoi')}
           </span>
         </div>
         <p className="text-xs text-slate-400 mb-4">{t('dashboard.quickWinsSubtitle')}</p>
@@ -121,7 +121,7 @@ export const QuickWinsList: React.FC = () => {
                     </span>
                   )}
                   <button className="text-xs font-medium text-cyan-400 group-hover:text-cyan-300 flex items-center gap-1 bg-cyan-950/40 border border-cyan-800/60 px-2.5 py-1 rounded-lg transition-colors">
-                    Inspecionar <ArrowUpRight className="w-3.5 h-3.5" />
+                    {t('explorer.inspect')} <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

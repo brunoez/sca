@@ -55,10 +55,17 @@
     "rootApp": "(Aplicação Raiz)",
     "directDeps": "dependências diretas",
     "inspectPackage": "Inspecionar Pacote",
-    "clean": "Limpo"
+    "clean": "Limpo",
+    "subtitle": "Visualização hierárquica estilo File-Explorer de todas as dependências da Supply Chain",
+    "expandAll": "Expandir Todos",
+    "collapseAll": "Recolher Todos",
+    "searchPlaceholder": "Buscar por pacote na árvore (nome, versão, grupo)..."
   },
   "dashboard": {
     "title": "Dashboard Executivo de Segurança SCA",
+    "loadAnotherSbom": "Carregar Outro SBOM",
+    "newSbom": "Novo SBOM",
+    "highRoi": "Alto ROI",
     "subtitle": "Visão Holística de Saúde da Supply Chain de Software",
     "supplyChainRisk": "Risco de Supply Chain",
     "lowRisk": "Baixo Risco",
