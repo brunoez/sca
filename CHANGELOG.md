@@ -5,6 +5,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.9] - 2026-08-02
+
+### 🌐 Atualização do Guia de Registros DNS-AID para Cloudflare DNS
+- **Adicionadas Instruções para Solução do `NXDOMAIN` (Status 3)**:
+  - Adicionados parâmetros de cadastro detalhado para os 3 pontos de entrada DNS-AID: `_index._agents.sca`, `_a2a._agents.sca` e `_mcp._agents.sca` em registros do tipo `HTTPS` e `TXT` no Cloudflare DNS.
+
+---
+
 ## [1.6.8] - 2026-08-02
 
 ### 🌐 Especificação de Descoberta DNS-AID (DNS for AI Discovery - RFC 9460)
