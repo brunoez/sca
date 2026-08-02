@@ -179,4 +179,22 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
     expect(screen.getByTestId('dropzone')).toBeInTheDocument();
     expect(screen.queryByTestId('executive-dashboard')).not.toBeInTheDocument();
   });
+
+  it('should reset loaded SBOM and return to landing home screen when clicking CycloneDX SCA Visualizer logo', () => {
+    // Arrange
+    const model = parseAndNormalizeSbom(sampleSbomJson, 'sample.json');
+    useScaStore.getState().setModel(model);
+    useScaStore.getState().setActiveTab('graph');
+    render(<App />);
+
+    const logoBtn = screen.getByTestId('header-logo-button');
+    expect(logoBtn).toBeInTheDocument();
+
+    // Act - Click header logo
+    fireEvent.click(logoBtn);
+
+    // Assert - Returned to home/landing screen
+    expect(screen.getByTestId('dropzone')).toBeInTheDocument();
+    expect(screen.queryByTestId('graph-canvas-container')).not.toBeInTheDocument();
+  });
 });

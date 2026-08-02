@@ -17,10 +17,15 @@ export function MainApp() {
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans flex flex-col justify-between antialiased selection:bg-cyan-500 selection:text-white">
       {/* Global Navigation Header */}
       <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => { if (model) setActiveTab('dashboard'); else reset(); }}>
-          <Shield className="w-8 h-8 text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
+        <div 
+          data-testid="header-logo-button"
+          className="flex items-center gap-3 cursor-pointer group" 
+          onClick={reset}
+          title={t('dashboard.loadAnotherSbom')}
+        >
+          <Shield className="w-8 h-8 text-cyan-400 group-hover:scale-105 transition-transform drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
           <div>
-            <h1 className="text-lg font-bold text-white tracking-tight">{t('appTitle')}</h1>
+            <h1 className="text-lg font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">{t('appTitle')}</h1>
             <p className="text-xs text-slate-400">{t('subtitle')}</p>
           </div>
         </div>
