@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.5] - 2026-08-02
+
+### 🐛 Corrigido - Herança de Cabeçalhos HTTP Link (RFC 8288) no Nginx
+- **Emissão Garantida do Cabeçalho `Link` na Página Inicial (`GET /`)**:
+  - Corrigido o comportamento do Nginx onde diretivas `add_header` em blocos de `location` (como `location /`) sobrescreviam todos os cabeçalhos definidos no nível do bloco `server`.
+  - Incluída a injeção explícita de cabeçalhos de segurança (OWASP) e do cabeçalho `Link` em todos os blocos de localização (`location /`, `location = /index.md`, `location = /.well-known/...`), garantindo conformidade com a especificação RFC 8288 e ferramentas de validação como *IsItAgentReady*.
+
+---
+
 ## [1.6.4] - 2026-08-02
 
 ### ✨ Adicionado - Negociação de Conteúdo Markdown for Agents (Cloudflare & RFC)
