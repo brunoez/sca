@@ -8,10 +8,9 @@ docker_build:
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    DOCKER_BUILDKIT: "1"
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:latest ./frontend
-    - docker push --all-tags $CI_REGISTRY_IMAGE
+    - docker buildx create --use
+    - docker buildx build --push --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest ./frontend
   only:
     - master
