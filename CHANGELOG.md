@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.7] - 2026-08-02
+
+### 🎨 Ajustado (Refactored)
+- **Posicionamento e Elevação do Hover Card de Cálculo (`ScorePopoverCard`)**:
+  - Ajustado o posicionamento do card popover de `top-full` para `bottom-full mb-3`, fazendo com que ele abra para cima (direção ao topo do container) e impedindo qualquer corte de visualização causado pela borda inferior do card ou pela pilha de camadas (*z-index*) do grafo topológico 2D.
+  - Adicionado contexto de empilhamento `relative z-30` no container principal do `ExecutiveScoreCard`.
+
+---
+
 ## [1.4.6] - 2026-08-02
 
 ### ✨ Adicionado (Added)
