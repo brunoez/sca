@@ -1,6 +1,7 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, useRef, useCallback, Fragment } from 'react';
 import { X, Copy, Check, ShieldAlert, ShieldCheck, AlertTriangle, Info, GitCommit } from 'lucide-react';
 import DOMPurify from 'dompurify';
+import gsap from 'gsap';
 import { useScaStore } from '../../store/useScaStore';
 import { useTranslation } from '../../context/LanguageContext';
 import { ScaVulnerability } from '../../models/sca';
@@ -15,15 +16,62 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
   const { t } = useTranslation();
   const [copiedPurl, setCopiedPurl] = useState(false);
 
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const isClosingRef = useRef(false);
+
+  const animDuration = typeof process !== 'undefined' && process.env.NODE_ENV === 'test' ? 0 : 0.2;
+  const enterDuration = typeof process !== 'undefined' && process.env.NODE_ENV === 'test' ? 0 : 0.3;
+
+  const animateAndClose = useCallback(() => {
+    if (isClosingRef.current) return;
+    isClosingRef.current = true;
+
+    if (backdropRef.current && contentRef.current) {
+      gsap.to(backdropRef.current, {
+        opacity: 0,
+        duration: animDuration,
+        ease: 'power2.in',
+      });
+      gsap.to(contentRef.current, {
+        scale: 0.95,
+        y: 15,
+        opacity: 0,
+        duration: animDuration,
+        ease: 'power2.in',
+        onComplete: () => {
+          onClose();
+        },
+      });
+    } else {
+      onClose();
+    }
+  }, [onClose, animDuration]);
+
   useEffect(() => {
+    isClosingRef.current = false;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        animateAndClose();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+
+    if (compRef && backdropRef.current && contentRef.current) {
+      gsap.fromTo(
+        backdropRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: enterDuration, ease: 'power2.out' }
+      );
+      gsap.fromTo(
+        contentRef.current,
+        { scale: 0.92, y: 20, opacity: 0 },
+        { scale: 1, y: 0, opacity: 1, duration: enterDuration, ease: 'power3.out' }
+      );
+    }
+
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [compRef, animateAndClose, enterDuration]);
 
   if (!compRef || !model) return null;
 
@@ -80,11 +128,13 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
 
   return (
     <div
+      ref={backdropRef}
       data-testid="package-detail-modal"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
+      onClick={animateAndClose}
     >
       <div
+        ref={contentRef}
         className="relative bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
@@ -119,7 +169,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
 
           <button
             data-testid="modal-close-button"
-            onClick={onClose}
+            onClick={animateAndClose}
             className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors"
             aria-label="Close modal"
           >
@@ -270,7 +320,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
         <div className="p-4 border-t border-slate-800 bg-slate-900 flex justify-end">
           <button
             data-testid="modal-close-footer-button"
-            onClick={onClose}
+            onClick={animateAndClose}
             className="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-semibold rounded-xl transition-all shadow-md"
           >
             {t('details.close')}
@@ -280,3 +330,4 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
     </div>
   );
 };
+
