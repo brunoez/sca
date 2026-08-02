@@ -72,7 +72,7 @@ const mockSbomModel: ScaSbomModel = {
 
 const renderTreeView = () => {
   return render(
-    <LanguageProvider>
+    <LanguageProvider defaultLanguage="pt-BR">
       <TreeView />
     </LanguageProvider>
   );

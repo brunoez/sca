@@ -13,8 +13,11 @@ import { useScaStore } from '../../store/useScaStore';
 import { getLayoutedElements } from '../../services/graphLayout';
 import { ScaNodeComponent } from './ScaNodeComponent';
 
+import { useTranslation } from '../../context/LanguageContext';
+
 export const GraphCanvas: React.FC = () => {
   const { model, selectedComponentRef, impactPathRefs, selectComponent } = useScaStore();
+  const { t } = useTranslation();
 
   const nodeTypes = useMemo(() => ({ scaNode: ScaNodeComponent }), []);
 
@@ -39,11 +42,10 @@ export const GraphCanvas: React.FC = () => {
       <div className="flex flex-col items-center justify-center p-12 bg-slate-900 border border-slate-800 rounded-2xl text-center min-h-[400px]">
         <GitFork className="w-16 h-16 text-cyan-400 mb-4 animate-pulse" />
         <h3 className="text-xl font-bold text-white mb-2">
-          Grafo 2D de Dependências Indisponível
+          {t('graph.unavailableTitle')}
         </h3>
         <p className="text-slate-400 text-sm max-w-md">
-          Carregue um arquivo SBOM no formato CycloneDX (JSON ou XML) para visualizar o grafo
-          topológico e rastrear o caminho de impacto.
+          {t('graph.unavailableDesc')}
         </p>
       </div>
     );
@@ -93,30 +95,30 @@ export const GraphCanvas: React.FC = () => {
           <div className="flex items-center justify-between gap-3 mb-2">
             <div className="flex items-center gap-2">
               <Layers className="w-5 h-5 text-cyan-400" />
-              <span className="font-bold text-sm text-white">Navegador Topológico 2D</span>
+              <span className="font-bold text-sm text-white">{t('graph.title')}</span>
             </div>
             <span className="text-xs font-mono text-slate-400">
-              {nodes.length} nós • {edges.length} conexões
+              {nodes.length} {t('graph.nodes')} • {edges.length} {t('graph.connections')}
             </span>
           </div>
 
           <p className="text-xs text-slate-400 mb-3">
-            Clique em qualquer nó para rastrear o <strong className="text-cyan-300">Caminho de Impacto</strong> desde a raiz do sistema.
+            {t('graph.instructionPrefix')}<strong className="text-cyan-300">{t('graph.instructionHighlight')}</strong>{t('graph.instructionSuffix')}
           </p>
 
           {/* Legend */}
           <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-300 border-t border-slate-800 pt-2">
             <span className="flex items-center gap-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Raiz
+              <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span> {t('graph.root')}
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> Direta
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500"></span> {t('metrics.direct')}
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Transitiva
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-500"></span> {t('metrics.transitive')}
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-3 h-1 bg-cyan-400 rounded"></span> Caminho de Impacto
+              <span className="w-3 h-1 bg-cyan-400 rounded"></span> {t('details.impactPath')}
             </span>
           </div>
         </Panel>
@@ -128,13 +130,13 @@ export const GraphCanvas: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-cyan-400 animate-pulse" />
                 <span className="font-bold text-sm text-white">
-                  Caminho de Impacto: {selectedComp ? selectedComp.name : model.metadata.componentName}
+                  {t('details.impactPath')}: {selectedComp ? selectedComp.name : model.metadata.componentName}
                 </span>
               </div>
               <button
                 onClick={() => selectComponent(null)}
                 className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition-colors"
-                title="Limpar Seleção"
+                title={t('graph.clearSelection')}
               >
                 <X className="w-4 h-4" />
               </button>

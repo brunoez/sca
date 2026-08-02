@@ -20,8 +20,9 @@
     "scoreLabel": "SCA Security Rating",
     "totalComponents": "Total de Componentes",
     "directVsTransitive": "Diretas vs Transitivas",
-    "direct": "Diretas",
-    "transitive": "Transitivas",
+    "direct": "Direta",
+    "transitive": "Transitiva",
+    "noLicense": "Sem Licença",
     "maxDepth": "Profundidade Máxima",
     "licenseMatrix": "Matriz de Licenças",
     "permissive": "Permissiva",
@@ -32,6 +33,29 @@
     "high": "Alta",
     "medium": "Média",
     "low": "Baixa"
+  },
+  "graph": {
+    "title": "Navegador Topológico 2D",
+    "unavailableTitle": "Grafo 2D de Dependências Indisponível",
+    "unavailableDesc": "Carregue um arquivo SBOM no formato CycloneDX (JSON ou XML) para visualizar o grafo topológico e rastrear o caminho de impacto.",
+    "nodes": "nós",
+    "connections": "conexões",
+    "instructionPrefix": "Clique em qualquer nó para rastrear o ",
+    "instructionHighlight": "Caminho de Impacto",
+    "instructionSuffix": " desde a raiz do sistema.",
+    "root": "Raiz",
+    "direct": "Direta",
+    "transitive": "Transitiva",
+    "transitiveLvl": "Transitiva Lvl",
+    "impactPath": "Caminho de Impacto",
+    "clearSelection": "Limpar Seleção",
+    "license": "Licença"
+  },
+  "tree": {
+    "rootApp": "(Aplicação Raiz)",
+    "directDeps": "dependências diretas",
+    "inspectPackage": "Inspecionar Pacote",
+    "clean": "Limpo"
   },
   "dashboard": {
     "title": "Dashboard Executivo de Segurança SCA",
@@ -61,7 +85,22 @@
     "tableHeaderType": "Tipo",
     "tableHeaderLicense": "Licença",
     "tableHeaderDepth": "Profundidade",
-    "tableHeaderActions": "Ações"
+    "tableHeaderActions": "Ações",
+    "allTypes": "Todos os Tipos",
+    "onlyDirect": "Apenas Diretas",
+    "onlyTransitive": "Apenas Transitivas",
+    "allLicenses": "Todas as Licenças",
+    "allVulnerabilities": "Todas as Vulnerabilidades",
+    "withCve": "Com CVE (Vulneráveis)",
+    "criticalHigh": "Críticas / Altas",
+    "showing": "Exibindo",
+    "of": "de",
+    "packages": "pacotes",
+    "itemsPerPage": "Itens por página:",
+    "clean": "Limpo",
+    "inspect": "Inspecionar",
+    "inspectTitle": "Inspecionar Detalhes do Pacote",
+    "page": "Página"
   },
   "details": {
     "title": "Detalhes do Componente",
@@ -70,7 +109,13 @@
     "group": "Grupo",
     "ancestors": "Caminho de Inclusão (Ancestrais)",
     "impactPath": "Caminho de Impacto",
-    "close": "Fechar"
+    "close": "Fechar",
+    "copied": "Copiado!",
+    "copyPurl": "Copiar PURL",
+    "noLicensesDeclared": "Nenhuma licença declarada no SBOM.",
+    "knownVulnerabilities": "Vulnerabilidades Conhecidas (CVEs)",
+    "noVulnerabilities": "Nenhuma vulnerabilidade (CVE) cadastrada ou detectada para este pacote.",
+    "remediationRecommendation": "Recomendação de Remediação:"
   },
   "language": {
     "ptBR": "Português (BR)",

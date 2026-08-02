@@ -73,10 +73,42 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   );
 };
 
+const defaultT = (keyPath: string, params?: Record<string, string | number>): string => {
+  const keys = keyPath.split('.');
+  let current: unknown = ptBR;
+
+  for (const k of keys) {
+    if (current && typeof current === 'object' && k in (current as Record<string, unknown>)) {
+      current = (current as Record<string, unknown>)[k];
+    } else {
+      return keyPath;
+    }
+  }
+
+  if (typeof current !== 'string') {
+    return keyPath;
+  }
+
+  let result = current;
+  if (params) {
+    Object.entries(params).forEach(([paramKey, paramVal]) => {
+      result = result.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(paramVal));
+    });
+  }
+
+  return result;
+};
+
+const defaultContext: LanguageContextType = {
+  language: 'pt-BR',
+  setLanguage: () => {},
+  t: defaultT,
+};
+
 export const useTranslation = (): LanguageContextType => {
   const ctx = useContext(LanguageContext);
   if (!ctx) {
-    throw new Error('useTranslation must be used within a LanguageProvider');
+    return defaultContext;
   }
   return ctx;
 };

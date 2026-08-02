@@ -226,9 +226,9 @@ export const ComponentExplorer: React.FC = () => {
                 }}
                 className="bg-transparent text-xs text-slate-300 font-semibold outline-none cursor-pointer"
               >
-                <option value="all" className="bg-slate-900 text-white">Todos os Tipos</option>
-                <option value="direct" className="bg-slate-900 text-white">Apenas Diretas</option>
-                <option value="transitive" className="bg-slate-900 text-white">Apenas Transitivas</option>
+                <option value="all" className="bg-slate-900 text-white">{t('explorer.allTypes')}</option>
+                <option value="direct" className="bg-slate-900 text-white">{t('explorer.onlyDirect')}</option>
+                <option value="transitive" className="bg-slate-900 text-white">{t('explorer.onlyTransitive')}</option>
               </select>
             </div>
 
@@ -244,10 +244,10 @@ export const ComponentExplorer: React.FC = () => {
                 }}
                 className="bg-transparent text-xs text-slate-300 font-semibold outline-none cursor-pointer"
               >
-                <option value="all" className="bg-slate-900 text-white">Todas as Licenças</option>
-                <option value="permissive" className="bg-slate-900 text-white">Permissivas</option>
-                <option value="copyleft" className="bg-slate-900 text-white">Copyleft</option>
-                <option value="unknown" className="bg-slate-900 text-white">Desconhecidas</option>
+                <option value="all" className="bg-slate-900 text-white">{t('explorer.allLicenses')}</option>
+                <option value="permissive" className="bg-slate-900 text-white">{t('metrics.permissive')}</option>
+                <option value="copyleft" className="bg-slate-900 text-white">{t('metrics.copyleft')}</option>
+                <option value="unknown" className="bg-slate-900 text-white">{t('metrics.unknown')}</option>
               </select>
             </div>
 
@@ -263,9 +263,9 @@ export const ComponentExplorer: React.FC = () => {
                 }}
                 className="bg-transparent text-xs text-slate-300 font-semibold outline-none cursor-pointer"
               >
-                <option value="all" className="bg-slate-900 text-white">Todas as Vulnerabilidades</option>
-                <option value="vulnerable" className="bg-slate-900 text-white">Com CVE (Vulneráveis)</option>
-                <option value="critical-high" className="bg-slate-900 text-white">Críticas / Altas</option>
+                <option value="all" className="bg-slate-900 text-white">{t('explorer.allVulnerabilities')}</option>
+                <option value="vulnerable" className="bg-slate-900 text-white">{t('explorer.withCve')}</option>
+                <option value="critical-high" className="bg-slate-900 text-white">{t('explorer.criticalHigh')}</option>
               </select>
             </div>
           </div>
@@ -274,12 +274,12 @@ export const ComponentExplorer: React.FC = () => {
         {/* Filter Summary */}
         <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-800">
           <span>
-            Exibindo <strong className="text-cyan-400" data-testid="filtered-count">{sortedComponents.length}</strong> de{' '}
-            <strong className="text-white">{allComponents.length}</strong> pacotes
+            {t('explorer.showing')} <strong className="text-cyan-400" data-testid="filtered-count">{sortedComponents.length}</strong> {t('explorer.of')}{' '}
+            <strong className="text-white">{allComponents.length}</strong> {t('explorer.packages')}
           </span>
 
           <div className="flex items-center gap-2">
-            <span>Itens por página:</span>
+            <span>{t('explorer.itemsPerPage')}</span>
             <select
               data-testid="page-size-select"
               value={pageSize}
@@ -340,7 +340,7 @@ export const ComponentExplorer: React.FC = () => {
                   className="px-6 py-4 cursor-pointer hover:text-white transition-colors"
                 >
                   <div className="flex items-center gap-2">
-                    <span>Vulnerabilidades (CVEs)</span>
+                    <span>{t('metrics.vulnerabilities')} (CVEs)</span>
                     {renderSortIcon('cveSeverity')}
                   </div>
                 </th>
@@ -425,7 +425,7 @@ export const ComponentExplorer: React.FC = () => {
                       <td className="px-6 py-4">
                         {comp.vulnerabilities.length === 0 ? (
                           <span className="text-xs text-emerald-400 font-medium inline-flex items-center gap-1">
-                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Limpo
+                            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> {t('explorer.clean')}
                           </span>
                         ) : (
                           <div className="flex items-center gap-1.5 flex-wrap">
@@ -452,10 +452,10 @@ export const ComponentExplorer: React.FC = () => {
                           data-testid={`inspect-button-${comp.bomRef}`}
                           onClick={(e) => handleInspectPackage(comp.bomRef, e)}
                           className="p-2 text-slate-400 hover:text-cyan-300 hover:bg-cyan-950/60 rounded-lg border border-transparent hover:border-cyan-800 transition-all inline-flex items-center gap-1 text-xs font-semibold"
-                          title="Inspecionar Detalhes do Pacote"
+                          title={t('explorer.inspectTitle')}
                         >
                           <Eye className="w-4 h-4 text-cyan-400" />
-                          <span className="hidden sm:inline">Inspecionar</span>
+                          <span className="hidden sm:inline">{t('explorer.inspect')}</span>
                         </button>
                       </td>
                     </tr>
@@ -469,7 +469,7 @@ export const ComponentExplorer: React.FC = () => {
         {/* Pagination Footer */}
         <div className="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
           <span data-testid="pagination-info">
-            Página <strong className="text-white">{currentPage}</strong> de <strong className="text-white">{totalPages}</strong>
+            {t('explorer.page')} <strong className="text-white">{currentPage}</strong> {t('explorer.of')} <strong className="text-white">{totalPages}</strong>
           </span>
 
           <div className="flex items-center gap-2">

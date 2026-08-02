@@ -22,6 +22,7 @@
     "directVsTransitive": "Direct vs Transitive",
     "direct": "Direct",
     "transitive": "Transitive",
+    "noLicense": "No License",
     "maxDepth": "Max Tree Depth",
     "licenseMatrix": "License Matrix",
     "permissive": "Permissive",
@@ -32,6 +33,29 @@
     "high": "High",
     "medium": "Medium",
     "low": "Low"
+  },
+  "graph": {
+    "title": "2D Topological Navigator",
+    "unavailableTitle": "2D Dependency Graph Unavailable",
+    "unavailableDesc": "Upload a CycloneDX SBOM file (JSON or XML) to visualize the topological graph and trace the impact path.",
+    "nodes": "nodes",
+    "connections": "connections",
+    "instructionPrefix": "Click any node to trace the ",
+    "instructionHighlight": "Impact Path",
+    "instructionSuffix": " from system root.",
+    "root": "Root",
+    "direct": "Direct",
+    "transitive": "Transitive",
+    "transitiveLvl": "Transitive Lvl",
+    "impactPath": "Impact Path",
+    "clearSelection": "Clear Selection",
+    "license": "License"
+  },
+  "tree": {
+    "rootApp": "(Root Application)",
+    "directDeps": "direct dependencies",
+    "inspectPackage": "Inspect Package",
+    "clean": "Clean"
   },
   "dashboard": {
     "title": "Executive SCA Security Dashboard",
@@ -61,7 +85,22 @@
     "tableHeaderType": "Type",
     "tableHeaderLicense": "License",
     "tableHeaderDepth": "Depth",
-    "tableHeaderActions": "Actions"
+    "tableHeaderActions": "Actions",
+    "allTypes": "All Types",
+    "onlyDirect": "Direct Only",
+    "onlyTransitive": "Transitive Only",
+    "allLicenses": "All Licenses",
+    "allVulnerabilities": "All Vulnerabilities",
+    "withCve": "With CVE (Vulnerable)",
+    "criticalHigh": "Critical / High",
+    "showing": "Showing",
+    "of": "of",
+    "packages": "packages",
+    "itemsPerPage": "Items per page:",
+    "clean": "Clean",
+    "inspect": "Inspect",
+    "inspectTitle": "Inspect Package Details",
+    "page": "Page"
   },
   "details": {
     "title": "Component Details",
@@ -70,7 +109,13 @@
     "group": "Group",
     "ancestors": "Inclusion Path (Ancestors)",
     "impactPath": "Impact Path",
-    "close": "Close"
+    "close": "Close",
+    "copied": "Copied!",
+    "copyPurl": "Copy PURL",
+    "noLicensesDeclared": "No license declared in SBOM.",
+    "knownVulnerabilities": "Known Vulnerabilities (CVEs)",
+    "noVulnerabilities": "No vulnerabilities (CVE) registered or detected for this package.",
+    "remediationRecommendation": "Remediation Recommendation:"
   },
   "language": {
     "ptBR": "Portuguese (BR)",

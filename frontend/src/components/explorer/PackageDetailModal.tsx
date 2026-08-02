@@ -163,7 +163,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
             </div>
 
             {component.group && (
-              <p className="text-xs text-slate-400 font-mono" dangerouslySetInnerHTML={{ __html: `Grupo: ${sanitizeText(component.group)}` }} />
+              <p className="text-xs text-slate-400 font-mono" dangerouslySetInnerHTML={{ __html: `${t('details.group')}: ${sanitizeText(component.group)}` }} />
             )}
           </div>
 
@@ -190,7 +190,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
                   className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer"
                 >
                   {copiedPurl ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedPurl ? 'Copiado!' : 'Copiar PURL'}</span>
+                  <span>{copiedPurl ? t('details.copied') : t('details.copyPurl')}</span>
                 </button>
               </div>
               <p data-testid="modal-purl-value" className="text-xs font-mono text-cyan-300 break-all bg-slate-900/60 p-2 rounded-lg border border-slate-850">
@@ -230,7 +230,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
           <div className="space-y-3">
             <h4 className="text-sm font-semibold text-slate-300">{t('metrics.licenseMatrix')}</h4>
             {component.licenses.length === 0 ? (
-              <p className="text-xs text-slate-500 italic">Nenhuma licença declarada no SBOM.</p>
+              <p className="text-xs text-slate-500 italic">{t('details.noLicensesDeclared')}</p>
             ) : (
               <div className="flex flex-wrap gap-2" data-testid="modal-licenses-list">
                 {component.licenses.map((lic, i) => (
@@ -258,7 +258,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
             <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold text-slate-300 flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-rose-400" />
-                Vulnerabilidades Conhecidas (CVEs)
+                {t('details.knownVulnerabilities')}
               </h4>
               <span className="text-xs text-slate-400">Total: {component.vulnerabilities.length}</span>
             </div>
@@ -266,7 +266,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
             {component.vulnerabilities.length === 0 ? (
               <div data-testid="no-vulnerabilities-banner" className="bg-emerald-950/30 border border-emerald-800/60 p-4 rounded-xl flex items-center gap-3 text-emerald-300 text-xs font-medium">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-                <span>Nenhuma vulnerabilidade (CVE) cadastrada ou detectada para este pacote.</span>
+                <span>{t('details.noVulnerabilities')}</span>
               </div>
             ) : (
               <div className="space-y-3" data-testid="modal-cve-list">
@@ -300,7 +300,7 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
                       <div className="bg-cyan-950/30 border border-cyan-800/60 p-3 rounded-lg text-xs space-y-1">
                         <div className="font-semibold text-cyan-300 flex items-center gap-1.5">
                           <Info className="w-3.5 h-3.5 text-cyan-400" />
-                          <span>Recomendação de Remediação:</span>
+                          <span>{t('details.remediationRecommendation')}</span>
                         </div>
                         <div
                           data-testid="sanitized-recommendation"

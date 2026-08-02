@@ -83,21 +83,23 @@ describe('LanguageContext i18n', () => {
     expect(screen.getByTestId('non-existent')).toHaveTextContent('non.existent.key');
   });
 
-  it('should throw error when useTranslation is called outside LanguageProvider', () => {
+  it('should provide default fallback context when useTranslation is called outside LanguageProvider', () => {
     // Arrange
-    const ErrorComponent = () => {
-      useTranslation();
-      return null;
+    const TestFallbackComponent = () => {
+      const { language, t } = useTranslation();
+      return (
+        <div>
+          <span data-testid="fallback-lang">{language}</span>
+          <span data-testid="fallback-t">{t('tabs.dashboard')}</span>
+        </div>
+      );
     };
 
-    // Suppress console.error output during test
-    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    // Act
+    render(<TestFallbackComponent />);
 
-    // Act & Assert
-    expect(() => render(<ErrorComponent />)).toThrow(
-      'useTranslation must be used within a LanguageProvider'
-    );
-
-    consoleErrorSpy.mockRestore();
+    // Assert
+    expect(screen.getByTestId('fallback-lang')).toHaveTextContent('pt-BR');
+    expect(screen.getByTestId('fallback-t')).toHaveTextContent('Dashboard Executivo');
   });
 });

@@ -170,11 +170,11 @@ export const TreeView: React.FC = () => {
                 <span className="text-xs font-semibold text-amber-400 bg-amber-950/60 border border-amber-800 px-2 py-0.5 rounded-full">
                   v{model.metadata.componentVersion}
                 </span>
-                <span className="text-xs text-slate-500 font-mono">(Aplicação Raiz)</span>
+                <span className="text-xs text-slate-500 font-mono">{t('tree.rootApp')}</span>
               </div>
 
               <span className="text-xs font-semibold text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
-                {directComponents.length} dependências diretas
+                {directComponents.length} {t('tree.directDeps')}
               </span>
             </div>
 
@@ -221,6 +221,7 @@ const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
   onInspect,
 }) => {
   const { model, selectedComponentRef, impactPathRefs, selectComponent, searchFilter } = useScaStore();
+  const { t } = useTranslation();
 
   if (!model) return null;
   const comp = model.components.get(compRef);
@@ -291,7 +292,7 @@ const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
                 : 'bg-indigo-950/60 text-indigo-400 border-indigo-800'
             }`}
           >
-            L{depthLevel} ({comp.isDirect ? 'Direta' : 'Transitiva'})
+            L{depthLevel} ({comp.isDirect ? t('metrics.direct') : t('metrics.transitive')})
           </span>
 
           {/* Impact Path Badge if highlighted */}
@@ -334,7 +335,7 @@ const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
             </span>
           ) : (
             <span className="text-xs text-emerald-400/80 hidden sm:inline-flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5" /> Clean
+              <ShieldCheck className="w-3.5 h-3.5" /> {t('tree.clean')}
             </span>
           )}
 
@@ -346,7 +347,7 @@ const TreeNodeItem: React.FC<TreeNodeItemProps> = ({
               onInspect(compRef);
             }}
             className="p-1.5 text-slate-400 hover:text-cyan-300 hover:bg-slate-800 rounded-lg transition-colors"
-            title="Inspecionar Pacote"
+            title={t('tree.inspectPackage')}
           >
             <Eye className="w-4 h-4" />
           </button>
