@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.14] - 2026-08-02
+
+### 🌐 Confirmação do Cadastro DS no Registro.br
+- **Validação das Chaves Keytag e Digest no Registro.br**:
+  - Confirmado o preenchimento exato dos campos `Keytag 1` (`2371`) e `Digest 1` (`5F9136...`) na interface de servidores DNS do Registro.br para ativação do DNSSEC e resposta `AD=true`.
+  - Atualizado [`docs/DNS_AID.md`](file:///home/bruno/Projetos/sca/docs/DNS_AID.md).
+
+---
+
 ## [1.6.13] - 2026-08-02
 
 ### 🌐 Esclarecimento da Inserção de Chaves DS no Registro.br
