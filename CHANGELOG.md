@@ -5,6 +5,20 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.6] - 2026-08-02
+
+### 🛡️ Endurecimento Completo de Cabeçalhos de Segurança HTTP (OWASP & HSTS)
+- **Implementação do Conjunto Completo de Security Headers no Nginx**:
+  - `Strict-Transport-Security` (HSTS): `max-age=31536000; includeSubDomains`
+  - `Permissions-Policy`: `camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=()`
+  - `Content-Security-Policy` (CSP) endurecido contra ataques XSS e injeções de script.
+  - `X-Frame-Options: DENY` (Proteção total contra Clickjacking).
+  - `X-Content-Type-Options: nosniff` (Prevenção de MIME-sniffing).
+  - `Referrer-Policy: strict-origin-when-cross-origin`.
+  - Injeção obrigatória dos 7 cabeçalhos em **todos** os blocos de rotas e arquivos estáticos do Nginx.
+
+---
+
 ## [1.6.5] - 2026-08-02
 
 ### 🐛 Corrigido - Herança de Cabeçalhos HTTP Link (RFC 8288) no Nginx
