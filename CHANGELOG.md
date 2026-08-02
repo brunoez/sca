@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.3] - 2026-08-02
+
+### 🤖 Conforme especificações de Descoberta de Agentes (Auth.md & RFC 9728)
+- **Metadados Completos do OAuth Protected Resource & Auth Server**:
+  - Atualizado `/.well-known/oauth-protected-resource` com `bearer_methods_supported`, `resource_documentation` e `authorization_servers`.
+  - Atualizado `/.well-known/oauth-authorization-server` com o bloco completo `agent_auth` (`register_uri`, `supported_identity_types`, `credential_types`, `claim_uri`, `revocation_uri`).
+  - Adicionados arquivos de alias `.json` para compatibilidade total com clientes RFC 9728.
+  - Adicionados blocos de localização Nginx explícitos para servir os endpoints `.well-known` com `Content-Type: application/json; charset=utf-8` e `Access-Control-Allow-Origin: *`.
+
+---
+
 ## [1.6.2] - 2026-08-02
 
 ### 🛠️ CI/CD & DevSecOps
