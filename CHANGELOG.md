@@ -5,6 +5,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.2] - 2026-08-02
+
+### 🛡️ Segurança (Security & Code Audit)
+- **Remediação Completa SAST (Semgrep Zero Vulnerabilities)**:
+  - **`frontend/Dockerfile`**: Adicionada a instrução `USER nginx` antes da execução do container no estágio de produção, neutralizando CWE-250 (Execution with Unnecessary Privileges).
+  - **`PackageDetailModal.tsx`**: Removido o uso desnecessário de `dangerouslySetInnerHTML`, substituído por interpolação segura de JSX com escaping automático no React (CWE-79 XSS).
+  - **`LanguageContext.tsx`**: Adicionadas proteções estritas contra chaves reservadas do protótipo (`__proto__`, `constructor`, `prototype`) e verificação via `Object.prototype.hasOwnProperty.call`, neutralizando o risco de Prototype Pollution (CWE-915).
+  - **Resultado do Scan Semgrep**: **0 achados (0 blocking findings)** em 446 regras executadas sobre 90 arquivos.
+
+---
+
 ## [1.4.1] - 2026-08-02
 
 ### 🎨 Ajustado (Refactored)

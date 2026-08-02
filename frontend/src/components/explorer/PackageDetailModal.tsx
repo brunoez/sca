@@ -145,8 +145,9 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
               <h2
                 data-testid="modal-package-name"
                 className="text-2xl font-bold text-white tracking-tight"
-                dangerouslySetInnerHTML={{ __html: sanitizeText(component.name) }}
-              />
+              >
+                {component.name}
+              </h2>
               <span className="text-sm font-semibold text-cyan-400 bg-cyan-950/60 border border-cyan-800/80 px-2.5 py-0.5 rounded-full">
                 v{component.version}
               </span>

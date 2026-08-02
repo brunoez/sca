@@ -45,7 +45,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     let current: unknown = translations[language];
 
     for (const k of keys) {
-      if (current && typeof current === 'object' && k in (current as Record<string, unknown>)) {
+      if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+        return keyPath;
+      }
+      if (current && typeof current === 'object' && Object.prototype.hasOwnProperty.call(current, k)) {
+        // nosemgrep: javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop
         current = (current as Record<string, unknown>)[k];
       } else {
         return keyPath;
@@ -78,7 +82,11 @@ const defaultT = (keyPath: string, params?: Record<string, string | number>): st
   let current: unknown = ptBR;
 
   for (const k of keys) {
-    if (current && typeof current === 'object' && k in (current as Record<string, unknown>)) {
+    if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+      return keyPath;
+    }
+    if (current && typeof current === 'object' && Object.prototype.hasOwnProperty.call(current, k)) {
+      // nosemgrep: javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop
       current = (current as Record<string, unknown>)[k];
     } else {
       return keyPath;
