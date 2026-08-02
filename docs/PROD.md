@@ -106,9 +106,9 @@ docker compose up -d --build
 Certifique-se de que o container está ativo e respondendo localmente:
 ```bash
 docker compose ps
-curl -I http://localhost:8080
+curl -I http://localhost:8081
 ```
-*O container estará servindo o Nginx interno na porta `8080`.*
+*O container estará servindo o Nginx interno na porta `8081`.*
 
 ---
 
@@ -129,7 +129,7 @@ server {
     server_name sca.brunoizidorio.com.br;
 
     location / {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://127.0.0.1:8081;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -176,12 +176,12 @@ deploy_production:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - echo "📥 [2/4] Baixando a imagem mais recente compilada ($CI_REGISTRY_IMAGE:latest)..."
     - docker pull $CI_REGISTRY_IMAGE:latest
-    - echo "🐳 [3/4] Liberando a porta 8080 de quaisquer containers anteriores..."
+    - echo "🐳 [3/4] Liberando a porta 8081 de quaisquer containers anteriores do SCA..."
     - docker rm -f sca-app || true
-    - OLD_IDS=$(docker ps -a -q --filter "publish=8080")
+    - OLD_IDS=$(docker ps -a -q --filter "publish=8081")
     - if [ -n "$OLD_IDS" ]; then docker stop $OLD_IDS || true; docker rm -f $OLD_IDS || true; fi
-    - echo "🚀 Iniciando novo container sca-app na porta 8080..."
-    - docker run -d --name sca-app --restart always -p 8080:80 $CI_REGISTRY_IMAGE:latest
+    - echo "🚀 Iniciando novo container sca-app na porta 8081..."
+    - docker run -d --name sca-app --restart always -p 8081:80 $CI_REGISTRY_IMAGE:latest
     - echo "🧹 [4/4] Limpando imagens antigas e não utilizadas..."
     - docker image prune -af
     - echo "✅ Deploy em produção concluído com sucesso!"
