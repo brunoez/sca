@@ -74,7 +74,7 @@
     "moderateRisk": "Risco Moderado",
     "highRisk": "Risco Elevado",
     "scoreHelpTitle": "Memória de Cálculo da Nota de Segurança",
-    "scoreHelpFormula": "Fórmula: 100 - log(1 + Penalidade Total) × 11",
+    "scoreHelpFormula": "Fórmula Direta: 100 - Penalidades = Nota Final",
     "cvePenaltyLabel": "Penalidade por CVEs",
     "licensePenaltyLabel": "Penalidade por Licenças",
     "totalPenaltyLabel": "Penalidade Ponderada Total",

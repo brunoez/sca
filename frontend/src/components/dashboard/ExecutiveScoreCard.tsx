@@ -69,7 +69,7 @@ export const ExecutiveScoreCard: React.FC = () => {
           </div>
           <div className="text-[11px] text-slate-400 space-y-0.5 pl-1">
             <div>• Copyleft ({copyleft}): -{breakdown.copyleftPenalty.toFixed(1)} pts</div>
-            <div>• Desconhecidas ({unknown}): -{breakdown.unknownPenalty.toFixed(1)} pts (máx 4)</div>
+            <div>• Desconhecidas ({unknown}): -{breakdown.unknownPenalty.toFixed(1)} pts (máx 5)</div>
           </div>
         </div>
       </div>

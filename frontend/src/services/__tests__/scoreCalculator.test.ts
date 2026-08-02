@@ -19,19 +19,18 @@ describe('scoreCalculator', () => {
       expect(result.grade).toBe('A+');
     });
 
-    it('should return Grade A for SBOM with minor low vulnerabilities', () => {
+    it('should return Grade A for SBOM with minor vulnerabilities', () => {
       // Arrange
       const input = {
-        vulnerabilityCounts: { critical: 0, high: 0, medium: 0, low: 2 }, // penalty = 1
-        licenseBreakdown: { permissive: 10, copyleft: 0, unknown: 1 }, // penalty = 2 -> total penalty = 3
+        vulnerabilityCounts: { critical: 0, high: 1, medium: 2, low: 0 }, // 6 + 4 = 10 penalty points
+        licenseBreakdown: { permissive: 10, copyleft: 0, unknown: 0 },
       };
 
       // Act
       const result = calculateScaMetrics(input);
 
       // Assert
-      expect(result.score).toBeGreaterThanOrEqual(85);
-      expect(result.score).toBeLessThan(95);
+      expect(result.score).toBe(90);
       expect(result.grade).toBe('A');
     });
 

@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.8] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Fórmula de Cálculo Transparente e Linear (1-para-1)**:
+  - Substituída a escala logarítmica implícita por uma fórmula de pontuação linear direta: `Nota Final = Math.max(0, 100 - Penalidades)`.
+  - Agora, cada ponto de penalidade exibido no tooltip subtrai exatamente 1 ponto da nota final (ex.: `-5.1 pts` resulta diretamente em `100 - 5.1 = 94.9` -> **`95/100`** `Grade A` / `Baixo Risco`), eliminando qualquer discrepância entre os pontos exibidos no card e a nota calculada.
+
+---
+
 ## [1.4.7] - 2026-08-02
 
 ### 🎨 Ajustado (Refactored)

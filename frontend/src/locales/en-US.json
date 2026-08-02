@@ -74,7 +74,7 @@
     "moderateRisk": "Moderate Risk",
     "highRisk": "High Risk",
     "scoreHelpTitle": "Security Rating Calculation Breakdown",
-    "scoreHelpFormula": "Formula: 100 - log(1 + Total Penalty) × 11",
+    "scoreHelpFormula": "Direct Formula: 100 - Total Penalty = Final Score",
     "cvePenaltyLabel": "CVE Vulnerability Penalty",
     "licensePenaltyLabel": "License Compliance Penalty",
     "totalPenaltyLabel": "Total Weighted Penalty",

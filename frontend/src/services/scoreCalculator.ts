@@ -41,35 +41,26 @@ export interface QuickWinItem {
 }
 
 /**
- * Calculates the logarithmic SCA Health Score (0-100) and Security Grade (A+ to F).
- * Weights:
- * - Vulnerabilities: Critical = 25, High = 10, Medium = 3, Low = 0.5
- * - Risk Licenses: Copyleft = 5 (max 30), Unknown = 0.05 (max 4)
+ * Calculates the transparent 1-to-1 linear SCA Health Score (0-100) and Security Grade (A+ to F).
+ * Direct formula: Score = Math.max(0, 100 - TotalDeductions)
+ * - Vulnerabilities: Critical = 15 pts, High = 6 pts, Medium = 2 pts, Low = 0.5 pts
+ * - Risk Licenses: Copyleft = 5 pts (max 30), Unknown = 0.05 pts (max 5)
  */
 export function calculateScaMetrics(input: ScaScoreInput): ScaScoreOutput {
   const { critical, high, medium, low } = input.vulnerabilityCounts;
   const { copyleft, unknown } = input.licenseBreakdown;
 
   // Vulnerability Penalties (CVEs are primary security threats)
-  const cvePenalty = critical * 25 + high * 10 + medium * 3 + low * 0.5;
+  const cvePenalty = critical * 15 + high * 6 + medium * 2 + low * 0.5;
 
-  // License Penalties (Capped so missing/unknown licenses on dev/transitive packages don't overshadow 0-CVE projects)
+  // License Penalties (Capped to prevent minor dev metadata missing from over-penalizing)
   const copyleftPenalty = Math.min(30, copyleft * 5);
-  const unknownPenalty = Math.min(4, unknown * 0.05);
+  const unknownPenalty = Math.min(5, unknown * 0.05);
   const licensePenalty = copyleftPenalty + unknownPenalty;
 
   const totalPenalty = cvePenalty + licensePenalty;
 
-  if (totalPenalty === 0) {
-    return {
-      score: 100,
-      grade: 'A+',
-      breakdown: { cvePenalty: 0, copyleftPenalty: 0, unknownPenalty: 0, totalPenalty: 0 },
-    };
-  }
-
-  // Logarithmic penalty scaling
-  const rawScore = 100 - Math.log1p(totalPenalty) * 11;
+  const rawScore = 100 - totalPenalty;
   const score = Math.max(0, Math.min(100, Math.round(rawScore)));
 
   let grade: ScaScoreOutput['grade'] = 'F';
