@@ -5,6 +5,16 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.2] - 2026-08-02
+
+### 🛠️ CI/CD & DevSecOps
+- **Estabilização da Publicação de Imagens Docker no GitLab Container Registry**:
+  - Migrado o job `docker-build` para `docker buildx build --push` nativo com `docker buildx create --use`.
+  - Eliminado o erro `blob unknown to registry` durante o push assíncrono de camadas em pipelines de integração contínua.
+  - Adicionada automação de criação e push de Git Tags (`v1.6.2`).
+
+---
+
 ## [1.6.1] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)
