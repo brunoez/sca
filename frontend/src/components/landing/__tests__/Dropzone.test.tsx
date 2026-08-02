@@ -130,19 +130,19 @@ describe('SampleLoader Component', () => {
     useScaStore.getState().reset();
   });
 
-  it('should load NPM JSON sample when NPM sample button is clicked', async () => {
+  it('should load OWASP Juice Shop JSON sample when Juice Shop sample button is clicked', async () => {
     // Arrange
     renderWithProviders(<SampleLoader />);
-    const npmButton = screen.getByTestId('sample-npm-button');
+    const juiceShopButton = screen.getByTestId('sample-juiceshop-button');
 
     // Act
-    fireEvent.click(npmButton);
+    fireEvent.click(juiceShopButton);
 
     // Assert
     await waitFor(() => {
       const model = useScaStore.getState().model;
       expect(model).not.toBeNull();
-      expect(model?.metadata.componentName).toBe('sample-web-app');
+      expect(model?.metadata.componentName).toBe('juice-shop');
     });
   });
 

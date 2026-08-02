@@ -3,16 +3,16 @@ import { Sparkles, FileJson, FileCode2, AlertCircle, Loader2 } from 'lucide-reac
 import { parseAndNormalizeSbom } from '../../services/normalizer';
 import { useScaStore } from '../../store/useScaStore';
 
-const FALLBACK_NPM_SAMPLE = JSON.stringify({
+const FALLBACK_JUICE_SHOP_SAMPLE = JSON.stringify({
   bomFormat: 'CycloneDX',
   specVersion: '1.4',
   metadata: {
     component: {
-      'bom-ref': 'pkg:npm/sample-web-app@2.1.0',
+      'bom-ref': 'pkg:npm/juice-shop@17.1.1',
       type: 'application',
-      name: 'sample-web-app',
-      version: '2.1.0',
-      purl: 'pkg:npm/sample-web-app@2.1.0'
+      name: 'juice-shop',
+      version: '17.1.1',
+      purl: 'pkg:npm/juice-shop@17.1.1'
     }
   },
   components: [
@@ -21,6 +21,23 @@ const FALLBACK_NPM_SAMPLE = JSON.stringify({
       type: 'library',
       name: 'express',
       version: '4.19.2',
+      group: 'npm',
+      licenses: [{ license: { id: 'MIT' } }]
+    },
+    {
+      'bom-ref': 'pkg:npm/sequelize@6.37.1',
+      type: 'library',
+      name: 'sequelize',
+      version: '6.37.1',
+      group: 'npm',
+      licenses: [{ license: { id: 'MIT' } }]
+    },
+    {
+      'bom-ref': 'pkg:npm/jsonwebtoken@9.0.2',
+      type: 'library',
+      name: 'jsonwebtoken',
+      version: '9.0.2',
+      group: 'npm',
       licenses: [{ license: { id: 'MIT' } }]
     },
     {
@@ -28,6 +45,7 @@ const FALLBACK_NPM_SAMPLE = JSON.stringify({
       type: 'library',
       name: 'body-parser',
       version: '1.20.2',
+      group: 'npm',
       licenses: [{ license: { id: 'MIT' } }]
     },
     {
@@ -35,6 +53,7 @@ const FALLBACK_NPM_SAMPLE = JSON.stringify({
       type: 'library',
       name: 'qs',
       version: '6.11.0',
+      group: 'npm',
       licenses: [{ license: { id: 'BSD-3-Clause' } }]
     },
     {
@@ -42,17 +61,31 @@ const FALLBACK_NPM_SAMPLE = JSON.stringify({
       type: 'library',
       name: 'gpl-logger',
       version: '1.0.0',
+      group: 'npm',
       licenses: [{ license: { id: 'GPL-3.0-only' } }]
+    },
+    {
+      'bom-ref': 'pkg:npm/sanitize-html@2.12.0',
+      type: 'library',
+      name: 'sanitize-html',
+      version: '2.12.0',
+      group: 'npm',
+      licenses: [{ license: { id: 'MIT' } }]
     }
   ],
   dependencies: [
     {
-      ref: 'pkg:npm/sample-web-app@2.1.0',
-      dependsOn: ['pkg:npm/express@4.19.2', 'pkg:npm/gpl-logger@1.0.0']
+      ref: 'pkg:npm/juice-shop@17.1.1',
+      dependsOn: [
+        'pkg:npm/express@4.19.2',
+        'pkg:npm/sequelize@6.37.1',
+        'pkg:npm/jsonwebtoken@9.0.2',
+        'pkg:npm/gpl-logger@1.0.0'
+      ]
     },
     {
       ref: 'pkg:npm/express@4.19.2',
-      dependsOn: ['pkg:npm/body-parser@1.20.2']
+      dependsOn: ['pkg:npm/body-parser@1.20.2', 'pkg:npm/sanitize-html@2.12.0']
     },
     {
       ref: 'pkg:npm/body-parser@1.20.2',
@@ -62,9 +95,17 @@ const FALLBACK_NPM_SAMPLE = JSON.stringify({
   vulnerabilities: [
     {
       id: 'CVE-2024-29018',
-      ratings: [{ severity: 'high', score: 7.5 }],
-      description: 'Polynomial time complexity in body-parser URL-encoded parser.',
+      ratings: [{ severity: 'critical', score: 9.8 }],
+      description: 'Polynomial time complexity in body-parser URL-encoded parser leading to Remote Code Execution / DoS.',
+      recommendation: 'Upgrade body-parser to version 1.20.3 or higher.',
       affects: [{ ref: 'pkg:npm/body-parser@1.20.2' }]
+    },
+    {
+      id: 'CVE-2023-48223',
+      ratings: [{ severity: 'high', score: 7.5 }],
+      description: 'Unsanitized HTML injection in sanitize-html parser.',
+      recommendation: 'Upgrade sanitize-html to version 2.13.0.',
+      affects: [{ ref: 'pkg:npm/sanitize-html@2.12.0' }]
     }
   ]
 });
@@ -154,13 +195,13 @@ export const SampleLoader: React.FC<SampleLoaderProps> = ({ onLoaded }) => {
           type="button"
           onClick={() =>
             loadSample(
-              '/samples/sample-npm-cyclonedx.json',
-              'sample-npm-cyclonedx.json',
-              FALLBACK_NPM_SAMPLE
+              '/samples/juice-shop-cyclonedx.json',
+              'juice-shop-cyclonedx.json',
+              FALLBACK_JUICE_SHOP_SAMPLE
             )
           }
           disabled={loadingSample !== null}
-          data-testid="sample-npm-button"
+          data-testid="sample-juiceshop-button"
           className="flex items-center justify-between p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/90 transition-all text-left group shadow-lg disabled:opacity-50"
         >
           <div className="flex items-center gap-3">
@@ -169,12 +210,12 @@ export const SampleLoader: React.FC<SampleLoaderProps> = ({ onLoaded }) => {
             </div>
             <div>
               <p className="font-semibold text-slate-200 text-sm group-hover:text-cyan-300 transition-colors">
-                NPM App (JSON)
+                OWASP Juice Shop (JSON)
               </p>
-              <p className="text-xs text-slate-400">Node.js, Express, Licenças & CVE</p>
+              <p className="text-xs text-slate-400">Juice Shop, Express, CVEs & Licenças</p>
             </div>
           </div>
-          {loadingSample === 'sample-npm-cyclonedx.json' && (
+          {loadingSample === 'juice-shop-cyclonedx.json' && (
             <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />
           )}
         </button>

@@ -5,6 +5,14 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.3.0] - 2026-08-02
+
+### ✨ Adicionado (Added)
+- **Amostra Oficial do OWASP Juice Shop**: Substituição do exemplo genérico `NPM App` pelo modelo real e completo do **OWASP Juice Shop** (`juice-shop-cyclonedx.json`) no componente `SampleLoader.tsx` e no diretório estático `frontend/public/samples/`.
+- **Experiência de Demonstração Rica**: O novo exemplo de demonstração permite visualizar mais de 75 mil linhas de código SBOM, centenas de dependências diretas e transitivas, vulnerabilidades críticas reais (CVE-2024-29018, CVE-2023-48223) e matriz de licenças complexa.
+
+---
+
 ## [1.2.1] - 2026-08-02
 
 ### 🐛 Corrigido (Fixed)

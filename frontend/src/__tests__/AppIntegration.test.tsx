@@ -71,7 +71,7 @@ describe('CycloneDX SCA Visualizer - End-to-End Application Integration', () => 
     render(<App />);
 
     // Act - Click sample SBOM loader button
-    const sampleButton = screen.getByTestId('sample-npm-button');
+    const sampleButton = screen.getByTestId('sample-juiceshop-button');
     fireEvent.click(sampleButton);
 
     // Assert
