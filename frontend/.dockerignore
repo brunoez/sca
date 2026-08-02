@@ -1,0 +1,16 @@
+# Git history & configs
+.git
+.gitignore
+
+# Dependencies & Build artifacts
+node_modules
+dist
+dist-ssr
+build
+.vite
+
+# Temporary & Local files
+*.log
+temp
+tmp
+.cache
