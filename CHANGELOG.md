@@ -5,6 +5,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.6.4] - 2026-08-02
+
+### ✨ Adicionado - Negociação de Conteúdo Markdown for Agents (Cloudflare & RFC)
+- **Suporte a `Accept: text/markdown` no Nginx**:
+  - Implementada reescrita inteligente no Nginx baseada no cabeçalho HTTP `Accept: text/markdown` para redirecionar requisições de agentes de IA diretamente para `/index.md`.
+  - Adicionados cabeçalhos de resposta `Content-Type: text/markdown; charset=utf-8`, `Vary: Accept`, `x-markdown-tokens: 450` e `Access-Control-Allow-Origin: *`.
+
+---
+
 ## [1.6.3] - 2026-08-02
 
 ### 🤖 Conforme especificações de Descoberta de Agentes (Auth.md & RFC 9728)
