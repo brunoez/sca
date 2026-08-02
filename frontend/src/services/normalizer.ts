@@ -21,7 +21,16 @@ export function parseAndNormalizeSbom(content: string, filename: string): ScaSbo
   // Extract root component metadata
   const rootComp = rawData?.metadata?.component || rawData?.bom?.metadata?.component || {};
   const rootRef = rootComp['@_bom-ref'] || rootComp['bom-ref'] || rootComp.purl || 'root';
-  const rootName = rootComp.name || filename.replace(/\.(json|xml)$/i, '');
+
+  let rawName = rootComp.name;
+  if (!rawName || rawName === '.' || rawName === './' || rawName.trim() === '') {
+    const cleanFilename = filename.replace(/\.(json|xml)$/i, '');
+    rawName = (cleanFilename && cleanFilename !== '.' && cleanFilename !== './')
+      ? cleanFilename
+      : 'Aplicação SCA';
+  }
+  const rootName = rawName;
+
   const rootVersion = rootComp.version || '1.0.0';
   const specVersion = String(rawData['@_specVersion'] || rawData.specVersion || '1.4');
 

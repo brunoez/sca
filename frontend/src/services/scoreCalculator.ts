@@ -44,8 +44,14 @@ export function calculateScaMetrics(input: ScaScoreInput): ScaScoreOutput {
   const { critical, high, medium, low } = input.vulnerabilityCounts;
   const { copyleft, unknown } = input.licenseBreakdown;
 
-  const cvePenalty = critical * 15 + high * 6 + medium * 2 + low * 0.5;
-  const licensePenalty = copyleft * 10 + unknown * 2;
+  // Vulnerability Penalties (CVEs are primary security threats)
+  const cvePenalty = critical * 25 + high * 10 + medium * 3 + low * 0.5;
+
+  // License Penalties (Capped so missing/unknown licenses on dev/transitive packages don't overshadow 0-CVE projects)
+  const copyleftPenalty = Math.min(30, copyleft * 5);
+  const unknownPenalty = Math.min(4, unknown * 0.05);
+  const licensePenalty = copyleftPenalty + unknownPenalty;
+
   const totalPenalty = cvePenalty + licensePenalty;
 
   if (totalPenalty === 0) {

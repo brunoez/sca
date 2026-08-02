@@ -71,6 +71,7 @@
     "subtitle": "Holistic View of Software Supply Chain Health",
     "supplyChainRisk": "Supply Chain Risk",
     "lowRisk": "Low Risk",
+    "moderateRisk": "Moderate Risk",
     "highRisk": "High Risk",
     "scoreDescription": "Score calculated based on vulnerabilities (CVEs) and restrictive licenses.",
     "cveBreakdown": "Vulnerability Distribution",

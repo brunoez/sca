@@ -1,4 +1,4 @@
-import { ShieldCheck, ShieldAlert, Layers, Bug } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, AlertTriangle, Layers, Bug } from 'lucide-react';
 import { useScaStore } from '../../store/useScaStore';
 import { calculateScaMetrics } from '../../services/scoreCalculator';
 import { useTranslation } from '../../context/LanguageContext';
@@ -90,10 +90,15 @@ export const ExecutiveScoreCard: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
-              {score >= 80 ? (
+              {score >= 85 ? (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 shadow-sm">
                   <ShieldCheck className="w-4 h-4" />
                   {t('dashboard.lowRisk')}
+                </span>
+              ) : score >= 70 ? (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-amber-400 bg-amber-950/60 border border-amber-800/80 shadow-sm">
+                  <AlertTriangle className="w-4 h-4" />
+                  {t('dashboard.moderateRisk')}
                 </span>
               ) : (
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold text-rose-400 bg-rose-950/60 border border-rose-800/80 shadow-sm">

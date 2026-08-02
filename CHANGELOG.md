@@ -5,6 +5,20 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.4.5] - 2026-08-02
+
+### 🐛 Corrigido (Fixed)
+- **Normalização do Nome da Aplicação**:
+  - Ajustada a extração de metadados em `normalizer.ts` para quando o scanner (ex.: Trivy) gera `"name": "."` ou `"./"`. A aplicação agora utiliza o nome limpo do arquivo (ex.: `sbom` ou `juice-shop`) ou o fallback `'Aplicação SCA'` em vez de exibir um único ponto `.` no cabeçalho e nos cards.
+- **Refinamento do Cálculo de Rating & Níveis de Risco**:
+  - Limite de penalidade para licenças desconhecidas/ausentes em pacotes transitivos para evitar que projetos com **0 vulnerabilidades (0 CVEs)** caiam de pontuação injustamente.
+  - Implementado sistema de 3 níveis de classificação no card executivo:
+    - **Score >= 85**: 🟢 `Baixo Risco` (Emerald)
+    - **70 <= Score < 85**: 🟡 `Risco Moderado` (Amber)
+    - **Score < 70**: 🔴 `Risco Elevado` (Rose)
+
+---
+
 ## [1.4.4] - 2026-08-02
 
 ### 🛡️ Segurança (Security & Dependencies)
