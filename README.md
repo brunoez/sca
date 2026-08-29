@@ -1,3 +1,7 @@
+<div align="right">
+[🇺🇸 English](README.md) &nbsp;|&nbsp; [🇧🇷 Português](README.pt-BR.md)
+</div>
+
 # 🛡️ CycloneDX SCA Visualizer & Dependency Tree Platform
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-brunoez%2Fsca-blue?logo=github)](https://github.com/brunoez/sca)
@@ -9,88 +13,88 @@
 ![Security](https://img.shields.io/badge/Security-100%25_Client--Side_RAM-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-> **Inteligência Executiva & Visualizador de Grafo de Supply Chain de Software (CycloneDX JSON & XML)**  
-> Aplicação Web Single-Page (SPA) 100% Client-Side para análise visual de Software Bill of Materials (SBOM), cálculo de SCA Health Rating com memória de cálculo interativa, matriz de licenças, árvore hierárquica e grafo 2D de dependências com rastreamento de caminho de impacto ancestral.
+> **Executive Intelligence & Software Supply Chain Graph Visualizer (CycloneDX JSON & XML)**  
+> 100% Client-Side Single-Page Application (SPA) for visual Software Bill of Materials (SBOM) analysis, interactive SCA Health Rating calculation, license compliance matrix, hierarchical tree, and 2D dependency graph with ancestral impact path tracing.
 >
-> 🌐 **Demonstração Online:** [https://sca.brunoizidorio.com.br](https://sca.brunoizidorio.com.br)
+> 🌐 **Live Demo:** [https://sca.brunoizidorio.com.br](https://sca.brunoizidorio.com.br)
 
 ---
 
-## 🏗️ Arquitetura & Fluxo de Dados (Privacy-First)
+## 🏗️ Architecture & Data Flow (Privacy-First)
 
-Toda a ingestão, validação de schemas, detecção de ciclos e renderização do grafo ocorrem exclusivamente em memória local RAM do navegador do usuário. Nenhum dado é enviado para a nuvem ou servidores externos.
+All file ingestion, schema validation, cycle detection, and graph rendering execute exclusively within local browser RAM. No data or SBOM content is ever transmitted to cloud servers or external backends.
 
 ```mermaid
 graph TD
-    A["Arquivo SBOM (JSON / XML)"] -->|Drag & Drop / Input| B["Fast XML & JSON Parser Engine"]
-    B -->|Proteção XXE & Cycle DFS| C["Normalizador CycloneDX"]
+    A["SBOM File (JSON / XML)"] -->|Drag & Drop / Input| B["Fast XML & JSON Parser Engine"]
+    B -->|Anti-XXE & Cycle DFS Protection| C["CycloneDX Normalizer"]
     C -->|Zustand Store| D["Central ScaStore"]
     
     D --> E["Executive Security Dashboard"]
-    D --> F["Navegador Topológico 2D (React Flow + Dagre)"]
-    D --> G["Árvore Hierárquica Colapsável (TreeView)"]
-    D --> H["Explorador de Pacotes & Licenças"]
+    D --> F["2D Topological Graph Explorer (React Flow + Dagre)"]
+    D --> G["Collapsible Hierarchical Tree (TreeView)"]
+    D --> H["Package & License Explorer"]
 ```
 
 ---
 
-## 🌟 Principais Recursos
+## 🌟 Key Features
 
-- **100% Client-Side & Privacy-First**: Zero persistência em servidor. Seus SBOMs e fontes de código permanecem protegidos no ambiente do cliente.
-- **Landing Page com Paridade Executiva**: Página inicial rica com seções de Garantias de Segurança, Recursos, Guia em 3 Passos e FAQ interativo.
-- **Dashboard Executivo de Segurança**:
-  - **SCA Security Rating (0–100 & Notas A+ a F)**: Cálculo 1-para-1 direto e transparente com memória de cálculo exibida em popover ao passar o mouse.
-  - **Classificação Transparente em 3 Níveis**: 🟢 **Baixo Risco** (>=85), 🟡 **Risco Moderado** (70–84) e 🔴 **Risco Elevado** (<70).
-  - **Gráficos Recharts**: Distribuição de vulnerabilidades, matriz de licenças jurídicas e análise de profundidade da árvore.
-  - **Quick Wins de Remediação**: Algoritmo de ROI que prioriza dependências diretas que arrastam o maior número de sub-dependências transitivas vulneráveis.
-- **Navegador Topológico 2D Integrado**:
-  - Integrado diretamente no **Dashboard Executivo** e presente na aba dedicada **"Grafo 2D de Dependências"**.
-  - Layout automatizado hierárquico (LR) com Dagre e React Flow (`@xyflow/react`).
-  - Destaque do **Caminho de Impacto** (ancestrais) ao selecionar qualquer nó no grafo.
-  - Controles escuros e **MiniMapa** funcional com código de cores por nível.
-- **Árvore Hierárquica Colapsável (TreeView)**: Navegação profunda em dependências aninhadas com indicação visual de profundidade.
-- **Explorador de Pacotes**: Tabela interativa com busca instantânea, ordenação e modal de detalhes sanitizado contra XSS via DOMPurify.
-- **Proteção Anti-XXE & DoS**: Parser XML com DTDs externas estritamente desabilitadas e limite de recursão DFS (`maxDepth = 32`).
-- **Internacionalização (i18n)**: Suporte bilíngue em tempo real (Português PT-BR e Inglês EN-US).
+- **100% Client-Side & Privacy-First**: Zero server-side persistence. Your SBOMs and dependency metadata remain secure inside your local browser sandbox.
+- **Executive Landing Page**: Feature-rich landing page with security guarantees, capabilities overview, 3-step guide, and interactive FAQ.
+- **Executive Security Dashboard**:
+  - **SCA Security Rating (0–100 & Grades A+ to F)**: Direct 1-to-1 calculation with transparent penalty formula displayed via hover popover.
+  - **3-Tier Risk Classification**: 🟢 **Low Risk** (>=85), 🟡 **Moderate Risk** (70–84), and 🔴 **High Risk** (<70).
+  - **Recharts Data Visualizations**: Vulnerability severity distribution, legal license matrix, and supply chain tree depth breakdown.
+  - **Remediation Quick Wins**: Security ROI algorithm prioritizing direct packages that eliminate the highest number of downstream vulnerable transitive dependencies.
+- **Integrated 2D Topological Graph Navigator**:
+  - Embedded directly within the **Executive Dashboard** and available in the dedicated **"2D Dependency Graph"** tab.
+  - Automated hierarchical Left-to-Right (LR) layout powered by Dagre and React Flow (`@xyflow/react`).
+  - Interactive **Impact Path (Ancestors) Highlighting** upon node selection.
+  - Dark mode controls and reactive **MiniMap** with level-coded badges.
+- **Collapsible Hierarchical Tree (TreeView)**: Deep exploration across nested dependency levels with visual depth cues.
+- **Package & License Explorer**: Searchable interactive table with instant filtering, sorting, and XSS-sanitized modal details via DOMPurify.
+- **Anti-XXE & Anti-DoS Safeguards**: XML parser with external DTD entities disabled (`processEntities: false`), 50MB payload limits, and DFS cycle guard (`maxDepth = 32`).
+- **Real-Time Internationalization (i18n)**: Instant switching between English (US) and Portuguese (PT-BR).
 
 ---
 
-## 📐 Fórmula de Pontuação (SCA Health Rating & Memória de Cálculo)
+## 📐 Scoring Formula (SCA Health Rating & Calculation Breakdown)
 
-$$\text{Penalidade CVE} = 15 \times \text{Crit} + 6 \times \text{High} + 2 \times \text{Med} + 0.5 \times \text{Low}$$
+$$\text{CVE Penalty} = 15 \times \text{Crit} + 6 \times \text{High} + 2 \times \text{Med} + 0.5 \times \text{Low}$$
 
-$$\text{Penalidade Licenças} = 5 \times \text{Copyleft (máx 30)} + 0.05 \times \text{Desconhecida (máx 5)}$$
+$$\text{License Penalty} = 5 \times \text{Copyleft (max 30)} + 0.05 \times \text{Unknown (max 5)}$$
 
-$$\text{Score Final} = \max\left(0, 100 - (\text{Penalidade CVE} + \text{Penalidade Licenças})\right)$$
+$$\text{Final Score} = \max\left(0, 100 - (\text{CVE Penalty} + \text{License Penalty})\right)$$
 
-| Score | Nota Conceitual | Nível de Risco | Cor |
+| Score | Conceptual Grade | Risk Tier | Badge Color |
 | :---: | :---: | :---: | :---: |
-| 95 – 100 | **A+** | Baixo Risco | 🟢 Verde Emerald |
-| 85 – 94 | **A** | Baixo Risco | 🟢 Verde Emerald |
-| 75 – 84 | **B+** | Risco Moderado | 🟡 Amarelo Amber / Cyan |
-| 65 – 74 | **B** | Risco Moderado | 🟡 Amarelo Amber / Cyan |
-| 50 – 64 | **C** | Risco Elevado | 🔴 Vermelho Rose |
-| 35 – 49 | **D** | Risco Elevado | 🔴 Vermelho Rose |
-| 0 – 34 | **F** | Risco Crítico | 🔴 Vermelho Rose |
+| 95 – 100 | **A+** | Low Risk | 🟢 Emerald Green |
+| 85 – 94 | **A** | Low Risk | 🟢 Emerald Green |
+| 75 – 84 | **B+** | Moderate Risk | 🟡 Amber / Cyan |
+| 65 – 74 | **B** | Moderate Risk | 🟡 Amber / Cyan |
+| 50 – 64 | **C** | High Risk | 🔴 Rose Red |
+| 35 – 49 | **D** | High Risk | 🔴 Rose Red |
+| 0 – 34 | **F** | Critical Risk | 🔴 Rose Red |
 
 ---
 
-## 🚀 Executando com Docker (Pronto para Uso)
+## 🚀 Running with Docker (Ready to Use)
 
-### 1. Execução Rápida via GHCR (GitHub Container Registry)
-Execute a imagem pré-compilada oficial diretamente do GitHub Container Registry:
+### 1. Quick Run via GHCR (GitHub Container Registry)
+Run the official pre-built image directly from GitHub Container Registry:
 ```bash
 docker run -d -p 8080:8080 --name sca-visualizer ghcr.io/brunoez/sca:latest
 ```
-Acesse no seu navegador: **`http://localhost:8080`**
+Open in your browser: **`http://localhost:8080`**
 
-### 2. Iniciar via Docker Compose:
+### 2. Launch with Docker Compose:
 ```bash
 docker-compose up -d --build
 ```
-Acesse no seu navegador: **`http://localhost:8081`**
+Open in your browser: **`http://localhost:8081`**
 
-### 3. Build da Imagem Manualmente:
+### 3. Build the Image Manually:
 ```bash
 cd frontend
 docker build -t ghcr.io/brunoez/sca:latest .
@@ -99,51 +103,51 @@ docker run -d -p 8080:80 --name sca-visualizer ghcr.io/brunoez/sca:latest
 
 ---
 
-## 🛠️ Desenvolvimento Local
+## 🛠️ Local Development
 
-### Pré-requisitos
+### Prerequisites
 - **Node.js**: `>= 24.x LTS`
 - **npm**: `>= 10.x`
 
-### Passos para Rodar:
+### Setup Steps:
 ```bash
-# Acesse o diretório do frontend
+# Navigate to the frontend directory
 cd frontend
 
-# Instale as dependências
+# Install dependencies
 npm install
 
-# Inicie o servidor de desenvolvimento Vite
+# Start Vite development server
 npm run dev
 
-# Execute a suíte de testes (Vitest)
+# Run full Vitest test suite
 npm run test -- --run
 
-# Build de Produção
+# Build production static bundle
 npm run build
 ```
 
 ---
 
-## 🧪 Suíte de Testes
+## 🧪 Test Suite
 
-A aplicação utiliza **Vitest** e **React Testing Library** com cobertura total de unit e integration tests:
+The application is thoroughly verified using **Vitest** and **React Testing Library** with end-to-end integration and unit tests:
 
 ```bash
 cd frontend
 npm run test -- --run
 ```
-- **15 arquivos de teste**
-- **78 testes unitários e de integração E2E** (100% aprovados)
+- **15 test files**
+- **78 unit and integration tests** (100% passing)
 
 ---
 
-## 📜 Historico de Versões & Changelog
+## 📜 Version History & Changelog
 
-Consulte o arquivo [`CHANGELOG.md`](./CHANGELOG.md) para visualizar o histórico de atualizações de cada versão.
+See [`CHANGELOG.md`](./CHANGELOG.md) for detailed version history and release notes.
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Distribuído sob a licença **MIT**. Veja `LICENSE` para mais detalhes.
+Distributed under the **MIT** License. See [`LICENSE`](./LICENSE) for details.
