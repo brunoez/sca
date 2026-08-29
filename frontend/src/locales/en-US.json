@@ -207,6 +207,7 @@
     "faq5Q": "How does the system handle cyclic dependency graphs?",
     "faq5A": "Our normalizer uses a visited set (DFS traversal) and strict recursion depth limit (maxDepth = 32) to prevent infinite loops and memory exhaustion on cyclic graphs.",
     "footerSubtitle": "Executive Intelligence & Supply Chain Graph Visualizer",
+    "footerProjectGithub": "Project GitHub",
     "footerCopyright": "CycloneDX SCA Visualizer. All rights reserved.",
     "footerSecurityNote": "100% Local RAM Processing • Zero Data Persistence"
   }

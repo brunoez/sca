@@ -31,7 +31,7 @@ gitleaks_secret_scan:
       - gitleaks-report.json
     expire_in: 1 week
     when: always
-  allow_failure: true
+
 
 # Job 3: Trivy Filesystem & Dependency Vulnerability Scan
 trivy_fs_scan:

@@ -52,3 +52,6 @@ Thumbs.db
 
 # Tooling & Agent Scratch Directories
 .superpowers/
+.venv/
+**/.venv/
+

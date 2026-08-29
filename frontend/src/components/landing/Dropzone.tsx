@@ -48,6 +48,13 @@ export const Dropzone: React.FC<DropzoneProps> = ({ onSuccess }) => {
     setError(null);
     setSuccessFile(null);
 
+    // Security: Maximum file size limit (50MB) to prevent client-side DoS
+    const MAX_FILE_SIZE_BYTES = 50 * 1024 * 1024;
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      setError('O arquivo selecionado excede o limite máximo permitido de 50MB.');
+      return;
+    }
+
     const isJson = file.name.toLowerCase().endsWith('.json');
     const isXml = file.name.toLowerCase().endsWith('.xml');
 

@@ -15,6 +15,11 @@ RUN npm run build
 # Stage 2: Serve static bundle via Nginx (Unprivileged, Hardened)
 FROM nginx:alpine-slim
 
+LABEL org.opencontainers.image.source="https://github.com/brunoez/sca"
+LABEL org.opencontainers.image.description="CycloneDX SCA Visualizer & Dependency Tree Platform (100% Client-Side Privacy-First SBOM Analysis)"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.title="CycloneDX SCA Visualizer"
+
 # Prepare Nginx directories and PID file for unprivileged execution
 RUN touch /var/run/nginx.pid && \
     mkdir -p /var/cache/nginx /var/log/nginx && \

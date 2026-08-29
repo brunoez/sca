@@ -123,7 +123,28 @@ describe('Dropzone Component', () => {
       expect(model?.metadata.format).toBe('xml');
     });
   });
+
+  it('should reject files exceeding 50MB limit with a clear error message and prevent parsing', async () => {
+    // Arrange
+    renderWithProviders(<Dropzone />);
+    const oversizedFile = new File(['x'.repeat(100)], 'huge-sbom.json', { type: 'application/json' });
+    Object.defineProperty(oversizedFile, 'size', { value: 55 * 1024 * 1024 });
+
+    const fileInput = screen.getByTestId('file-input');
+
+    // Act
+    fireEvent.change(fileInput, { target: { files: [oversizedFile] } });
+
+    // Assert
+    await waitFor(() => {
+      expect(screen.getByTestId('dropzone-error')).toBeInTheDocument();
+    });
+
+    expect(screen.getByTestId('dropzone-error')).toHaveTextContent(/excede o limite máximo permitido de 50MB/i);
+    expect(useScaStore.getState().model).toBeNull();
+  });
 });
+
 
 describe('SampleLoader Component', () => {
   beforeEach(() => {

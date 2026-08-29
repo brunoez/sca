@@ -207,6 +207,7 @@
     "faq5Q": "Como o sistema trata grafos de dependências com ciclos?",
     "faq5A": "Nosso normalizador implementa detecção com conjunto de visitados (DFS) e limite de profundidade (maxDepth = 32), evitando loops infinitos e estouro de memória em SBOMs mal formatados.",
     "footerSubtitle": "Inteligência Executiva & Visualizador de Grafo de Supply Chain",
+    "footerProjectGithub": "GitHub do Projeto",
     "footerCopyright": "CycloneDX SCA Visualizer. Todos os direitos reservados.",
     "footerSecurityNote": "Processamento 100% local em RAM • Zero persistência de dados"
   }

@@ -108,7 +108,10 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
   // Strict text sanitization helper using DOMPurify
   const sanitizeText = (text?: string): string => {
     if (!text) return '';
-    return DOMPurify.sanitize(text, { ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'code', 'p', 'br', 'a'] });
+    return DOMPurify.sanitize(text, {
+      ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'code', 'p', 'br'],
+      ALLOWED_ATTR: [],
+    });
   };
 
   const getSeverityBadgeClass = (severity: string) => {
@@ -164,7 +167,9 @@ export const PackageDetailModal: React.FC<PackageDetailModalProps> = ({ compRef,
             </div>
 
             {component.group && (
-              <p className="text-xs text-slate-400 font-mono" dangerouslySetInnerHTML={{ __html: `${t('details.group')}: ${sanitizeText(component.group)}` }} />
+              <p className="text-xs text-slate-400 font-mono">
+                {t('details.group')}: {component.group}
+              </p>
             )}
           </div>
 

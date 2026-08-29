@@ -28,10 +28,19 @@ export const LandingFooter: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-6 text-slate-400 font-mono text-[11px]">
+        <div className="flex items-center gap-6 text-slate-400 font-mono text-[11px] flex-wrap justify-center">
           <span className="flex items-center gap-1.5 text-cyan-400 font-semibold bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">
             <Globe className="w-3.5 h-3.5" /> sca.brunoizidorio.com.br
           </span>
+          <a
+            href="https://github.com/brunoez/sca"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 hover:text-white text-slate-300 transition"
+            data-testid="footer-github-link"
+          >
+            <Github className="w-3.5 h-3.5" /> {t('landing.footerProjectGithub')}
+          </a>
           <a
             href="https://github.com/CycloneDX"
             target="_blank"

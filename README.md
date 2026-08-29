@@ -1,14 +1,18 @@
 # 🛡️ CycloneDX SCA Visualizer & Dependency Tree Platform
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-brunoez%2Fsca-blue?logo=github)](https://github.com/brunoez/sca)
+[![GHCR Image](https://img.shields.io/badge/GHCR-ghcr.io%2Fbrunoez%2Fsca-blue?logo=docker)](https://github.com/brunoez/sca/pkgs/container/sca)
 ![Version](https://img.shields.io/badge/version-1.7.1-cyan.svg)
 ![CycloneDX](https://img.shields.io/badge/CycloneDX-JSON_%26_XML_(v1.2--v1.6)-cyan.svg)
 ![Node LTS](https://img.shields.io/badge/Node.js-24_LTS-emerald.svg)
-![Tests](https://img.shields.io/badge/Tests-14_Passed_%7C_74_Tests-emerald.svg)
+![Tests](https://img.shields.io/badge/Tests-15_Passed_%7C_78_Tests-emerald.svg)
 ![Security](https://img.shields.io/badge/Security-100%25_Client--Side_RAM-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 > **Inteligência Executiva & Visualizador de Grafo de Supply Chain de Software (CycloneDX JSON & XML)**  
 > Aplicação Web Single-Page (SPA) 100% Client-Side para análise visual de Software Bill of Materials (SBOM), cálculo de SCA Health Rating com memória de cálculo interativa, matriz de licenças, árvore hierárquica e grafo 2D de dependências com rastreamento de caminho de impacto ancestral.
+>
+> 🌐 **Demonstração Online:** [https://sca.brunoizidorio.com.br](https://sca.brunoizidorio.com.br)
 
 ---
 
@@ -71,21 +75,26 @@ $$\text{Score Final} = \max\left(0, 100 - (\text{Penalidade CVE} + \text{Penalid
 
 ---
 
-## 🚀 Executando com Docker (Produção)
+## 🚀 Executando com Docker (Pronto para Uso)
 
-O projeto inclui um container de produção multi-stage baseado em **Node.js 24 LTS** e **Nginx slim** com cabeçalhos de segurança HTTP pré-configurados:
+### 1. Execução Rápida via GHCR (GitHub Container Registry)
+Execute a imagem pré-compilada oficial diretamente do GitHub Container Registry:
+```bash
+docker run -d -p 8080:8080 --name sca-visualizer ghcr.io/brunoez/sca:latest
+```
+Acesse no seu navegador: **`http://localhost:8080`**
 
-### 1. Iniciar via Docker Compose:
+### 2. Iniciar via Docker Compose:
 ```bash
 docker-compose up -d --build
 ```
-Acesse em seu navegador: **`http://localhost:8081`**
+Acesse no seu navegador: **`http://localhost:8081`**
 
-### 2. Build da Imagem Manualmente:
+### 3. Build da Imagem Manualmente:
 ```bash
 cd frontend
-docker build -t cyclonedx-sca-visualizer:latest .
-docker run -d -p 8081:80 --name sca_prod cyclonedx-sca-visualizer:latest
+docker build -t ghcr.io/brunoez/sca:latest .
+docker run -d -p 8080:80 --name sca-visualizer ghcr.io/brunoez/sca:latest
 ```
 
 ---
@@ -124,8 +133,8 @@ A aplicação utiliza **Vitest** e **React Testing Library** com cobertura total
 cd frontend
 npm run test -- --run
 ```
-- **13 arquivos de teste**
-- **69 testes unitários e de integração E2E** (100% aprovados)
+- **15 arquivos de teste**
+- **78 testes unitários e de integração E2E** (100% aprovados)
 
 ---
 
