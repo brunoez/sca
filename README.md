@@ -1,5 +1,7 @@
 <div align="right">
+
 [🇺🇸 English](README.md) &nbsp;|&nbsp; [🇧🇷 Português](README.pt-BR.md)
+
 </div>
 
 # 🛡️ CycloneDX SCA Visualizer & Dependency Tree Platform
