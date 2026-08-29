@@ -5,6 +5,27 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.7.2] - 2026-08-29
+
+### 🛡️ Segurança (Security & Remediations)
+- **Remediação de XSS em Metadados de Pacotes (`PackageDetailModal.tsx`)**:
+  - Eliminado o uso desnecessário de `dangerouslySetInnerHTML` na renderização de `component.group`, substituindo por interpolação segura JSX.
+  - Endurecida a sanitização DOMPurify (`sanitizeText`) com lista restrita de tags (`b`, `i`, `em`, `strong`, `code`, `p`, `br`) e proibição de atributos inseguros (`ALLOWED_ATTR: []`).
+- **Proteção Anti-DoS por Payload Excessivo (`Dropzone.tsx`)**:
+  - Implementada trava de segurança limitando o tamanho máximo de arquivos SBOM a 50MB antes de iniciar a leitura com `FileReader`.
+- **Hardening de DevSecOps no GitLab CI (`.gitlab/ci/security.gitlab-ci.yml`)**:
+  - Removido `allow_failure: true` do scanner de segredos `gitleaks_secret_scan`, garantindo bloqueio automático do pipeline em caso de credenciais commitadas.
+
+### 🌐 Governança Open Source, Docker & Publicação no GitHub
+- **Lançamento do Repositório Público no GitHub**:
+  - Publicado o repositório oficial em [`https://github.com/brunoez/sca`](https://github.com/brunoez/sca).
+  - Adicionado link oficial com ícone customizado no rodapé da aplicação ([`LandingFooter.tsx`](file:///home/bruno/Projetos/sca/frontend/src/components/landing/LandingFooter.tsx)) e suporte bilíngue i18n (`pt-BR` e `en-US`).
+  - Adicionados templates de comunidade (`.github/ISSUE_TEMPLATE/`) e Política de Segurança ([`SECURITY.md`](file:///home/bruno/Projetos/sca/SECURITY.md)).
+- **Imagens Oficiais OCI no GitHub Container Registry (GHCR)**:
+  - Adicionadas labels OCI no `Dockerfile` e imagens publicadas em `ghcr.io/brunoez/sca:latest` e `ghcr.io/brunoez/sca:v1.7.2`.
+
+---
+
 ## [1.7.1] - 2026-08-02
 
 ### 📚 Atualização da Wiki do GitLab (PWA & Offline Capabilities)
