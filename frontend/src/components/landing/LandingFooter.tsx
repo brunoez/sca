@@ -39,7 +39,7 @@ export const LandingFooter: React.FC = () => {
             className="flex items-center gap-1.5 hover:text-white text-slate-300 transition"
             data-testid="footer-github-link"
           >
-            <Github className="w-3.5 h-3.5" /> {t('landing.footerProjectGithub')}
+            <Github className="w-3.5 h-3.5 text-cyan-400" /> {t('landing.footerProjectGithub')}
           </a>
           <a
             href="https://github.com/CycloneDX"
