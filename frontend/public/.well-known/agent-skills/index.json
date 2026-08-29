@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "skills": [
+    {
+      "name": "cyclonedx-sbom-analysis",
+      "type": "analysis",
+      "description": "Parse CycloneDX JSON/XML SBOMs, normalize 2D dependency graphs, calculate SCA Health Rating and audit license compliance.",
+      "url": "https://sca.brunoizidorio.com.br/",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

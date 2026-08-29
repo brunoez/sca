@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "serverInfo": {
+    "name": "CycloneDX SCA Visualizer",
+    "version": "1.5.2",
+    "description": "100% Client-Side Software Supply Chain Security Analysis and Dependency Graph Visualizer"
+  },
+  "transport": {
+    "type": "webmcp",
+    "endpoint": "https://sca.brunoizidorio.com.br/"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": false
+  }
+}

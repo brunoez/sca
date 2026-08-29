@@ -1,0 +1,29 @@
+{
+  "name": "CycloneDX SCA Visualizer",
+  "short_name": "SCA Visualizer",
+  "description": "Plataforma Visualizadora de Árvores de Dependências & Análise SCA CycloneDX 100% Client-Side",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "categories": ["developer", "security", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Novo SBOM",
+      "short_name": "Novo SBOM",
+      "description": "Carregar e analisar um novo SBOM CycloneDX",
+      "url": "/?action=new",
+      "icons": [{ "src": "/icon.svg", "sizes": "512x512" }]
+    }
+  ]
+}
