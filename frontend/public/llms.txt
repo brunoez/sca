@@ -1,0 +1,9 @@
+# CycloneDX SCA Visualizer & Dependency Tree Platform
+> Client-side Software Supply Chain Security Analysis and Interactive 2D Graph Visualizer
+
+- Website: https://sca.brunoizidorio.com.br/
+- Agent Registration: https://sca.brunoizidorio.com.br/auth.md
+- Markdown Summary: https://sca.brunoizidorio.com.br/index.md
+- Agent Skills Index: https://sca.brunoizidorio.com.br/.well-known/agent-skills/index.json
+- MCP Server Card: https://sca.brunoizidorio.com.br/.well-known/mcp/server-card.json
+- API Catalog: https://sca.brunoizidorio.com.br/.well-known/api-catalog

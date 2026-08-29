@@ -1,0 +1,6 @@
+# CycloneDX SCA Visualizer - Robots & Agent Discovery Specification
+User-agent: *
+Allow: /
+
+# Agent & Search Engine Sitemap Reference
+Sitemap: https://sca.brunoizidorio.com.br/sitemap.xml

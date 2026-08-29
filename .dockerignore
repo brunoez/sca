@@ -1,0 +1,27 @@
+# Git history & configs
+.git
+.gitignore
+.gitlab-ci.yml
+.gitlab/
+
+# Dependencies & Build artifacts
+node_modules
+**/node_modules
+dist
+**/dist
+dist-ssr
+build
+.vite
+
+# Temporary & Local files
+temp
+tmp
+.cache
+*.log
+
+# Documentation & Scratch
+README.md
+CHANGELOG.md
+PROD.md
+docs/
+.superpowers/

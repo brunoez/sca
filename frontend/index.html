@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CycloneDX SCA Visualizer</title>
+
+    <!-- Progressive Web App (PWA) Metadata -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0284c7" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <!-- Agent Readiness & Discovery Links (RFC 8288 / RFC 9727) -->
+    <link rel="api-catalog" href="/.well-known/api-catalog" type="application/linkset+json" />
+    <link rel="agent-skills" href="/.well-known/agent-skills/index.json" type="application/json" />
+    <link rel="mcp-server-card" href="/.well-known/mcp/server-card.json" type="application/json" />
+    <link rel="author" href="/auth.md" type="text/markdown" />
+    <link rel="alternate" href="/index.md" type="text/markdown" title="Markdown for Agents" />
+  </head>
+  <body class="bg-slate-900 text-slate-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('Service Worker registration skipped:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
