@@ -8,14 +8,13 @@ semgrep_sast_scan:
     entrypoint: [""]
   script:
     - ln -sf "$CI_PROJECT_DIR" /src
-    - semgrep scan --config auto --json /src > semgrep-sast-report.json
+    - semgrep scan --config auto --error --json /src > semgrep-sast-report.json
   artifacts:
     name: semgrep-sast-report
     paths:
       - semgrep-sast-report.json
     expire_in: 1 week
     when: always
-  allow_failure: true
 
 # Job 2: Gitleaks (Detecção de Vazamento de Segredos e Credenciais)
 gitleaks_secret_scan:
@@ -32,7 +31,6 @@ gitleaks_secret_scan:
     expire_in: 1 week
     when: always
 
-
 # Job 3: Trivy Filesystem & Dependency Vulnerability Scan
 trivy_fs_scan:
   stage: security-scan
@@ -40,7 +38,7 @@ trivy_fs_scan:
     name: aquasec/trivy:latest
     entrypoint: [""]
   script:
-    - trivy fs --exit-code 0 --severity HIGH,CRITICAL --format json -o trivy-fs-report.json .
+    - trivy fs --exit-code 1 --severity CRITICAL --format json -o trivy-fs-report.json .
   artifacts:
     name: trivy-fs-report
     paths:
@@ -57,7 +55,6 @@ trivy_container_scan:
   variables:
     TRIVY_NO_PROGRESS: "true"
   script:
-    - trivy image --exit-code 0 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:latest
+    - trivy image --exit-code 1 --severity CRITICAL $CI_REGISTRY_IMAGE:latest
   only:
     - master
-  allow_failure: true

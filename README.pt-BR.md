@@ -8,10 +8,10 @@
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-brunoez%2Fsca-blue?logo=github)](https://github.com/brunoez/sca)
 [![GHCR Image](https://img.shields.io/badge/GHCR-ghcr.io%2Fbrunoez%2Fsca-blue?logo=docker)](https://github.com/brunoez/sca/pkgs/container/sca)
-![Version](https://img.shields.io/badge/version-1.7.2-cyan.svg)
+![Version](https://img.shields.io/badge/version-1.7.3-cyan.svg)
 ![CycloneDX](https://img.shields.io/badge/CycloneDX-JSON_%26_XML_(v1.2--v1.6)-cyan.svg)
 ![Node LTS](https://img.shields.io/badge/Node.js-24_LTS-emerald.svg)
-![Tests](https://img.shields.io/badge/Tests-15_Passed_%7C_78_Tests-emerald.svg)
+![Tests](https://img.shields.io/badge/Tests-17_Passed_%7C_86_Tests-emerald.svg)
 ![Security](https://img.shields.io/badge/Security-100%25_Client--Side_RAM-purple.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
@@ -139,8 +139,8 @@ A aplicação utiliza **Vitest** e **React Testing Library** com cobertura total
 cd frontend
 npm run test -- --run
 ```
-- **15 arquivos de teste**
-- **78 testes unitários e de integração E2E** (100% aprovados)
+- **17 arquivos de teste**
+- **86 testes unitários e de integração E2E** (100% aprovados)
 
 ---
 

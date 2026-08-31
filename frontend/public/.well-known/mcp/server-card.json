@@ -1,17 +1,16 @@
 {
-  "schemaVersion": "1.0",
-  "serverInfo": {
-    "name": "CycloneDX SCA Visualizer",
-    "version": "1.5.2",
-    "description": "100% Client-Side Software Supply Chain Security Analysis and Dependency Graph Visualizer"
-  },
-  "transport": {
-    "type": "webmcp",
-    "endpoint": "https://sca.brunoizidorio.com.br/"
-  },
-  "capabilities": {
-    "tools": true,
-    "resources": true,
-    "prompts": false
-  }
+  "server_name": "cyclonedx-sca-visualizer",
+  "version": "1.7.3",
+  "protocol": "webmcp",
+  "description": "In-browser WebMCP tool provider for CycloneDX Software Bill of Materials analysis.",
+  "tools": [
+    {
+      "name": "analyze_sbom",
+      "description": "Parses raw CycloneDX SBOM JSON or XML and computes supply chain health metrics."
+    },
+    {
+      "name": "get_security_score",
+      "description": "Retrieves the current SCA security rating, letter grade, CVE breakdown, and license matrix."
+    }
+  ]
 }

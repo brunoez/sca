@@ -162,7 +162,9 @@ export const SampleLoader: React.FC<SampleLoaderProps> = ({ onLoaded }) => {
 
       let content = '';
       try {
-        const response = await fetch(samplePath);
+        const response = await fetch(samplePath, {
+          signal: typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal ? AbortSignal.timeout(5000) : undefined,
+        });
         if (response.ok) {
           content = await response.text();
         } else {

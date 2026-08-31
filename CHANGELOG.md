@@ -5,6 +5,26 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.7.3] - 2026-08-31
+
+### 🛡️ APIs, Segurança (OWASP API Top 10) & Resiliência
+- **Resiliência WebMCP & Proteção de Payload Anti-DoS (`webMcp.ts`)**:
+  - Implementada validação de tamanho máximo de payload (50MB) na tool in-browser `analyze_sbom` exposta via `navigator.modelContext`.
+  - Adicionado tratamento robusto de erros com retorno estruturado `{ success: false, error: '...' }` para prevenir exceções não tratadas e travamentos de thread.
+- **Resiliência Downstream com Timeout de 5s (`SampleLoader.tsx`)**:
+  - Configurado `AbortSignal.timeout(5000)` nas requisições `fetch` de amostras de SBOM, garantindo acionamento automático do fallback embutido em caso de instabilidade de rede ou CDN.
+- **Conformidade de Contratos RFC & Agent Discovery (`.well-known`)**:
+  - Criados os arquivos JSON estáticos reais em `frontend/public/.well-known/` (`oauth-protected-resource`, `oauth-authorization-server`, `api-catalog`, `agent-skills/index.json` e `mcp/server-card.json`).
+  - Ajustado o roteamento no `nginx.conf` com `try_files $uri =404;`, eliminando o retorno inadvertido do HTML do SPA React em requisições de API JSON (MIME type mismatch).
+- **Hardening de DevSecOps & Portões de Qualidade CI/CD (`.gitlab/ci/security.gitlab-ci.yml`)**:
+  - Removido `allow_failure: true` dos jobs `semgrep_sast_scan` e `trivy_container_scan`, tornando os scanners bloqueantes contra vulnerabilidades críticas antes do deploy.
+- **Nginx HTTP Rate Limiting Gateway (`nginx.conf`)**:
+  - Configurada zona de limitação de taxa `limit_req_zone $binary_remote_addr zone=sca_rate_limit:10m rate=30r/s;` com `burst=60 nodelay;`.
+- **Suíte de Testes Automatizados (100% TDD)**:
+  - Adicionados testes unitários dedicados em `webMcp.test.ts` e `SampleLoader.test.tsx`, expandindo a cobertura para 17 arquivos e 86 testes aprovados (100% de sucesso).
+
+---
+
 ## [1.7.2] - 2026-08-29
 
 ### 🛡️ Segurança (Security & Remediations)

@@ -40,17 +40,35 @@ export function registerWebMcpTools() {
             required: ['sbomContent']
           },
           execute: async ({ sbomContent, fileName = 'agent_input.json' }) => {
-            const content = String(sbomContent);
-            const name = String(fileName);
-            const model = parseAndNormalizeSbom(content, name);
-            useScaStore.getState().setModel(model);
-            return {
-              success: true,
-              componentName: model.metadata.componentName,
-              totalComponents: model.summary.totalComponents,
-              score: model.summary.scaHealthScore,
-              grade: model.summary.securityGrade
-            };
+            try {
+              const content = String(sbomContent);
+              const name = String(fileName);
+
+              // Validação de limite de tamanho de payload (50MB) para prevenção de DoS client-side
+              const MAX_PAYLOAD_SIZE = 50 * 1024 * 1024;
+              if (content.length > MAX_PAYLOAD_SIZE) {
+                return {
+                  success: false,
+                  error: 'Payload excede o limite máximo permitido de 50MB.',
+                };
+              }
+
+              const model = parseAndNormalizeSbom(content, name);
+              useScaStore.getState().setModel(model);
+              return {
+                success: true,
+                componentName: model.metadata.componentName,
+                totalComponents: model.summary.totalComponents,
+                score: model.summary.scaHealthScore,
+                grade: model.summary.securityGrade,
+              };
+            } catch (err: any) {
+              console.error('WebMCP analyze_sbom error:', err);
+              return {
+                success: false,
+                error: err?.message || 'Falha ao processar o SBOM fornecido.',
+              };
+            }
           }
         },
         {

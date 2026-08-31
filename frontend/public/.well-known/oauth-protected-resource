@@ -1,14 +1,7 @@
 {
   "resource": "https://sca.brunoizidorio.com.br",
-  "authorization_servers": [
-    "https://sca.brunoizidorio.com.br"
-  ],
-  "scopes_supported": [
-    "read:sbom",
-    "analyze:sbom"
-  ],
-  "bearer_methods_supported": [
-    "header"
-  ],
+  "authorization_servers": ["https://sca.brunoizidorio.com.br/.well-known/oauth-authorization-server"],
+  "bearer_methods_supported": ["header"],
+  "scopes_supported": ["read:sbom", "analyze:sbom"],
   "resource_documentation": "https://sca.brunoizidorio.com.br/auth.md"
 }

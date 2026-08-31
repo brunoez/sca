@@ -1,25 +1,9 @@
 {
   "issuer": "https://sca.brunoizidorio.com.br",
-  "authorization_endpoint": "https://sca.brunoizidorio.com.br/",
+  "authorization_endpoint": "https://sca.brunoizidorio.com.br/auth.md",
   "token_endpoint": "https://sca.brunoizidorio.com.br/",
-  "jwks_uri": "https://sca.brunoizidorio.com.br/",
-  "grant_types_supported": [
-    "implicit"
-  ],
-  "response_types_supported": [
-    "token"
-  ],
-  "agent_auth": {
-    "skill": "https://sca.brunoizidorio.com.br/auth.md",
-    "register_uri": "https://sca.brunoizidorio.com.br/auth.md",
-    "supported_identity_types": [
-      "anonymous",
-      "agent"
-    ],
-    "credential_types": [
-      "none"
-    ],
-    "claim_uri": "https://sca.brunoizidorio.com.br/auth.md",
-    "revocation_uri": "https://sca.brunoizidorio.com.br/auth.md"
-  }
+  "response_types_supported": ["token", "id_token"],
+  "grant_types_supported": ["implicit", "anonymous"],
+  "scopes_supported": ["read:sbom", "analyze:sbom"],
+  "service_documentation": "https://sca.brunoizidorio.com.br/auth.md"
 }
