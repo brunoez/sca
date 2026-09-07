@@ -22,6 +22,44 @@
 
 ---
 
+## 📸 Demonstração Visual da Interface
+
+<div align="center">
+  <img src="docs/screenshots/02-executive-dashboard.png" alt="Dashboard Executivo de Segurança & Health Rating" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
+  <p><em>Dashboard Executivo de Segurança: cálculo de SCA Health Rating em tempo real, métricas de vulnerabilidades e grafo topológico embutido.</em></p>
+</div>
+
+<br/>
+
+| 🌐 Grafo Topológico 2D de Dependências | 🌳 Árvore Hierárquica Colapsável (TreeView) |
+| :---: | :---: |
+| <img src="docs/screenshots/04-dependency-graph.png" alt="Grafo Topológico 2D" width="480" /> | <img src="docs/screenshots/06-tree-view.png" alt="Árvore Hierárquica" width="480" /> |
+| *Layout automático Dagre LR com MiniMapa reativo* | *Exploração em profundidade com badges de nível e risco* |
+
+| 📊 Matriz Jurídica & ROI de Remediação | 📦 Explorador de Pacotes & Licenças |
+| :---: | :---: |
+| <img src="docs/screenshots/03-analytics-remediation.png" alt="Matriz de Licenças e Quick Wins" width="480" /> | <img src="docs/screenshots/07-package-explorer.png" alt="Explorador de Pacotes" width="480" /> |
+| *Distribuição de licenças e priorização Quick Wins* | *Filtros instantâneos por tipo, licença e CVEs* |
+
+<details>
+  <summary>🔍 <strong>Ver Mais Capturas de Tela (Página Inicial & Modal de Impacto Ancestral)</strong></summary>
+  <br/>
+
+  ### Página Inicial Executiva (Privacy-First)
+  <div align="center">
+    <img src="docs/screenshots/01-landing-page.png" alt="Página Inicial" width="850" />
+    <p><em>Ingestão Drag & Drop segura e carregamento de amostras pré-configuradas.</em></p>
+  </div>
+
+  ### Modal de Detalhes & Caminho de Inclusão Ancestral
+  <div align="center">
+    <img src="docs/screenshots/05-package-modal.png" alt="Modal de Detalhes do Pacote" width="750" />
+    <p><em>Rastreamento de impacto ancestral raiz-a-folha e recomendação de remediação.</em></p>
+  </div>
+</details>
+
+---
+
 ## 🏗️ Arquitetura & Fluxo de Dados (Privacy-First)
 
 Toda a ingestão, validação de schemas, detecção de ciclos e renderização do grafo ocorrem exclusivamente em memória local RAM do navegador do usuário. Nenhum dado é enviado para a nuvem ou servidores externos.
