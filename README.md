@@ -22,6 +22,44 @@
 
 ---
 
+## 📸 Interface Preview
+
+<div align="center">
+  <img src="docs/screenshots/02-executive-dashboard.png" alt="Executive Security Dashboard & Health Rating" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);" />
+  <p><em>Executive Security Dashboard: Real-time SCA Health Rating, vulnerability metrics, and embedded 2D topological graph.</em></p>
+</div>
+
+<br/>
+
+| 🌐 2D Topological Dependency Graph | 🌳 Collapsible Hierarchical TreeView |
+| :---: | :---: |
+| <img src="docs/screenshots/04-dependency-graph.png" alt="2D Topological Graph" width="480" /> | <img src="docs/screenshots/06-tree-view.png" alt="Hierarchical TreeView" width="480" /> |
+| *Dagre LR auto-layout with reactive MiniMap* | *Multi-level nested supply chain depth exploration* |
+
+| 📊 Compliance Matrix & Remediation ROI | 📦 Package & Vulnerability Explorer |
+| :---: | :---: |
+| <img src="docs/screenshots/03-analytics-remediation.png" alt="Compliance Matrix & Remediation Quick Wins" width="480" /> | <img src="docs/screenshots/07-package-explorer.png" alt="Component & License Explorer" width="480" /> |
+| *Legal license distribution & high-ROI quick wins* | *Instant search, type filters, and CVE badges* |
+
+<details>
+  <summary>🔍 <strong>View More Screenshots (Landing Page & Ancestral Impact Modal)</strong></summary>
+  <br/>
+
+  ### Executive Landing Page (Privacy-First)
+  <div align="center">
+    <img src="docs/screenshots/01-landing-page.png" alt="Landing Page" width="850" />
+    <p><em>Landing page with drag-and-drop ingestion and instant sample loaders.</em></p>
+  </div>
+
+  ### Ancestral Impact Path & Remediation Modal
+  <div align="center">
+    <img src="docs/screenshots/05-package-modal.png" alt="Package Detail Modal" width="750" />
+    <p><em>Ancestral root-to-leaf inclusion path tracing and remediation recommendation.</em></p>
+  </div>
+</details>
+
+---
+
 ## 🏗️ Architecture & Data Flow (Privacy-First)
 
 All file ingestion, schema validation, cycle detection, and graph rendering execute exclusively within local browser RAM. No data or SBOM content is ever transmitted to cloud servers or external backends.
