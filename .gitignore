@@ -55,3 +55,17 @@ Thumbs.db
 .venv/
 **/.venv/
 
+# Maintenance Scripts & Local Utilities
+scripts/
+
+# Security Scans & Scan Outputs
+resultado_semgrep.json
+sbom.json
+*-report.json
+*.pdf
+
+# Internal Audits & Private Infrastructure Notes
+docs/security-audit/
+docs/api-audit/
+docs/DNS_AID.md
+docs/superpowers/
